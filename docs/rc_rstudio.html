@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>CCESR Intern Hub - References</title>
+<title>CCESR Intern Hub - 6&nbsp; R Studio</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,26 +20,7 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-/* CSS for citations */
-div.csl-bib-body { }
-div.csl-entry {
-  clear: both;
-}
-.hanging-indent div.csl-entry {
-  margin-left:2em;
-  text-indent:-2em;
-}
-div.csl-left-margin {
-  min-width:2em;
-  float:left;
-}
-div.csl-right-inline {
-  margin-left:2em;
-  padding-left:1em;
-}
-div.csl-indent {
-  margin-left: 2em;
-}</style>
+</style>
 
 
 <script src="site_libs/quarto-nav/quarto-nav.js"></script>
@@ -49,7 +30,8 @@ div.csl-indent {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./r_visualize.html" rel="prev">
+<link href="./rc_git.html" rel="next">
+<link href="./rc_r.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -91,7 +73,7 @@ div.csl-indent {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./references.html">References</a></li></ol></nav>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./rc_r.html">R on your Computer</a></li><li class="breadcrumb-item"><a href="./rc_rstudio.html"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">R Studio</span></a></li></ol></nav>
       <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
       </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -174,7 +156,7 @@ div.csl-indent {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./rc_rstudio.html" class="sidebar-item-text sidebar-link">
+  <a href="./rc_rstudio.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">R Studio</span></span></a>
   </div>
 </li>
@@ -235,7 +217,7 @@ div.csl-indent {
   </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./references.html" class="sidebar-item-text sidebar-link active">
+  <a href="./references.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">References</span></a>
   </div>
 </li>
@@ -245,14 +227,21 @@ div.csl-indent {
 <div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#rstudio-at-a-glance" id="toc-rstudio-at-a-glance" class="nav-link active" data-scroll-target="#rstudio-at-a-glance"><span class="header-section-number">6.1</span> RStudio at a Glance</a></li>
+  <li><a href="#r-projects" id="toc-r-projects" class="nav-link" data-scroll-target="#r-projects"><span class="header-section-number">6.2</span> R Projects</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">References</h1>
+<h1 class="title"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">R Studio</span></h1>
 </div>
 
 
@@ -267,11 +256,28 @@ div.csl-indent {
 
 </header>
 
-<div id="refs" role="list" style="display: none">
+<p>While you can use R with just the basic application, it is much easier and beginner-friendly to use RStudio, which is an integrated development environment or IDE. This is just an application that provides a suite of features to make programming easier for users. In fact, I’m typing this in RStudio <em>right now</em>!! Note: you must have the R application installed to use RStudio, as it relies on the R application to interpret R code.</p>
+<p>You can download and install RStudio from here:</p>
+<p><a href="https://posit.co/download/rstudio-desktop/" class="uri">https://posit.co/download/rstudio-desktop/</a></p>
+<p>Which should be more straightforward than downloading and installing R.</p>
+<section id="rstudio-at-a-glance" class="level2" data-number="6.1">
+<h2 data-number="6.1" class="anchored" data-anchor-id="rstudio-at-a-glance"><span class="header-section-number">6.1</span> RStudio at a Glance</h2>
+<p>If you open up RStudio, you will see something like this (Image from Bea Baselga):</p>
+<p>image</p>
+<p><strong>1- Code Editor</strong>: Here is where you will write code! You can create an R script (a text document to save code in) with the file tab, and write what you need in the resulting script. It is <strong>highly</strong> recommended to use scripts, because then you can save your code for later, and troubleshoot errors easier. From this window, you can highlight code and run it with the “Run” button on top, or with Ctrl + Enter / Cmd +Enter.</p>
+<p><strong>2- R console</strong>: Here is where the action happens - code will run here, and text output, warnings and messages will be displayed. You can also type code into the console, but that is only recommended for installing packages, entering credentials, rendering documents, and things of that nature. Don’t type your data processing or analysis code into the console, use a script instead! There’s also a terminal tab if you ever need to perform shell commands.</p>
+<p><strong>3- Environment and History</strong>: Here you can find a list of the variables and data you have loaded into your “workspace” or “environment” in the Environment tab. These are objects you can do stuff with with code. You can also click the History tab to see the code you have run thus far.</p>
+<p><strong>4- Files and Plots</strong>: Here is where any figures you draw will pop up (and you can save them from here as well). There is also a Files tab that allows you to navigate through your file directory (helpful with projects, described below). The Packages tab shows which packages you have installed and loaded (you can also click “Install” at top to easily install new ones!). Finally, the help tab is where you can search for the documentation on any R function.</p>
+</section>
+<section id="r-projects" class="level2" data-number="6.2">
+<h2 data-number="6.2" class="anchored" data-anchor-id="r-projects"><span class="header-section-number">6.2</span> R Projects</h2>
+<p>It is highly recommended to use R Projects when working with RStudio. Projects are essentially just subdirectories in your file folders, but they come with a special .Rproj file that RStudio can read and use. This helps you organize your work, and makes your code more easily portable.</p>
+<p>You can create a new projects from the File tab at upper left, or in the project dropdown menu at upper right.</p>
+<p>There are many different types of projects - this book/website is one!</p>
+<p>If you want to backup your work with version control or collaborate with others using git and GitHub, you will need to use projects. (Well, technically you don’t need to, but you’d be doing many things manually)</p>
 
-</div>
 
-
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -509,11 +515,14 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./r_visualize.html" class="pagination-link">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Visualizing Data</span></span>
+      <a href="./rc_r.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">R Itself</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
+      <a href="./rc_git.html" class="pagination-link">
+        <span class="nav-page-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Optional: Git and Github</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
   </div>
 </nav>
 </div> <!-- /content -->

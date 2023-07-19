@@ -1,0 +1,36 @@
+---
+title: "R Itself"
+toc: true
+---
+
+R is both a programming language and an application that you can install to your computer.
+
+## R, the Language
+
+R is a programming language designed for statistical computing, and is often the language of choice for scientists. R is also used for data science in some business, tech, and health contexts ( but many prefer Python in those areas).
+
+As a programming language it is essentially an expandable collection of functions with syntax to perform tasks, and it could be written in any text editor. However, in order for your computer to interpret the language, it needs some software.
+
+## R, the Software
+
+The R application allows you to run R code on your computer, and comes with a basic "console" window where code is run and output is printed, as well as a basic script editor where you can write code to run.
+
+You can download the application from here:
+
+<https://cran.r-project.org/>
+
+If you are asked to select a mirror, simply select the nearest one (I believe Iowa State should work).
+
+If you have a Windows machine, it should be fairly straightforward to simply download and install the "base" R from the link.
+
+If you have a Mac, you will want to select the .pkg file that matches your processor type: x-86 for Intel processors (mostly Macs pre-2020), arm64 for Macs with the M1 or M2 chip (most Macs post-2020).
+
+If you are using Linux, you know more than me.
+
+## R Packages
+
+As mentioned above, R is *expandable*. You can add more functionality to R by installing packages. Packages contain more options of code to use to process and analyze data, and also do many other things.
+
+Packages can be installed through writing R code, or by clicking some buttons in RStudio. Then they will live in a directory that was built when you installed R for auxiliary packages.
+
+We will discuss more about installing packages in the R coding section.

@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>CCESR Intern Hub - References</title>
+<title>CCESR Intern Hub - 4&nbsp; Inferential Statistics</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,26 +20,7 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-/* CSS for citations */
-div.csl-bib-body { }
-div.csl-entry {
-  clear: both;
-}
-.hanging-indent div.csl-entry {
-  margin-left:2em;
-  text-indent:-2em;
-}
-div.csl-left-margin {
-  min-width:2em;
-  float:left;
-}
-div.csl-right-inline {
-  margin-left:2em;
-  padding-left:1em;
-}
-div.csl-indent {
-  margin-left: 2em;
-}</style>
+</style>
 
 
 <script src="site_libs/quarto-nav/quarto-nav.js"></script>
@@ -49,7 +30,8 @@ div.csl-indent {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./r_visualize.html" rel="prev">
+<link href="./rc_r.html" rel="next">
+<link href="./da_describe.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -91,7 +73,7 @@ div.csl-indent {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./references.html">References</a></li></ol></nav>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./da_glance.html">Data Analysis</a></li><li class="breadcrumb-item"><a href="./da_infer.html"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Inferential Statistics</span></a></li></ol></nav>
       <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
       </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -151,7 +133,7 @@ div.csl-indent {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./da_infer.html" class="sidebar-item-text sidebar-link">
+  <a href="./da_infer.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Inferential Statistics</span></span></a>
   </div>
 </li>
@@ -235,7 +217,7 @@ div.csl-indent {
   </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./references.html" class="sidebar-item-text sidebar-link active">
+  <a href="./references.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">References</span></a>
   </div>
 </li>
@@ -245,14 +227,28 @@ div.csl-indent {
 <div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#classic-frequentist-tests" id="toc-classic-frequentist-tests" class="nav-link active" data-scroll-target="#classic-frequentist-tests"><span class="header-section-number">4.1</span> Classic Frequentist Tests</a>
+  <ul class="collapse">
+  <li><a href="#assumptions" id="toc-assumptions" class="nav-link" data-scroll-target="#assumptions"><span class="header-section-number">4.1.1</span> Assumptions</a></li>
+  <li><a href="#categorical-predictors-numeric-response" id="toc-categorical-predictors-numeric-response" class="nav-link" data-scroll-target="#categorical-predictors-numeric-response"><span class="header-section-number">4.1.2</span> Categorical Predictor/s, Numeric Response</a></li>
+  <li><a href="#numeric-predictors-numeric-response" id="toc-numeric-predictors-numeric-response" class="nav-link" data-scroll-target="#numeric-predictors-numeric-response"><span class="header-section-number">4.1.3</span> Numeric Predictor/s, Numeric Response</a></li>
+  <li><a href="#numeric-predictors-categorical-response" id="toc-numeric-predictors-categorical-response" class="nav-link" data-scroll-target="#numeric-predictors-categorical-response"><span class="header-section-number">4.1.4</span> Numeric Predictor/s, Categorical Response</a></li>
+  <li><a href="#categorical-predictors-categorical-response" id="toc-categorical-predictors-categorical-response" class="nav-link" data-scroll-target="#categorical-predictors-categorical-response"><span class="header-section-number">4.1.5</span> Categorical Predictor/s, Categorical Response</a></li>
+  </ul></li>
+  <li><a href="#bootstrapping" id="toc-bootstrapping" class="nav-link" data-scroll-target="#bootstrapping"><span class="header-section-number">4.2</span> Bootstrapping</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">References</h1>
+<h1 class="title"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Inferential Statistics</span></h1>
 </div>
 
 
@@ -267,11 +263,81 @@ div.csl-indent {
 
 </header>
 
-<div id="refs" role="list" style="display: none">
+<p>Now, let’s think about how to use your data to answer your questions. There are a couple approaches statisticians use, and we will talk about frequentist statistics, where probabilities are though of like relative frequencies. There is also Bayesian statistics, which is a bit more complex, so we will skip it for now.</p>
+<p>Within frequentist statistics, we can run various tests to see how variables are related, which typically make some assumptions about the data. We can also do something called bootstrapping, which makes no assumptions, but can be simplistic from some perspectives.</p>
+<p>In any case, we are hoping to estimate two main values:</p>
+<p><strong>Effect Size</strong>: How related are two variables? How different are two means? How much does one variable affect another?</p>
+<p><strong>p-value</strong>: What is the chance of observing data like yours (or something more extreme) if there was no relationship among the variables?</p>
+<p>The p-value can be a bit tricky, but know that it <strong>isn’t</strong> the probability that there is no relationship. P-values are used to draw conclusions from test results, a traditional guideline is that if the p-value is less than 0.05, the results are “significant.” Some statisticians bristle at this arbitrary and binary system, so it’s often best to report both the effect size and the actual p-value, so readers can interpret for themselves. The smaller the effect size, the weaker the relationship, the smaller the p-value, the stronger the evidence for the relationship.</p>
+<p>Obviously, there are entire classes taught on this stuff (which may have taken or will take!), but we are thinking in just the basics for now.</p>
+<section id="classic-frequentist-tests" class="level2" data-number="4.1">
+<h2 data-number="4.1" class="anchored" data-anchor-id="classic-frequentist-tests"><span class="header-section-number">4.1</span> Classic Frequentist Tests</h2>
+<p>Now let’s go over some statistical tests! For this section, it can be useful to remind ourselves of the variables involved in a research question:</p>
+<p><strong>Independent / Explanatory / Predictor Variable</strong>: this is either what you are manipulating in an experiment or what your study is designed to capture variation in (e.g., C02 at BioCON, species richness at BigBio).</p>
+<p><strong>Dependent / Response Variable</strong>: these are what you measure or observe throughout your study, generally hypothesizing that they will differ among the levels of your independent variable (e.g., aboveground biomass in BioCON or BigBio).</p>
+<section id="assumptions" class="level3" data-number="4.1.1">
+<h3 data-number="4.1.1" class="anchored" data-anchor-id="assumptions"><span class="header-section-number">4.1.1</span> Assumptions</h3>
+<p>We should mention what these tests generally assume about your data.</p>
+<p>First, they assume that your <strong>data are independent</strong>. This just means that no two observations of your data are more related to eachother in a way that isn’t accounted for by a variable. Say you were comparing mean tree height between two forests - individual tree heights in the same forest would be independent, but two measures of the same tree on different days would be non-independent.</p>
+<p>Second, they assume that the <strong>errors are normally distributed</strong>. This is a bit more confusing without a statistical background. An example may be illustrative - in the tree height example above, we assume that the individual tree height are normally distributed about the mean. Without getting too much into the weeds, if you collect enough data (i.e., 30+ observations), these errors will likely be approximately normally distributed. However, things get divcey when we deal with data that is not continuous like tree height, for example, discrete count data - more on that below.</p>
+<p>Third, they assume <strong>homogeneity of variance</strong>. This is another complicated one, but it mean that the variance of the errors doesn’t change with the independent variable. In the tree example, we are assuming that the variance of the differences between observed tree heights and the forest mean does not change between forests.</p>
+<p>Data that break the first assumption are difficult to deal with outside of accounting for the non-independence factor (which can severely reduce the size of your sample), but failing to meet the second or third assumptions generally leads to transforming data or using alternative tests.</p>
+</section>
+<section id="categorical-predictors-numeric-response" class="level3" data-number="4.1.2">
+<h3 data-number="4.1.2" class="anchored" data-anchor-id="categorical-predictors-numeric-response"><span class="header-section-number">4.1.2</span> Categorical Predictor/s, Numeric Response</h3>
+<section id="two-predictor-categories" class="level4" data-number="4.1.2.1">
+<h4 data-number="4.1.2.1" class="anchored" data-anchor-id="two-predictor-categories"><span class="header-section-number">4.1.2.1</span> Two Predictor Categories</h4>
+<p>When you are comparing numeric values from two groups, you can use a <strong>t-test</strong> to compare their means. T-tests can be <strong>paired</strong> when each observation in one group is specifically linked to an observation in the other group (e.g., masses of sibling plants in separate treatments) which can be more powerful. When the variance of values in each group changes, you can do a <strong>t-test with unequal variance</strong>.</p>
+<p>The effect size here is the difference between means.</p>
+</section>
+<section id="more-than-two-predictor-categories" class="level4" data-number="4.1.2.2">
+<h4 data-number="4.1.2.2" class="anchored" data-anchor-id="more-than-two-predictor-categories"><span class="header-section-number">4.1.2.2</span> More Than Two Predictor Categories</h4>
+<p>If you have more than two groups/categories, you can use a <strong>Analysis of Variance</strong> or <strong>ANOVA</strong>. This will tell you if the means of each group are equivalent, or if there is at least one inequality. You can test for pairwise comparisons among the groups with <strong>Tukey’ test</strong>. If you have multiple categorical predictors, you can do <strong>two-way or three-way ANOVAs</strong>. Tests with more than three categorical predictor variables are uncommon and harder to interpret.</p>
+<p>The effect sizes are the pairwise difference in means.</p>
+</section>
+<section id="ordinal-predictors" class="level4" data-number="4.1.2.3">
+<h4 data-number="4.1.2.3" class="anchored" data-anchor-id="ordinal-predictors"><span class="header-section-number">4.1.2.3</span> Ordinal Predictors</h4>
+<p>When your predictor variable is ordinal, the quick and easy way to analyze it would be to convert the predictor to a numeric integer data type and proceed from there. However this is imprecise…</p>
+<p><em>This section is under construction</em></p>
+</section>
+</section>
+<section id="numeric-predictors-numeric-response" class="level3" data-number="4.1.3">
+<h3 data-number="4.1.3" class="anchored" data-anchor-id="numeric-predictors-numeric-response"><span class="header-section-number">4.1.3</span> Numeric Predictor/s, Numeric Response</h3>
+<section id="simple-association" class="level4" data-number="4.1.3.1">
+<h4 data-number="4.1.3.1" class="anchored" data-anchor-id="simple-association"><span class="header-section-number">4.1.3.1</span> Simple Association</h4>
+<p>When all you are interested in is whether two numeric variables are related to one another, not cause and effect, you can do a <strong>correlation test</strong>. <strong>Pearson’s correlation</strong> is generally applicable for continuous data. <strong>Spearman’s correlation</strong> is good for when you are dealing with data with non-normal distributions, like count data (it also works for ordinal data!).</p>
+<p>The effect size here will be a correlation coefficient ranging from -1 to 1, with -1 means an inverse relationship, 0 means no relationship, and 1 mean a direct positive relationship.</p>
+<p><strong>Cause and Effect</strong></p>
+<p>When you are suppose a causal relationship between numeric variables, you can use a <strong>linear regression</strong>. This will use linear algebra or maximum likelihod estimation (don’t worry about it) to find the best fit line that describes the relationship between two variables; where the sum of the squared distances from the observations to the line is minimized. You can also include multiple predictor variables to perform <strong>multiple linear regression</strong> AKA <strong>multivariate linear regression</strong>.</p>
+<p>When your response variable is count data, the assumptions of simple linear regression are usually unmet, so you can use generalized forms like a <strong>Poisson regression</strong> or a <strong>Negative Binomial Regression</strong>.</p>
+<p>The effect sizes here are the parameter coefficients, i.e., how much does the response change for on unit increase in the predictor? Note: these are not straightforward for Poisson and negative binomial regression, so ask your mentor.</p>
+</section>
+</section>
+<section id="numeric-predictors-categorical-response" class="level3" data-number="4.1.4">
+<h3 data-number="4.1.4" class="anchored" data-anchor-id="numeric-predictors-categorical-response"><span class="header-section-number">4.1.4</span> Numeric Predictor/s, Categorical Response</h3>
+<section id="binary-response" class="level4" data-number="4.1.4.1">
+<h4 data-number="4.1.4.1" class="anchored" data-anchor-id="binary-response"><span class="header-section-number">4.1.4.1</span> Binary Response</h4>
+<p>When your categorical response is only two categories (e.g., presence or absence), you can use a <strong>binomial regression</strong> AKA <strong>logistic regression</strong>. This works similarly to linear regression, but the effect sizes are measured in log odds, which is difficult to interpret, but can be transformed to estimating how the probability of one category value over the other increases with a variable.</p>
+</section>
+<section id="multiple-response-categories" class="level4" data-number="4.1.4.2">
+<h4 data-number="4.1.4.2" class="anchored" data-anchor-id="multiple-response-categories"><span class="header-section-number">4.1.4.2</span> Multiple Response Categories</h4>
+<p><strong>Multinomial regression</strong> <em>(under construction)</em></p>
+</section>
+</section>
+<section id="categorical-predictors-categorical-response" class="level3" data-number="4.1.5">
+<h3 data-number="4.1.5" class="anchored" data-anchor-id="categorical-predictors-categorical-response"><span class="header-section-number">4.1.5</span> Categorical Predictor/s, Categorical Response</h3>
+<p><strong>Chi-square test</strong> <em>(under construction)</em></p>
+</section>
+</section>
+<section id="bootstrapping" class="level2" data-number="4.2">
+<h2 data-number="4.2" class="anchored" data-anchor-id="bootstrapping"><span class="header-section-number">4.2</span> Bootstrapping</h2>
+<p>One alternative to these classic tests has no assumptions: bootstrapping. Essentially, it involves using the sampled data to simulate more samples, and compare your observations to those simulations.</p>
+<p><strong>Empirical Bootstrapping</strong> is where you take your actual observations and shuffle which value is associated with which observation. For example, you could take measurements of tree heights from two forests, and randomly assign forest ID to each measurement.</p>
+<p><strong>Parametric Bootstrapping</strong> is where you summarize your observed data and use it to generat simulated data. For example, you could calculate the mean and variance of tree heights in two forests and then generate simulated forests of trees through random pulls from a normal distribution with the appropriate mean and variance.</p>
+<p>With both approaches, you simulate a large number of simulated datasets (1000+), and then calculate whatever you are interested in for each of those simulations, and compare the calculation from the observed data to the distribution of simulated values. For example, if you empirically bootstrap the two forests of tree heights 1000 times, and then calculate difference in means for each you will have 1000 mean difference values. The proportion of those simulated values that are equal to or more extreme than your observed mean difference is your p-value!</p>
 
-</div>
 
-
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -509,11 +575,14 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./r_visualize.html" class="pagination-link">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Visualizing Data</span></span>
+      <a href="./da_describe.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Descriptive Statistics</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
+      <a href="./rc_r.html" class="pagination-link">
+        <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">R Itself</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
   </div>
 </nav>
 </div> <!-- /content -->

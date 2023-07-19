@@ -1,0 +1,36 @@
+---
+title: "R Studio"
+toc: true
+---
+
+While you can use R with just the basic application, it is much easier and beginner-friendly to use RStudio, which is an integrated development environment or IDE. This is just an application that provides a suite of features to make programming easier for users. In fact, I'm typing this in RStudio *right now*!! Note: you must have the R application installed to use RStudio, as it relies on the R application to interpret R code.
+
+You can download and install RStudio from here:
+
+<https://posit.co/download/rstudio-desktop/>
+
+Which should be more straightforward than downloading and installing R.
+
+## RStudio at a Glance
+
+If you open up RStudio, you will see something like this (Image from Bea Baselga):
+
+image
+
+**1- Code Editor**: Here is where you will write code! You can create an R script (a text document to save code in) with the file tab, and write what you need in the resulting script. It is **highly** recommended to use scripts, because then you can save your code for later, and troubleshoot errors easier. From this window, you can highlight code and run it with the "Run" button on top, or with Ctrl + Enter / Cmd +Enter.
+
+**2- R console**: Here is where the action happens - code will run here, and text output, warnings and messages will be displayed. You can also type code into the console, but that is only recommended for installing packages, entering credentials, rendering documents, and things of that nature. Don't type your data processing or analysis code into the console, use a script instead! There's also a terminal tab if you ever need to perform shell commands.
+
+**3- Environment and History**: Here you can find a list of the variables and data you have loaded into your "workspace" or "environment" in the Environment tab. These are objects you can do stuff with with code. You can also click the History tab to see the code you have run thus far.
+
+**4- Files and Plots**: Here is where any figures you draw will pop up (and you can save them from here as well). There is also a Files tab that allows you to navigate through your file directory (helpful with projects, described below). The Packages tab shows which packages you have installed and loaded (you can also click "Install" at top to easily install new ones!). Finally, the help tab is where you can search for the documentation on any R function.
+
+## R Projects
+
+It is highly recommended to use R Projects when working with RStudio. Projects are essentially just subdirectories in your file folders, but they come with a special .Rproj file that RStudio can read and use. This helps you organize your work, and makes your code more easily portable.
+
+You can create a new projects from the File tab at upper left, or in the project dropdown menu at upper right.
+
+There are many different types of projects - this book/website is one!
+
+If you want to backup your work with version control or collaborate with others using git and GitHub, you will need to use projects. (Well, technically you don't need to, but you'd be doing many things manually)

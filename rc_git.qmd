@@ -1,0 +1,18 @@
+---
+title: "Optional: Git and Github"
+toc: true
+---
+
+If you are interested in:
+
+1.  Backing up your code using a version control system that allows you to roll back changes and monitor incremental progress
+
+    *and/or*
+
+2.  Sharing your code and collaborating with others
+
+You may like to try using git (a program for your computer) and GitHub (a website that hosts code projects).
+
+We won't go into detail here, but Jenny Bryan's excellent introduction and tutorial on the topic can be found here:
+
+<https://happygitwithr.com/>

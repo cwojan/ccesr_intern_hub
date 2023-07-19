@@ -1,0 +1,98 @@
+---
+title: "Inferential Statistics"
+toc: true
+---
+
+Now, let's think about how to use your data to answer your questions. There are a couple approaches statisticians use, and we will talk about frequentist statistics, where probabilities are though of like relative frequencies. There is also Bayesian statistics, which is a bit more complex, so we will skip it for now.
+
+Within frequentist statistics, we can run various tests to see how variables are related, which typically make some assumptions about the data. We can also do something called bootstrapping, which makes no assumptions, but can be simplistic from some perspectives.
+
+In any case, we are hoping to estimate two main values:
+
+**Effect Size**: How related are two variables? How different are two means? How much does one variable affect another?
+
+**p-value**: What is the chance of observing data like yours (or something more extreme) if there was no relationship among the variables?
+
+The p-value can be a bit tricky, but know that it **isn't** the probability that there is no relationship. P-values are used to draw conclusions from test results, a traditional guideline is that if the p-value is less than 0.05, the results are "significant." Some statisticians bristle at this arbitrary and binary system, so it's often best to report both the effect size and the actual p-value, so readers can interpret for themselves. The smaller the effect size, the weaker the relationship, the smaller the p-value, the stronger the evidence for the relationship.
+
+Obviously, there are entire classes taught on this stuff (which may have taken or will take!), but we are thinking in just the basics for now.
+
+## Classic Frequentist Tests
+
+Now let's go over some statistical tests! For this section, it can be useful to remind ourselves of the variables involved in a research question:
+
+**Independent / Explanatory / Predictor Variable**: this is either what you are manipulating in an experiment or what your study is designed to capture variation in (e.g., C02 at BioCON, species richness at BigBio).
+
+**Dependent / Response Variable**: these are what you measure or observe throughout your study, generally hypothesizing that they will differ among the levels of your independent variable (e.g., aboveground biomass in BioCON or BigBio).
+
+### Assumptions
+
+We should mention what these tests generally assume about your data.
+
+First, they assume that your **data are independent**. This just means that no two observations of your data are more related to eachother in a way that isn't accounted for by a variable. Say you were comparing mean tree height between two forests - individual tree heights in the same forest would be independent, but two measures of the same tree on different days would be non-independent.
+
+Second, they assume that the **errors are normally distributed**. This is a bit more confusing without a statistical background. An example may be illustrative - in the tree height example above, we assume that the individual tree height are normally distributed about the mean. Without getting too much into the weeds, if you collect enough data (i.e., 30+ observations), these errors will likely be approximately normally distributed. However, things get divcey when we deal with data that is not continuous like tree height, for example, discrete count data - more on that below.
+
+Third, they assume **homogeneity of variance**. This is another complicated one, but it mean that the variance of the errors doesn't change with the independent variable. In the tree example, we are assuming that the variance of the differences between observed tree heights and the forest mean does not change between forests.
+
+Data that break the first assumption are difficult to deal with outside of accounting for the non-independence factor (which can severely reduce the size of your sample), but failing to meet the second or third assumptions generally leads to transforming data or using alternative tests.
+
+### Categorical Predictor/s, Numeric Response
+
+#### Two Predictor Categories
+
+When you are comparing numeric values from two groups, you can use a **t-test** to compare their means. T-tests can be **paired** when each observation in one group is specifically linked to an observation in the other group (e.g., masses of sibling plants in separate treatments) which can be more powerful. When the variance of values in each group changes, you can do a **t-test with unequal variance**.
+
+The effect size here is the difference between means.
+
+#### More Than Two Predictor Categories
+
+If you have more than two groups/categories, you can use a **Analysis of Variance** or **ANOVA**. This will tell you if the means of each group are equivalent, or if there is at least one inequality. You can test for pairwise comparisons among the groups with **Tukey' test**. If you have multiple categorical predictors, you can do **two-way or three-way ANOVAs**. Tests with more than three categorical predictor variables are uncommon and harder to interpret.
+
+The effect sizes are the pairwise difference in means.
+
+#### Ordinal Predictors
+
+When your predictor variable is ordinal, the quick and easy way to analyze it would be to convert the predictor to a numeric integer data type and proceed from there. However this is imprecise...
+
+*This section is under construction*
+
+### Numeric Predictor/s, Numeric Response
+
+#### Simple Association
+
+When all you are interested in is whether two numeric variables are related to one another, not cause and effect, you can do a **correlation test**. **Pearson's correlation** is generally applicable for continuous data. **Spearman's correlation** is good for when you are dealing with data with non-normal distributions, like count data (it also works for ordinal data!).
+
+The effect size here will be a correlation coefficient ranging from -1 to 1, with -1 means an inverse relationship, 0 means no relationship, and 1 mean a direct positive relationship.
+
+**Cause and Effect**
+
+When you are suppose a causal relationship between numeric variables, you can use a **linear regression**. This will use linear algebra or maximum likelihod estimation (don't worry about it) to find the best fit line that describes the relationship between two variables; where the sum of the squared distances from the observations to the line is minimized. You can also include multiple predictor variables to perform **multiple linear regression** AKA **multivariate linear regression**.
+
+When your response variable is count data, the assumptions of simple linear regression are usually unmet, so you can use generalized forms like a **Poisson regression** or a **Negative Binomial Regression**.
+
+The effect sizes here are the parameter coefficients, i.e., how much does the response change for on unit increase in the predictor? Note: these are not straightforward for Poisson and negative binomial regression, so ask your mentor.
+
+### Numeric Predictor/s, Categorical Response
+
+#### Binary Response
+
+When your categorical response is only two categories (e.g., presence or absence), you can use a **binomial regression** AKA **logistic regression**. This works similarly to linear regression, but the effect sizes are measured in log odds, which is difficult to interpret, but can be transformed to estimating how the probability of one category value over the other increases with a variable.
+
+#### Multiple Response Categories
+
+**Multinomial regression** *(under construction)*
+
+### Categorical Predictor/s, Categorical Response
+
+**Chi-square test** *(under construction)*
+
+## Bootstrapping
+
+One alternative to these classic tests has no assumptions: bootstrapping. Essentially, it involves using the sampled data to simulate more samples, and compare your observations to those simulations.
+
+**Empirical Bootstrapping** is where you take your actual observations and shuffle which value is associated with which observation. For example, you could take measurements of tree heights from two forests, and randomly assign forest ID to each measurement.
+
+**Parametric Bootstrapping** is where you summarize your observed data and use it to generat simulated data. For example, you could calculate the mean and variance of tree heights in two forests and then generate simulated forests of trees through random pulls from a normal distribution with the appropriate mean and variance.
+
+With both approaches, you simulate a large number of simulated datasets (1000+), and then calculate whatever you are interested in for each of those simulations, and compare the calculation from the observed data to the distribution of simulated values. For example, if you empirically bootstrap the two forests of tree heights 1000 times, and then calculate difference in means for each you will have 1000 mean difference values. The proportion of those simulated values that are equal to or more extreme than your observed mean difference is your p-value!

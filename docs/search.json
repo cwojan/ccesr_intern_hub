@@ -4,27 +4,111 @@
     "href": "index.html",
     "title": "CCESR Intern Hub",
     "section": "",
-    "text": "Welcome!\nThis website / HTML book is intended to collect resources for Cedar Creek summer interns doing independent research projects, and present them in an easily accessible way.\nFor now, the focus is primarily on data analysis and using the R programming language."
+    "text": "Welcome!\nThis website / HTML book is intended to collect resources for Cedar Creek summer interns doing independent research projects, and present those resources in an easily accessible way.\nFor now, the focus is primarily on data analysis and using the R programming language.\nMuch of the content featured is adapted from the work of past CCESR Fellows, including Mariana Cardenas and Bea Baselga.\nThis site is structured in different parts, which can be read in any order you choose, depending on your needs / what you already know. Currently, the first part goes over data analysis in general, the second part describes R-related software and workflows, and the third part is intended to give a primer in R coding."
   },
   {
-    "objectID": "intro.html",
-    "href": "intro.html",
-    "title": "1  Introduction",
+    "objectID": "da_glance.html",
+    "href": "da_glance.html",
+    "title": "1  Data Analysis at a Glance",
     "section": "",
-    "text": "This is a book created from markdown and executable code.\nSee Knuth (1984) for additional discussion of literate programming.\n\n1 + 1\n\n[1] 2\n\n\n\n\n\n\nKnuth, Donald E. 1984. “Literate Programming.” Comput. J. 27 (2): 97–111. https://doi.org/10.1093/comjnl/27.2.97."
+    "text": "Analyzing your data is usually about transforming long spreadsheets into a form that is relevant to your question/s, and oftentimes including an appropriate statistical approach for inference.\nYou might use descriptive statistics, which is simply describing what you observed without presenting every data point, and instead a summary of those data. This can often be helpful in providing a frame of reference to your dataset before looking deeper at trends and comparisons. Alternatively, sometimes descriptive statistics are the main goal - like in surveys of populations and communities (e.g., what is the population size of a certain grass of interest in an old field?). Descriptive statistics include things like the mean and variance, but can also include more niche measures like dispersion.\nYou could also use inferential statistics, which is more about using math or simulation techniques to infer some conclusion form the shape of your data. This is directly relevant to when you have an ecological question about cause and effect, associations among variables, comparisons among categories, etc. The results of inferential statistics provide a starting point from which to interpret/discuss an answer to your question. Examples include t-tests and linear regression.\nWhen using both of these types of statistics, you should be mindful of data types, which are the form that variables take. For example, the height of a tree is number, but the species of a tree is a category. This contrast is obvious, but there are subtle differences that can be important for how you describe, assess, and plot your data."
   },
   {
-    "objectID": "summary.html",
-    "href": "summary.html",
-    "title": "2  Summary",
-    "section": "",
-    "text": "In summary, this book has no content whatsoever.\n\n1 + 1\n\n[1] 2"
+    "objectID": "da_data.html#numeric-data",
+    "href": "da_data.html#numeric-data",
+    "title": "2  Data Types",
+    "section": "2.1 Numeric Data",
+    "text": "2.1 Numeric Data\nAny data that can be described with numbers or have quantifiable relationships between values is numeric. But! There are multiple types of numeric data. The most important distinction is discrete vs continuous.\nDiscrete numeric data is data where not every value is possible, but you can still quantify specific differences among the possible values - the major exmaple being integer values (1, 2, 3, the rest). Most programming languages will refer to this type as integer or int. Examples might include number of ants on a log.\nContinuous numeric data is data where every valuable is possible! So this is basically all real numbers, including decimals (1.0, 1.1, etc.). Many programming languages will refer to this as simply numeric data, but lower level languages might use “float” or “double”. Examples might include th biomass of ants on a log. Note: measures that consist of very large integer values are approximately continuous.\nOther things to consider with numeric data is whether the scale of measurement is bound by any values. For example, the number of or biomass of ants on a log cannot be less than zero. In addition, percentages and proportions are bound by 0 and 100 and 0 and 1 respectively. These limitations can lead to special considerations when performing inferential statistics."
   },
   {
-    "objectID": "references.html",
-    "href": "references.html",
-    "title": "References",
+    "objectID": "da_data.html#categorical-data",
+    "href": "da_data.html#categorical-data",
+    "title": "2  Data Types",
+    "section": "2.2 Categorical Data",
+    "text": "2.2 Categorical Data\nAny data for which the values have no specifically quantitative difference among them is categorical. Again there is one majorly important distinction: nominal vs ordinal.\nNominal data is data where categories have no ranking or order, like the species of ants on a log.\nOrdinal data is data where categories have some order, like your top 5 favorite breakfast cereals. But wait! You may be thinking - “isn’t this quantitative?” Well yes and no. The difference between ordinal data and discrete numeric data is that you can’t really quantify the exact difference between ordinal data values. Say there is a go-kart race between Mario, Luigi, and Peach. The place that each finished would be ordinal, e.g., Peach got 1st and Luigi 2nd, but you wouldn’t be able to say how much faster Peach was than Luigi. The time it took for Peach and Luigi each to finish the race would be a numeric variable, and there would be a specific value difference between them."
+  },
+  {
+    "objectID": "da_describe.html#centrality",
+    "href": "da_describe.html#centrality",
+    "title": "3  Descriptive Statistics",
+    "section": "3.1 Centrality",
+    "text": "3.1 Centrality\nYou’ll often want to describe the central tendency of your data - around where are the values centered?\nMean - the average of the values, or the sum of all values divided by the number of observations\nMedian - the value at which half of the observations are greater, and the other half are less\nMode - the most commonly observe value\nUsually, the mean is a a perfectly adequate descriptor. You can use it on continuous numeric data, discrete numeric data (though the mean value will often be unrealistic), or even ordinal rankings.\nWhen might you prefer to use the median over the mean?\nWhen the data is skewed such that there are many small values and a few big values, the mean might be inflated by those large values, and thus overestimate the central tendency in some contexts.\nWhen data is roughly normally distributed, the mean and median are roughly the same:\n\n\n\n\n\nBut when data are skewed, the median may be a better estimate of the central tendency:"
+  },
+  {
+    "objectID": "da_describe.html#spread",
+    "href": "da_describe.html#spread",
+    "title": "3  Descriptive Statistics",
+    "section": "3.2 Spread",
+    "text": "3.2 Spread\nYou also might be interested in how varied your data is, how much it deviates from the central tendency. This can be done with the following:\nVariance - how variable is the data? Measured as the average squared difference between observations and the mean:\n\\[\nVariance = \\frac{\\sum (Observation_i - Mean)^2}{Number of Observations}\n\\]\n(\\(\\sum\\) means “sum of”)\nThe differences are squared to get rid of negative differences, because other wise everything would cancel out and our variance would be zero!\nStandard Deviation - the square root of the variance. This is useful because it is in the same units as the original measurements!"
+  },
+  {
+    "objectID": "da_describe.html#other-descriptors",
+    "href": "da_describe.html#other-descriptors",
+    "title": "3  Descriptive Statistics",
+    "section": "3.3 Other Descriptors",
+    "text": "3.3 Other Descriptors\nAnother descriptor that may prove useful is the dispersion, or the variance divided by the mean. This provides an estimate of how skewed the data is - for example, the first plot above has very low dispersion, while the second plot has high dispersion."
+  },
+  {
+    "objectID": "da_describe.html#ecological-community-descriptors",
+    "href": "da_describe.html#ecological-community-descriptors",
+    "title": "3  Descriptive Statistics",
+    "section": "3.4 Ecological Community Descriptors",
+    "text": "3.4 Ecological Community Descriptors\nMany of you are interested in describing the species composition of of community. Here’s a few common descriptors:\nSpecies Richness - this is just the number of different species present.\nSpecies Diversity - this is an index that takes into account the richness as well as the relative abundances of each species. E.g. Shannon’s Diversity Index, where higher numbers mean more species more evenly distributed.\nSpecies Evenness - this is an index that estimates specifically how evenly distributed species abundances are. E.g., Pielou’s Evenness, which ranges from 0 to 1, with 1 meaning that each species has equal numbers."
+  },
+  {
+    "objectID": "da_infer.html#classic-frequentist-tests",
+    "href": "da_infer.html#classic-frequentist-tests",
+    "title": "4  Inferential Statistics",
+    "section": "4.1 Classic Frequentist Tests",
+    "text": "4.1 Classic Frequentist Tests\nNow let’s go over some statistical tests! For this section, it can be useful to remind ourselves of the variables involved in a research question:\nIndependent / Explanatory / Predictor Variable: this is either what you are manipulating in an experiment or what your study is designed to capture variation in (e.g., C02 at BioCON, species richness at BigBio).\nDependent / Response Variable: these are what you measure or observe throughout your study, generally hypothesizing that they will differ among the levels of your independent variable (e.g., aboveground biomass in BioCON or BigBio).\n\n4.1.1 Assumptions\nWe should mention what these tests generally assume about your data.\nFirst, they assume that your data are independent. This just means that no two observations of your data are more related to eachother in a way that isn’t accounted for by a variable. Say you were comparing mean tree height between two forests - individual tree heights in the same forest would be independent, but two measures of the same tree on different days would be non-independent.\nSecond, they assume that the errors are normally distributed. This is a bit more confusing without a statistical background. An example may be illustrative - in the tree height example above, we assume that the individual tree height are normally distributed about the mean. Without getting too much into the weeds, if you collect enough data (i.e., 30+ observations), these errors will likely be approximately normally distributed. However, things get divcey when we deal with data that is not continuous like tree height, for example, discrete count data - more on that below.\nThird, they assume homogeneity of variance. This is another complicated one, but it mean that the variance of the errors doesn’t change with the independent variable. In the tree example, we are assuming that the variance of the differences between observed tree heights and the forest mean does not change between forests.\nData that break the first assumption are difficult to deal with outside of accounting for the non-independence factor (which can severely reduce the size of your sample), but failing to meet the second or third assumptions generally leads to transforming data or using alternative tests.\n\n\n4.1.2 Categorical Predictor/s, Numeric Response\n\n4.1.2.1 Two Predictor Categories\nWhen you are comparing numeric values from two groups, you can use a t-test to compare their means. T-tests can be paired when each observation in one group is specifically linked to an observation in the other group (e.g., masses of sibling plants in separate treatments) which can be more powerful. When the variance of values in each group changes, you can do a t-test with unequal variance.\nThe effect size here is the difference between means.\n\n\n4.1.2.2 More Than Two Predictor Categories\nIf you have more than two groups/categories, you can use a Analysis of Variance or ANOVA. This will tell you if the means of each group are equivalent, or if there is at least one inequality. You can test for pairwise comparisons among the groups with Tukey’ test. If you have multiple categorical predictors, you can do two-way or three-way ANOVAs. Tests with more than three categorical predictor variables are uncommon and harder to interpret.\nThe effect sizes are the pairwise difference in means.\n\n\n4.1.2.3 Ordinal Predictors\nWhen your predictor variable is ordinal, the quick and easy way to analyze it would be to convert the predictor to a numeric integer data type and proceed from there. However this is imprecise…\nThis section is under construction\n\n\n\n4.1.3 Numeric Predictor/s, Numeric Response\n\n4.1.3.1 Simple Association\nWhen all you are interested in is whether two numeric variables are related to one another, not cause and effect, you can do a correlation test. Pearson’s correlation is generally applicable for continuous data. Spearman’s correlation is good for when you are dealing with data with non-normal distributions, like count data (it also works for ordinal data!).\nThe effect size here will be a correlation coefficient ranging from -1 to 1, with -1 means an inverse relationship, 0 means no relationship, and 1 mean a direct positive relationship.\nCause and Effect\nWhen you are suppose a causal relationship between numeric variables, you can use a linear regression. This will use linear algebra or maximum likelihod estimation (don’t worry about it) to find the best fit line that describes the relationship between two variables; where the sum of the squared distances from the observations to the line is minimized. You can also include multiple predictor variables to perform multiple linear regression AKA multivariate linear regression.\nWhen your response variable is count data, the assumptions of simple linear regression are usually unmet, so you can use generalized forms like a Poisson regression or a Negative Binomial Regression.\nThe effect sizes here are the parameter coefficients, i.e., how much does the response change for on unit increase in the predictor? Note: these are not straightforward for Poisson and negative binomial regression, so ask your mentor.\n\n\n\n4.1.4 Numeric Predictor/s, Categorical Response\n\n4.1.4.1 Binary Response\nWhen your categorical response is only two categories (e.g., presence or absence), you can use a binomial regression AKA logistic regression. This works similarly to linear regression, but the effect sizes are measured in log odds, which is difficult to interpret, but can be transformed to estimating how the probability of one category value over the other increases with a variable.\n\n\n4.1.4.2 Multiple Response Categories\nMultinomial regression (under construction)\n\n\n\n4.1.5 Categorical Predictor/s, Categorical Response\nChi-square test (under construction)"
+  },
+  {
+    "objectID": "da_infer.html#bootstrapping",
+    "href": "da_infer.html#bootstrapping",
+    "title": "4  Inferential Statistics",
+    "section": "4.2 Bootstrapping",
+    "text": "4.2 Bootstrapping\nOne alternative to these classic tests has no assumptions: bootstrapping. Essentially, it involves using the sampled data to simulate more samples, and compare your observations to those simulations.\nEmpirical Bootstrapping is where you take your actual observations and shuffle which value is associated with which observation. For example, you could take measurements of tree heights from two forests, and randomly assign forest ID to each measurement.\nParametric Bootstrapping is where you summarize your observed data and use it to generat simulated data. For example, you could calculate the mean and variance of tree heights in two forests and then generate simulated forests of trees through random pulls from a normal distribution with the appropriate mean and variance.\nWith both approaches, you simulate a large number of simulated datasets (1000+), and then calculate whatever you are interested in for each of those simulations, and compare the calculation from the observed data to the distribution of simulated values. For example, if you empirically bootstrap the two forests of tree heights 1000 times, and then calculate difference in means for each you will have 1000 mean difference values. The proportion of those simulated values that are equal to or more extreme than your observed mean difference is your p-value!"
+  },
+  {
+    "objectID": "rc_r.html#r-the-language",
+    "href": "rc_r.html#r-the-language",
+    "title": "5  R Itself",
+    "section": "5.1 R, the Language",
+    "text": "5.1 R, the Language\nR is a programming language designed for statistical computing, and is often the language of choice for scientists. R is also used for data science in some business, tech, and health contexts ( but many prefer Python in those areas).\nAs a programming language it is essentially an expandable collection of functions with syntax to perform tasks, and it could be written in any text editor. However, in order for your computer to interpret the language, it needs some software."
+  },
+  {
+    "objectID": "rc_r.html#r-the-software",
+    "href": "rc_r.html#r-the-software",
+    "title": "5  R Itself",
+    "section": "5.2 R, the Software",
+    "text": "5.2 R, the Software\nThe R application allows you to run R code on your computer, and comes with a basic “console” window where code is run and output is printed, as well as a basic script editor where you can write code to run.\nYou can download the application from here:\nhttps://cran.r-project.org/\nIf you are asked to select a mirror, simply select the nearest one (I believe Iowa State should work).\nIf you have a Windows machine, it should be fairly straightforward to simply download and install the “base” R from the link.\nIf you have a Mac, you will want to select the .pkg file that matches your processor type: x-86 for Intel processors (mostly Macs pre-2020), arm64 for Macs with the M1 or M2 chip (most Macs post-2020).\nIf you are using Linux, you know more than me."
+  },
+  {
+    "objectID": "rc_r.html#r-packages",
+    "href": "rc_r.html#r-packages",
+    "title": "5  R Itself",
+    "section": "5.3 R Packages",
+    "text": "5.3 R Packages\nAs mentioned above, R is expandable. You can add more functionality to R by installing packages. Packages contain more options of code to use to process and analyze data, and also do many other things.\nPackages can be installed through writing R code, or by clicking some buttons in RStudio. Then they will live in a directory that was built when you installed R for auxiliary packages.\nWe will discuss more about installing packages in the R coding section."
+  },
+  {
+    "objectID": "rc_rstudio.html#rstudio-at-a-glance",
+    "href": "rc_rstudio.html#rstudio-at-a-glance",
+    "title": "6  R Studio",
+    "section": "6.1 RStudio at a Glance",
+    "text": "6.1 RStudio at a Glance\nIf you open up RStudio, you will see something like this (Image from Bea Baselga):\nimage\n1- Code Editor: Here is where you will write code! You can create an R script (a text document to save code in) with the file tab, and write what you need in the resulting script. It is highly recommended to use scripts, because then you can save your code for later, and troubleshoot errors easier. From this window, you can highlight code and run it with the “Run” button on top, or with Ctrl + Enter / Cmd +Enter.\n2- R console: Here is where the action happens - code will run here, and text output, warnings and messages will be displayed. You can also type code into the console, but that is only recommended for installing packages, entering credentials, rendering documents, and things of that nature. Don’t type your data processing or analysis code into the console, use a script instead! There’s also a terminal tab if you ever need to perform shell commands.\n3- Environment and History: Here you can find a list of the variables and data you have loaded into your “workspace” or “environment” in the Environment tab. These are objects you can do stuff with with code. You can also click the History tab to see the code you have run thus far.\n4- Files and Plots: Here is where any figures you draw will pop up (and you can save them from here as well). There is also a Files tab that allows you to navigate through your file directory (helpful with projects, described below). The Packages tab shows which packages you have installed and loaded (you can also click “Install” at top to easily install new ones!). Finally, the help tab is where you can search for the documentation on any R function."
+  },
+  {
+    "objectID": "rc_rstudio.html#r-projects",
+    "href": "rc_rstudio.html#r-projects",
+    "title": "6  R Studio",
+    "section": "6.2 R Projects",
+    "text": "6.2 R Projects\nIt is highly recommended to use R Projects when working with RStudio. Projects are essentially just subdirectories in your file folders, but they come with a special .Rproj file that RStudio can read and use. This helps you organize your work, and makes your code more easily portable.\nYou can create a new projects from the File tab at upper left, or in the project dropdown menu at upper right.\nThere are many different types of projects - this book/website is one!\nIf you want to backup your work with version control or collaborate with others using git and GitHub, you will need to use projects. (Well, technically you don’t need to, but you’d be doing many things manually)"
+  },
+  {
+    "objectID": "rc_git.html",
+    "href": "rc_git.html",
+    "title": "7  Optional: Git and Github",
     "section": "",
-    "text": "Knuth, Donald E. 1984. “Literate Programming.” Comput.\nJ. 27 (2): 97–111. https://doi.org/10.1093/comjnl/27.2.97."
+    "text": "If you are interested in:\n\nBacking up your code using a version control system that allows you to roll back changes and monitor incremental progress\nand/or\nSharing your code and collaborating with others\n\nYou may like to try using git (a program for your computer) and GitHub (a website that hosts code projects).\nWe won’t go into detail here, but Jenny Bryan’s excellent introduction and tutorial on the topic can be found here:\nhttps://happygitwithr.com/"
   }
 ]

@@ -1,5 +1,9 @@
 # Welcome! {.unnumbered}
 
-This website / HTML book is intended to collect resources for Cedar Creek summer interns doing independent research projects, and present them in an easily accessible way.
+This website / HTML book is intended to collect resources for Cedar Creek summer interns doing independent research projects, and present those resources in an easily accessible way.
 
 For now, the focus is primarily on data analysis and using the R programming language.
+
+Much of the content featured is adapted from the work of past CCESR Fellows, including Mariana Cardenas and Bea Baselga.
+
+This site is structured in different parts, which can be read in any order you choose, depending on your needs / what you already know. Currently, the first part goes over data analysis in general, the second part describes R-related software and workflows, and the third part is intended to give a primer in R coding.

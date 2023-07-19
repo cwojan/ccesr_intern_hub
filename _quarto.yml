@@ -7,8 +7,25 @@ book:
   author: "CCESR Fellows"
   chapters:
     - index.qmd
-    - intro.qmd
-    - summary.qmd
+    - part: "Data Analysis"
+      chapters: 
+        - da_glance.qmd
+        - da_data.qmd
+        - da_describe.qmd
+        - da_infer.qmd
+    - part: "R on your Computer"
+      chapters:
+        - rc_r.qmd
+        - rc_rstudio.qmd
+        - rc_git.qmd
+    - part: "R Programming"
+      chapters: 
+        - r_basics.qmd
+        - r_import.qmd
+        - r_wrangle.qmd
+        - r_summarize.qmd
+        - r_analyze.qmd
+        - r_visualize.qmd
     - references.qmd
 
 bibliography: references.bib
