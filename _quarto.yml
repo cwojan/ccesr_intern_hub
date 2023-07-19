@@ -5,7 +5,6 @@ project:
 book:
   title: "CCESR Intern Hub"
   author: "CCESR Fellows"
-  date: "7/19/2023"
   chapters:
     - index.qmd
     - intro.qmd

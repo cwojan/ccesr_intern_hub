@@ -1,9 +1,5 @@
-# Preface {.unnumbered}
+# Welcome! {.unnumbered}
 
-This is a Quarto book.
+This website / HTML book is intended to collect resources for Cedar Creek summer interns doing independent research projects, and present them in an easily accessible way.
 
-To learn more about Quarto books visit <https://quarto.org/docs/books>.
-
-```{r}
-1 + 1
-```
+For now, the focus is primarily on data analysis and using the R programming language.

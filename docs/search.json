@@ -4,7 +4,7 @@
     "href": "index.html",
     "title": "CCESR Intern Hub",
     "section": "",
-    "text": "Preface\nThis is a Quarto book.\nTo learn more about Quarto books visit https://quarto.org/docs/books.\n\n1 + 1\n\n[1] 2"
+    "text": "Welcome!\nThis website / HTML book is intended to collect resources for Cedar Creek summer interns doing independent research projects, and present them in an easily accessible way.\nFor now, the focus is primarily on data analysis and using the R programming language."
   },
   {
     "objectID": "intro.html",
