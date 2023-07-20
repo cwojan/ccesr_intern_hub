@@ -1,3 +1,238 @@
 ---
 title: "The Basics"
 ---
+
+## Intro
+
+I'm sure those of you reading this come from a wide variety of backgrounds regarding computer programming - some of you may be very familiar with it, others total novices. Some of you may love computing, others might hate it. If you're apprehensive about learning R, or if you find yourself struggling with it - don't worry! Scientific computing presents a challenge at some point to everyone who does it. Just remember a few things:
+
+1.  Everyone makes mistakes.
+2.  Don't be afraid to ask questions!
+3.  Don't compare yourself to others, compare you today to you yesterday.
+4.  Everyone is constantly learning new things, including those who seem like experts.
+
+That said, learning a programming language is a little like learning a human language, except there's a much smaller vocabulary and the grammar is *very* strict. And where human language has parts of speech like nouns and verbs, R has a certain syntax as well. Some of the main components of the R language are **operators**, **functions**, **arguments**, and **data**.
+
+## Operators
+
+Operators are short symbols that tell the computer to do certain simple things. You are already familiar with many operators - the **math operators** like +, -, \*, and /. R at its simplest is a calculator:
+
+```{r}
+## This is block of R code! Anything that starts with # is a comment, and doesn't run.
+
+## adding
+2 + 2
+
+## subtracting
+5 - 4
+
+## multiplying
+3 * 3
+
+## dividing
+6 / 2
+```
+
+There are a couple other math operators too:
+
+```{r}
+## exponentiate with ^
+3^2
+
+## find the remainder with the modulus, %%
+10 %% 3
+
+## perform integer division with %/%
+10 %/% 3
+```
+
+But math operators aren't the only type! There are also the closely related **comparison operators**, which will return TRUE or FALSE instead of calculated numbers:
+
+```{r}
+
+## equals, ==
+2 + 2 == 4
+
+## does not equal, !=
+2 + 2 != 4
+
+## greater than, >
+5 > 4
+
+## less than, <
+5 < 4
+```
+
+There are also greater than or equal to (\>=) and less than or equal to (\<=).
+
+You can combine comparisons with **logical operators** - and (&), or (\|), and not (!):
+
+```{r}
+
+## and: are both true?
+(3 > 2) & (4 > 3) 
+
+## or: is at least one true?
+(2 == 1) | (4 < 3)
+
+## not: is this false?
+!(2 == 1)
+```
+
+There are few other important operators, but they will make more sense once we talk about the other parts of R.
+
+## Functions
+
+Functions are words (though not necessarily real words) or letters that instruct the computer to perform more complicated tasks. They generally are followed by parentheses ().
+
+```{r}
+## here's a function that returns the current date
+Sys.Date()
+
+## and here is a function that returns the date with the time
+Sys.time()
+```
+
+No you may be thinking - "this is pretty basic" and "what are the parentheses for?", which brings use to arguments!
+
+## Arguments
+
+Arguments are values or objects that go inside the parentheses of functions to specify what you want the function to do. This is what gives functions their power. Arguments are separated inside a function by commas.
+
+```{r}
+## the sum function can sum many numbers
+sum(1,2,3,4,5)
+
+```
+
+In the function above, each number is acting as an argument. In this case, the arguments don't have names. Oftentimes a function's arguments will be explicitly named, and to specify what you want those arguments to be, you use the = operator.
+
+```{r}
+## this function pulls values randomly from a normal distribution specified in the arguments
+## n specifies how many numbers to return, and mean and sd specify shape of the distribution
+rnorm(n = 10, mean = 5, sd = 1)
+```
+
+Operators are actually a special type of function that can be used with syntax that is more intuitive for them. You can also use them in the same way as most functions by surrounding them with back ticks, \`.
+
+```{r}
+## here we use the + operator in a much more confusing context
+`+`(2, 2)
+
+## it is equivalent to
+2 + 2
+```
+
+## Data
+
+We are using the word data here to broadly encompass **values** (like the numbers we were using above, both with operators and as arguments), **variables** (stored values), and **data structures** (organized collections of values).
+
+### Values
+
+Values are much like the data types we discuss in the data analysis section. In fact, the different types of values R can deal with are called data types as well!
+
+In R, values can be numeric, character, or logical (among other, more specific types).
+
+```{r}
+
+## numeric values are numbers!
+2
+2.5
+
+## character values are letters, words, phrases (often referred to as "strings)
+"a"
+"apple"
+"there is a worm in my apple"
+
+## note: character values or strings must be surrounded by "" or '' for R to interpret them as strings
+
+## Logical values are TRUE or FALSE (you've seen these above)
+TRUE
+FALSE
+```
+
+There are other types of values too: missing values (NA and NaN), infinite values (Inf and -Inf), and something that indicates empty (NULL).
+
+### Variables
+
+Variables are named values that are stored in the "environment", or the workspace that R can access to perform its tasks. In order to store a value as a variable, you need to use a special kind of operator called an **assignment operator** (\<- or =). As I mentioned variables have names, which are unquoted text.
+
+```{r}
+
+## store 2 as a variable called x
+x <- 2
+
+## R returns no output here because you're just storing a value
+## but you can return the value by calling the variable
+x
+
+## store 3 as a variable called y
+y <- 3
+
+## you use variables with operators
+x + y
+
+## store a character value
+string <- "hello"
+
+## math doesn't work on strings
+x + string
+string + "again"
+
+## R returns our first error messages! feel free to place in your scrapbook
+
+```
+
+Technically, you can use = in place of \<-. This is why the equals operator is ==. I generally use \<- to prevent any confusion between assignment and comparison.
+
+#### Naming Rules
+
+Variables have rules about how they can be named:
+
+1.  No special symbols other than \_ and .
+2.  You can't start with a number or \_.
+3.  They can't be special words that R interprets differently. You can enter ?Reserved in your console to see a list.
+
+### Data Structures
+
+Data structures are collections of values with some sort of organization, and also saved in the environment. Plot twist: the variables above are a the simplest data structure, the **scalar**, which is just a single value.
+
+The next data structure is the **vector**, which is a collection of values of the *same data type*. We can store them much like variables.
+
+```{r}
+
+## we use another operator, :, to create a sequence of integers from 1 to 10
+my_vector <- 1:5
+
+my_vector
+
+## you can also create vectors with the combine function, c()
+my_other_vector <- c("a", "b", "c")
+
+my_other_vector
+```
+
+The next data structure is called a **list**. A list is a collection of values like a vector, but they can be of any data type, or data structure. You can have a list of numeric values and character values, a list of vectors, or even a lists of lists! Every other complex data structure is technically a list with special attributes and/or rules.
+
+```{r}
+## you can create lists with the list function
+my_list <- list("a", 1, 2:4)
+
+my_list
+
+## can also use the combine function, but it will default to a vector when data types are the same
+my_other_list <- c("b", 2)
+```
+
+Finally, the most common special type of list you will use is the **data frame**. A data frame is a list of vectors that are arranged in a table, much like an excel spreadsheet. Each of the vectors will be named as a column, and all must be the same length. The position of a value in a vector is its row in the data frame.
+
+```{r}
+## we can make a data frame with the data.frame function
+my_data <- data.frame(letter = c("a","b","c"),
+                      number = c(1, 2, 3),
+                      vowel = c(TRUE, FALSE, FALSE))
+
+my_data
+```
+
+Next, we will extend these concepts a bit further!

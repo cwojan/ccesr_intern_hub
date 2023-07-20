@@ -21,6 +21,7 @@ book:
     - part: "R Programming"
       chapters: 
         - r_basics.qmd
+        - r_next.qmd
         - r_import.qmd
         - r_wrangle.qmd
         - r_summarize.qmd

@@ -1,0 +1,15 @@
+---
+title: "Next Steps"
+---
+
+Now that we have the basic "parts of speech" of R down, we can move toward what we can do with them.
+
+What follows are a few unconnected topics that will prove as useful background to working with data in the later sections.
+
+## Packages
+
+## Subsetting
+
+## Optional: Flow Control
+
+## Optional: Writing Functions
