@@ -110,5 +110,68 @@
     "title": "7  Optional: Git and Github",
     "section": "",
     "text": "If you are interested in:\n\nBacking up your code using a version control system that allows you to roll back changes and monitor incremental progress\nand/or\nSharing your code and collaborating with others\n\nYou may like to try using git (a program for your computer) and GitHub (a website that hosts code projects).\nWe won’t go into detail here, but Jenny Bryan’s excellent introduction and tutorial on the topic can be found here:\nhttps://happygitwithr.com/"
+  },
+  {
+    "objectID": "r_basics.html#intro",
+    "href": "r_basics.html#intro",
+    "title": "8  The Basics",
+    "section": "8.1 Intro",
+    "text": "8.1 Intro\nI’m sure those of you reading this come from a wide variety of backgrounds regarding computer programming - some of you may be very familiar with it, others total novices. Some of you may love computing, others might hate it. If you’re apprehensive about learning R, or if you find yourself struggling with it - don’t worry! Scientific computing presents a challenge at some point to everyone who does it. Just remember a few things:\n\nEveryone makes mistakes.\nDon’t be afraid to ask questions!\nDon’t compare yourself to others, compare you today to you yesterday.\nEveryone is constantly learning new things, including those who seem like experts.\n\nThat said, learning a programming language is a little like learning a human language, except there’s a much smaller vocabulary and the grammar is very strict. And where human language has parts of speech like nouns and verbs, R has a certain syntax as well. Some of the main components of the R language are operators, functions, arguments, and data."
+  },
+  {
+    "objectID": "r_basics.html#operators",
+    "href": "r_basics.html#operators",
+    "title": "8  The Basics",
+    "section": "8.2 Operators",
+    "text": "8.2 Operators\nOperators are short symbols that tell the computer to do certain simple things. You are already familiar with many operators - the math operators like +, -, *, and /. R at its simplest is a calculator:\n\n## This is block of R code! Anything that starts with # is a comment, and doesn't run.\n\n## adding\n2 + 2\n\n[1] 4\n\n## subtracting\n5 - 4\n\n[1] 1\n\n## multiplying\n3 * 3\n\n[1] 9\n\n## dividing\n6 / 2\n\n[1] 3\n\n\nThere are a couple other math operators too:\n\n## exponentiate with ^\n3^2\n\n[1] 9\n\n## find the remainder with the modulus, %%\n10 %% 3\n\n[1] 1\n\n## perform integer division with %/%\n10 %/% 3\n\n[1] 3\n\n\nBut math operators aren’t the only type! There are also the closely related comparison operators, which will return TRUE or FALSE instead of calculated numbers:\n\n## equals, ==\n2 + 2 == 4\n\n[1] TRUE\n\n## does not equal, !=\n2 + 2 != 4\n\n[1] FALSE\n\n## greater than, &gt;\n5 &gt; 4\n\n[1] TRUE\n\n## less than, &lt;\n5 &lt; 4\n\n[1] FALSE\n\n\nThere are also greater than or equal to (&gt;=) and less than or equal to (&lt;=).\nYou can combine comparisons with logical operators - and (&), or (|), and not (!):\n\n## and: are both true?\n(3 &gt; 2) & (4 &gt; 3) \n\n[1] TRUE\n\n## or: is at least one true?\n(2 == 1) | (4 &lt; 3)\n\n[1] FALSE\n\n## not: is this false?\n!(2 == 1)\n\n[1] TRUE\n\n\nThere are few other important operators, but they will make more sense once we talk about the other parts of R."
+  },
+  {
+    "objectID": "r_basics.html#functions",
+    "href": "r_basics.html#functions",
+    "title": "8  The Basics",
+    "section": "8.3 Functions",
+    "text": "8.3 Functions\nFunctions are words (though not necessarily real words) or letters that instruct the computer to perform more complicated tasks. They generally are followed by parentheses ().\n\n## here's a function that returns the current date\nSys.Date()\n\n[1] \"2023-07-21\"\n\n## and here is a function that returns the date with the time\nSys.time()\n\n[1] \"2023-07-21 08:13:59 CDT\"\n\n\nNo you may be thinking - “this is pretty basic” and “what are the parentheses for?”, which brings use to arguments!"
+  },
+  {
+    "objectID": "r_basics.html#arguments",
+    "href": "r_basics.html#arguments",
+    "title": "8  The Basics",
+    "section": "8.4 Arguments",
+    "text": "8.4 Arguments\nArguments are values or objects that go inside the parentheses of functions to specify what you want the function to do. This is what gives functions their power. Arguments are separated inside a function by commas.\n\n## the sum function can sum many numbers\nsum(1,2,3,4,5)\n\n[1] 15\n\n\nIn the function above, each number is acting as an argument. In this case, the arguments don’t have names. Oftentimes a function’s arguments will be explicitly named, and to specify what you want those arguments to be, you use the = operator.\n\n## this function pulls values randomly from a normal distribution specified in the arguments\n## n specifies how many numbers to return, and mean and sd specify shape of the distribution\nrnorm(n = 10, mean = 5, sd = 1)\n\n [1] 4.077079 4.178937 4.226188 4.681074 4.904319 4.777908 5.442104 4.108007\n [9] 4.241267 4.130505\n\n\nOperators are actually a special type of function that can be used with syntax that is more intuitive for them. You can also use them in the same way as most functions by surrounding them with back ticks, `.\n\n## here we use the + operator in a much more confusing context\n`+`(2, 2)\n\n[1] 4\n\n## it is equivalent to\n2 + 2\n\n[1] 4"
+  },
+  {
+    "objectID": "r_basics.html#data",
+    "href": "r_basics.html#data",
+    "title": "8  The Basics",
+    "section": "8.5 Data",
+    "text": "8.5 Data\nWe are using the word data here to broadly encompass values (like the numbers we were using above, both with operators and as arguments), variables (stored values), and data structures (organized collections of values).\n\n8.5.1 Values\nValues are much like the data types we discuss in the data analysis section. In fact, the different types of values R can deal with are called data types as well!\nIn R, values can be numeric, character, or logical (among other, more specific types).\n\n## numeric values are numbers!\n2\n\n[1] 2\n\n2.5\n\n[1] 2.5\n\n## character values are letters, words, phrases (often referred to as \"strings)\n\"a\"\n\n[1] \"a\"\n\n\"apple\"\n\n[1] \"apple\"\n\n\"there is a worm in my apple\"\n\n[1] \"there is a worm in my apple\"\n\n## note: character values or strings must be surrounded by \"\" or '' for R to interpret them as strings\n\n## Logical values are TRUE or FALSE (you've seen these above)\nTRUE\n\n[1] TRUE\n\nFALSE\n\n[1] FALSE\n\n\nThere are other types of values too: missing values (NA and NaN), infinite values (Inf and -Inf), and something that indicates empty (NULL).\n\n\n8.5.2 Variables\nVariables are named values that are stored in the “environment”, or the workspace that R can access to perform its tasks. In order to store a value as a variable, you need to use a special kind of operator called an assignment operator (&lt;- or =). As I mentioned variables have names, which are unquoted text.\n\n## store 2 as a variable called x\nx &lt;- 2\n\n## R returns no output here because you're just storing a value\n## but you can return the value by calling the variable\nx\n\n[1] 2\n\n## store 3 as a variable called y\ny &lt;- 3\n\n## you use variables with operators\nx + y\n\n[1] 5\n\n## store a character value\nstring &lt;- \"hello\"\n\n## math doesn't work on strings\n\nTechnically, you can use = in place of &lt;-. This is why the equals operator is ==. I generally use &lt;- to prevent any confusion between assignment and comparison.\n\n8.5.2.1 Naming Rules\nVariables have rules about how they can be named:\n\nNo special symbols other than _ and .\nYou can’t start with a number or _.\nThey can’t be special words that R interprets differently. You can enter ?Reserved in your console to see a list.\n\n\n\n\n8.5.3 Data Structures\nData structures are collections of values with some sort of organization, and also saved in the environment. Plot twist: the variables above are a the simplest data structure, the scalar, which is just a single value.\nThe next data structure is the vector, which is a collection of values of the same data type. We can store them much like variables.\n\n## we use another operator, :, to create a sequence of integers from 1 to 10\nmy_vector &lt;- 1:5\n\nmy_vector\n\n[1] 1 2 3 4 5\n\n## you can also create vectors with the combine function, c()\nmy_other_vector &lt;- c(\"a\", \"b\", \"c\")\n\nmy_other_vector\n\n[1] \"a\" \"b\" \"c\"\n\n\nThe next data structure is called a list. A list is a collection of values like a vector, but they can be of any data type, or data structure. You can have a list of numeric values and character values, a list of vectors, or even a lists of lists! Every other complex data structure is technically a list with special attributes and/or rules.\n\n## you can create lists with the list function\nmy_list &lt;- list(\"a\", 1, 2:4)\n\nmy_list\n\n[[1]]\n[1] \"a\"\n\n[[2]]\n[1] 1\n\n[[3]]\n[1] 2 3 4\n\n## can also use the combine function, but it will default to a vector when data types are the same\nmy_other_list &lt;- c(\"b\", 2)\n\nFinally, the most common special type of list you will use is the data frame. A data frame is a list of vectors that are arranged in a table, much like an excel spreadsheet. Each of the vectors will be named as a column, and all must be the same length. The position of a value in a vector is its row in the data frame.\n\n## we can make a data frame with the data.frame function\nmy_data &lt;- data.frame(letter = c(\"a\",\"b\",\"c\"),\n                      number = c(1, 2, 3),\n                      vowel = c(TRUE, FALSE, FALSE))\n\nmy_data\n\n  letter number vowel\n1      a      1  TRUE\n2      b      2 FALSE\n3      c      3 FALSE\n\n\nNext, we will extend these concepts a bit further!"
+  },
+  {
+    "objectID": "r_next.html#packages",
+    "href": "r_next.html#packages",
+    "title": "9  Next Steps",
+    "section": "9.1 Packages",
+    "text": "9.1 Packages"
+  },
+  {
+    "objectID": "r_next.html#subsetting",
+    "href": "r_next.html#subsetting",
+    "title": "9  Next Steps",
+    "section": "9.2 Subsetting",
+    "text": "9.2 Subsetting"
+  },
+  {
+    "objectID": "r_next.html#optional-flow-control",
+    "href": "r_next.html#optional-flow-control",
+    "title": "9  Next Steps",
+    "section": "9.3 Optional: Flow Control",
+    "text": "9.3 Optional: Flow Control"
+  },
+  {
+    "objectID": "r_next.html#optional-writing-functions",
+    "href": "r_next.html#optional-writing-functions",
+    "title": "9  Next Steps",
+    "section": "9.4 Optional: Writing Functions",
+    "text": "9.4 Optional: Writing Functions"
   }
 ]

@@ -176,11 +176,6 @@ x + y
 string <- "hello"
 
 ## math doesn't work on strings
-x + string
-string + "again"
-
-## R returns our first error messages! feel free to place in your scrapbook
-
 ```
 
 Technically, you can use = in place of \<-. This is why the equals operator is ==. I generally use \<- to prevent any confusion between assignment and comparison.

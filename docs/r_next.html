@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>CCESR Intern Hub - 2&nbsp; Data Types</title>
+<title>CCESR Intern Hub - 9&nbsp; Next Steps</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -30,8 +30,8 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./da_describe.html" rel="next">
-<link href="./da_glance.html" rel="prev">
+<link href="./r_import.html" rel="next">
+<link href="./r_basics.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -73,7 +73,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./da_glance.html">Data Analysis</a></li><li class="breadcrumb-item"><a href="./da_data.html"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Data Types</span></a></li></ol></nav>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./r_basics.html">R Programming</a></li><li class="breadcrumb-item"><a href="./r_next.html"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Next Steps</span></a></li></ol></nav>
       <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
       </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -121,7 +121,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./da_data.html" class="sidebar-item-text sidebar-link active">
+  <a href="./da_data.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Data Types</span></span></a>
   </div>
 </li>
@@ -185,7 +185,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./r_next.html" class="sidebar-item-text sidebar-link">
+  <a href="./r_next.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Next Steps</span></span></a>
   </div>
 </li>
@@ -237,8 +237,10 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#numeric-data" id="toc-numeric-data" class="nav-link active" data-scroll-target="#numeric-data"><span class="header-section-number">2.1</span> Numeric Data</a></li>
-  <li><a href="#categorical-data" id="toc-categorical-data" class="nav-link" data-scroll-target="#categorical-data"><span class="header-section-number">2.2</span> Categorical Data</a></li>
+  <li><a href="#packages" id="toc-packages" class="nav-link active" data-scroll-target="#packages"><span class="header-section-number">9.1</span> Packages</a></li>
+  <li><a href="#subsetting" id="toc-subsetting" class="nav-link" data-scroll-target="#subsetting"><span class="header-section-number">9.2</span> Subsetting</a></li>
+  <li><a href="#optional-flow-control" id="toc-optional-flow-control" class="nav-link" data-scroll-target="#optional-flow-control"><span class="header-section-number">9.3</span> Optional: Flow Control</a></li>
+  <li><a href="#optional-writing-functions" id="toc-optional-writing-functions" class="nav-link" data-scroll-target="#optional-writing-functions"><span class="header-section-number">9.4</span> Optional: Writing Functions</a></li>
   </ul>
 </nav>
     </div>
@@ -247,7 +249,7 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Data Types</span></h1>
+<h1 class="title"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Next Steps</span></h1>
 </div>
 
 
@@ -262,19 +264,19 @@ ul.task-list li input[type="checkbox"] {
 
 </header>
 
-<p>First, let’s go over different types of data:</p>
-<section id="numeric-data" class="level2" data-number="2.1">
-<h2 data-number="2.1" class="anchored" data-anchor-id="numeric-data"><span class="header-section-number">2.1</span> Numeric Data</h2>
-<p>Any data that can be described with numbers or have quantifiable relationships between values is numeric. But! There are multiple types of numeric data. The most important distinction is <strong>discrete</strong> vs <strong>continuous</strong>.</p>
-<p><strong>Discrete</strong> numeric data is data where not every value is possible, but you can still quantify specific differences among the possible values - the major exmaple being integer values (1, 2, 3, the rest). Most programming languages will refer to this type as integer or int. Examples might include number of ants on a log.</p>
-<p><strong>Continuous</strong> numeric data is data where every valuable is possible! So this is basically all real numbers, including decimals (1.0, 1.1, etc.). Many programming languages will refer to this as simply numeric data, but lower level languages might use “float” or “double”. Examples might include th biomass of ants on a log. Note: measures that consist of very large integer values are approximately continuous.</p>
-<p>Other things to consider with numeric data is whether the scale of measurement is bound by any values. For example, the number of or biomass of ants on a log cannot be less than zero. In addition, percentages and proportions are bound by 0 and 100 and 0 and 1 respectively. These limitations can lead to special considerations when performing inferential statistics.</p>
+<p>Now that we have the basic “parts of speech” of R down, we can move toward what we can do with them.</p>
+<p>What follows are a few unconnected topics that will prove as useful background to working with data in the later sections.</p>
+<section id="packages" class="level2" data-number="9.1">
+<h2 data-number="9.1" class="anchored" data-anchor-id="packages"><span class="header-section-number">9.1</span> Packages</h2>
 </section>
-<section id="categorical-data" class="level2" data-number="2.2">
-<h2 data-number="2.2" class="anchored" data-anchor-id="categorical-data"><span class="header-section-number">2.2</span> Categorical Data</h2>
-<p>Any data for which the values have no specifically quantitative difference among them is categorical. Again there is one majorly important distinction: <strong>nominal</strong> vs <strong>ordinal</strong>.</p>
-<p><strong>Nominal</strong> data is data where categories have no ranking or order, like the species of ants on a log.</p>
-<p><strong>Ordinal</strong> data is data where categories have some order, like your top 5 favorite breakfast cereals. But wait! You may be thinking - “isn’t this quantitative?” Well yes and no. The difference between ordinal data and discrete numeric data is that you can’t really quantify the exact difference between ordinal data values. Say there is a go-kart race between Mario, Luigi, and Peach. The place that each finished would be ordinal, e.g., Peach got 1st and Luigi 2nd, but you wouldn’t be able to say how much faster Peach was than Luigi. The time it took for Peach and Luigi each to finish the race would be a numeric variable, and there would be a specific value difference between them.</p>
+<section id="subsetting" class="level2" data-number="9.2">
+<h2 data-number="9.2" class="anchored" data-anchor-id="subsetting"><span class="header-section-number">9.2</span> Subsetting</h2>
+</section>
+<section id="optional-flow-control" class="level2" data-number="9.3">
+<h2 data-number="9.3" class="anchored" data-anchor-id="optional-flow-control"><span class="header-section-number">9.3</span> Optional: Flow Control</h2>
+</section>
+<section id="optional-writing-functions" class="level2" data-number="9.4">
+<h2 data-number="9.4" class="anchored" data-anchor-id="optional-writing-functions"><span class="header-section-number">9.4</span> Optional: Writing Functions</h2>
 
 
 </section>
@@ -515,13 +517,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./da_glance.html" class="pagination-link">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Data Analysis at a Glance</span></span>
+      <a href="./r_basics.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">The Basics</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./da_describe.html" class="pagination-link">
-        <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Descriptive Statistics</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./r_import.html" class="pagination-link">
+        <span class="nav-page-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Importing Data</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
