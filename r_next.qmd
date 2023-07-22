@@ -8,7 +8,214 @@ What follows are a few unconnected topics that will prove as useful background t
 
 ## Packages
 
+Packages are collections of R functions that people write to make tasks easier. One of the strengths of R is that countless programmers have taken the time to assemble functions of use in their respective fields, and shared them with the world. For example the "vegan" package contains a number of functions geared towards community ecology, like calculating diversity indices. You could calculate a diversity index with just the base R, but it would be more difficult and take longer.
+
+You can install packages in at least two ways:
+
+1.  You can use the following code, with the package names in quotes (this is one of the few times where using the console is recommended, because you only need to install a package once):
+
+    ```{r}
+    #| eval: false
+
+    install.packages("PACKAGE NAME HERE")
+    ```
+
+2.  Or you can use the packages tab in RStudio. In the lower right panel, there should be a packages tab in between "Plots" and "Help". Once there, there is an "Install" button. When clicked a window will appear allowing you to search for packages to install.
+
+But Installing packages does not make them automatically accessible to you. When R boots up, it only loads its base functionality by default, so you have to load any packages that you want to use for a given R session. You can do this with the following code (with the package name not in quotes):
+
+```{r}
+#| eval: false
+
+library(PACKAGE NAME)
+```
+
+The code for loading packages should be saved in your r script, because it will need to be done every time you open R.
+
+There is a family of packages that is very popular called the "tidyverse." The aim of the tidyverse is to make data manipulation and visualization streamlined and efficient. Some people are very opinionated about whether you should use the tidyverse or base R, but in my opinion, it's mostly silliness. If you only want to dip into R and don't plan to use it much in the future, you may as well just pick up the specific functions you need to use and not worry about much else. If you'd like to continually use R for data analysis, but don't plan on getting deep into it, getting a handle on the tidyverse may be a good idea. If you want to really get into R, I would recommend learning how to do things in base R (as well as tidyverse functions).
+
+You can install the tidyverse suite with:
+
+```{r}
+#| eval: false
+
+install.packages("tidyverse")
+```
+
 ## Subsetting
+
+In the last section we introduced data structures. Now let's talk about what you can do with them.
+
+### Vectors
+
+The individual elements of a vector can be accessed with bracket operators - \[ and \]. You can refer to an element by its index, or its numeric place in the sequence of elements (e.g., the 1st, the 10th, etc.). It's important to not here that R starts counting at 1, while many other programming language start counting at 0 (e.g., Python). This is another thing that people are opinionated about, and if you put your mind to it, *you can be too*! Anyway, here are some examples:
+
+```{r}
+
+## let's create a vector of the first five letters of the alphabet
+my_vector <- c("a","b","c","d","e")
+my_vector
+
+## now let's return the 5th element
+my_vector[5]
+
+## we can return multiple elements with c()
+my_vector[c(2,4)]
+
+## or as a series with :
+my_vector[2:4]
+
+```
+
+You can also use negative numbers to exclude values from what's returned:
+
+```{r}
+
+## lose the last element
+my_vector[-5]
+
+## everything but the last element
+my_vector[-1:-4]
+```
+
+### Lists
+
+Subsetting vectors is fairly straightforward, but subsetting lists can be tricky. Since lists have multiple levels of organization, they use both the \[\] operators and the \[\[\]\] operators. Single brackets give you the list element, and double brackets give you *what the list element contains*. Let's demonstrate:
+
+```{r}
+
+## create a list 
+my_list <- list(c("a","b","c"), "d", "e")
+my_list
+
+## grab the first list element
+my_list[1]
+
+## grab what's conatined in the first list element (in this case a vector)
+my_list[[1]]
+
+## another example with a scalar
+my_list[2]
+my_list[[2]]
+
+## you can also subset what you have subsetted:
+my_list[[1]][1]
+
+## but if you try subsetting a list element, it won't work the same way
+my_list[1][1]
+
+## this is because [] returns the list element as a list of length 1, therefore [1] gives you the same thing again, and [2] would give you a NULL list.
+```
+
+This distinction can be difficult to understand, but don't worry! It takes time. The best analogy I've seen is from Hadley Wickham here:
+
+<https://adv-r.hadley.nz/subsetting.html#subset-single>
+
+You can think of a list as a train, every list element is a train car, and each has its own contents. Single brackets give you the train car/s, and double brackets gives you what's inside a single train car. And even a single train car is a train (or a list). Also note:
+
+```{r}
+
+## you can grab multiple list elements with []; this give a list with two elements
+my_list[1:2]
+
+## list elements can be named and indexed by their name as well
+named_list <- list(first = 1:3, second = 10)
+named_list
+named_list["first"]
+```
+
+### Data Frames
+
+Subsetting data frames is a little easier to get a handle on, you just need to think in two dimensions. When using single brackets to subset data frames, you need to specify the index of the row and the column separately and in that order. You separate each index number by a comma inside the brackets. Check it out:
+
+```{r}
+
+## create data frame
+my_data <- data.frame(letter = c("a","b","c"), # each column has a name
+                      number = c(1, 2, 3),
+                      vowel = c(TRUE, FALSE, FALSE))
+my_data
+
+## grab the element in the 2nd row, 1st column
+my_data[2,1]
+
+## you can also grab a whole row or column by leaving onse side of the comma blank
+my_data[2,]
+my_data[,1]
+
+## (subsetting a row gives you a data frame, subsetting a column gives you a vector)
+```
+
+But data frames also have named columns! Let's use that to our advantage. You can specify a column's name instead of its index in brackets, like for a list, or you can use the \$ operator.
+
+```{r}
+## subsetting by name in brackets
+my_data[,"vowel"]
+
+## subsetting by name with $ (notice no quotes)
+my_data$vowel
+
+## the downside of $ is that you can't grab more than one column like with brackets
+my_data[,c("letter", "vowel")]
+
+## subsetting multiple columns gives you a data.frame
+
+## you can use $ with named lists too
+named_list$first
+
+## you can mix subsetting operators if you ever need to
+my_data$vowel[1]
+my_data[1,]$vowel
+```
+
+You can also use brackets to select rows by value, not index. You just need to use some comparison operator in a statement that resolves as TRUE or FALSE.
+
+```{r}
+## grab the consonant rows
+my_data[my_data$vowel == FALSE,]
+
+## grab the rows before the third
+my_data[my_data$number < 3,]
+
+## you can combine criteria
+my_data[my_data$number < 3 & my_data$vowel == FALSE,]
+```
+
+Now the reason that we talked about packages in between data structures and subsetting is because the tidyverse (specifically, the dplyr package) has more functions for subsetting: filter and select. Filter works much like grabbing rows by value, and select works like grabbing columns by name. Let's look at some examples:
+
+```{r}
+
+## load the tidyverse
+library(tidyverse)
+
+## filter for consonants
+filter(.data = my_data, vowel == FALSE)
+
+## select letter related columns
+select(.data = my_data, letter, vowel)
+
+## you can also exclude columns
+select(.data = my_data, !number)
+
+## note: selecting a single column will give a data frame, not a vector
+select(.data = my_data, number)
+
+## another tidyverse/dplyr function, pull, will give just a vector
+pull(.data = my_data, number)
+```
+
+As you can see, filter, select and pull are versatile, consistent and powerful. However, they lack one key ability: assignment. You can use brackets and \$s to assign things:
+
+```{r}
+
+## assign a new value to a data element (NA means missing value)
+my_data[3,2] <- NA
+my_data
+
+## create a whole new column with $ (vector must be of same length as the number of rows)
+my_data$new_column <- c("some", "new", "data")
+my_data
+```
 
 ## Optional: Flow Control
 

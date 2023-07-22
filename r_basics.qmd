@@ -223,7 +223,7 @@ Finally, the most common special type of list you will use is the **data frame**
 
 ```{r}
 ## we can make a data frame with the data.frame function
-my_data <- data.frame(letter = c("a","b","c"),
+my_data <- data.frame(letter = c("a","b","c"), # each column has a name
                       number = c(1, 2, 3),
                       vowel = c(TRUE, FALSE, FALSE))
 
