@@ -1,3 +1,19 @@
 ---
 title: "Analyzing Data"
 ---
+
+## Making Comparisons
+
+### t-tests
+
+### ANOVA
+
+## Assessing Relationships
+
+### Correlation
+
+### Linear Regression
+
+### Binomial Regression
+
+### Poisson / Negative Binomial Regression

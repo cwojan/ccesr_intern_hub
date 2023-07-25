@@ -1,3 +1,23 @@
 ---
 title: "Wrangling Data"
 ---
+
+## Adding Columns
+
+### Base
+
+### tidyverse
+
+## Pivoting / Reshaping
+
+### Wide to Long
+
+### Long to Wide
+
+### Base
+
+## String Manipulation
+
+### Base
+
+### tidyverse

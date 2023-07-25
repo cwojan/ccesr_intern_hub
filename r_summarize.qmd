@@ -1,3 +1,17 @@
 ---
 title: "Summarizing Data"
 ---
+
+## Describing With Summaries
+
+### tidyverse
+
+### Base
+
+### Making Nice Tables
+
+## Community Ecology
+
+### Richness
+
+### Diversity

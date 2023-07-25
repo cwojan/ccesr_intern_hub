@@ -1,3 +1,19 @@
 ---
 title: "Importing Data"
 ---
+
+## Reading Data
+
+### From Your Computer
+
+### tidyverse Function
+
+### From The Web
+
+## Checking Data
+
+### The Whole Table
+
+### Individual Columns
+
+### Factors: The Pseudo Data Type
