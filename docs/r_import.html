@@ -20,6 +20,40 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -233,7 +267,25 @@ ul.task-list li input[type="checkbox"] {
 <div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#reading-data" id="toc-reading-data" class="nav-link active" data-scroll-target="#reading-data"><span class="header-section-number">10.1</span> Reading Data</a>
+  <ul class="collapse">
+  <li><a href="#from-your-computer" id="toc-from-your-computer" class="nav-link" data-scroll-target="#from-your-computer"><span class="header-section-number">10.1.1</span> From Your Computer</a></li>
+  <li><a href="#tidyverse-function" id="toc-tidyverse-function" class="nav-link" data-scroll-target="#tidyverse-function"><span class="header-section-number">10.1.2</span> tidyverse Function</a></li>
+  <li><a href="#from-the-web" id="toc-from-the-web" class="nav-link" data-scroll-target="#from-the-web"><span class="header-section-number">10.1.3</span> From The Web</a></li>
+  <li><a href="#other-file-types" id="toc-other-file-types" class="nav-link" data-scroll-target="#other-file-types"><span class="header-section-number">10.1.4</span> Other File Types</a></li>
+  </ul></li>
+  <li><a href="#checking-data" id="toc-checking-data" class="nav-link" data-scroll-target="#checking-data"><span class="header-section-number">10.2</span> Checking Data</a>
+  <ul class="collapse">
+  <li><a href="#the-whole-table" id="toc-the-whole-table" class="nav-link" data-scroll-target="#the-whole-table"><span class="header-section-number">10.2.1</span> The Whole Table</a></li>
+  <li><a href="#individual-columns" id="toc-individual-columns" class="nav-link" data-scroll-target="#individual-columns"><span class="header-section-number">10.2.2</span> Individual Columns</a></li>
+  <li><a href="#sec-factors" id="toc-sec-factors" class="nav-link" data-scroll-target="#sec-factors"><span class="header-section-number">10.2.3</span> Factors: The Pseudo Data Type</a></li>
+  </ul></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -255,8 +307,159 @@ ul.task-list li input[type="checkbox"] {
 
 </header>
 
+<p>The previous chapters focused on R’s functionality, but you might not be feeling any closer to working with <em>your</em> data in R. We’ll transition to that now! The first step is getting your data into your R environment, so that you can use it with R’s functions.</p>
+<section id="reading-data" class="level2" data-number="10.1">
+<h2 data-number="10.1" class="anchored" data-anchor-id="reading-data"><span class="header-section-number">10.1</span> Reading Data</h2>
+<p>Importing data into R is often referred to as reading data, as that is what the computer is doing, it’s reading the contents of a file (usually a text file). Most ecologists and data scientists work with a text file called a Comma Separated Value file, or csv. This is a small file that’s easy for computers to read where each column is separated by a column, and each row by a new line. You can save excel files as csv from the “Save As…” menu, and you can specify csv as the type when downloading a Google sheet.</p>
+<section id="from-your-computer" class="level3" data-number="10.1.1">
+<h3 data-number="10.1.1" class="anchored" data-anchor-id="from-your-computer"><span class="header-section-number">10.1.1</span> From Your Computer</h3>
+<p>So when you have files you want to read locally on your computer, the first thing you need to think about is what’s called the “working directory”. The working directory is the folder on your computer where R will look for files when prompted, and also where it will save output.</p>
+<p>You can check your current working directory:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="do">## return current working directory</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">getwd</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "/Users/kit/Documents/UMN/Research/cedar_creek_projects/ccesr_intern_hub"</code></pre>
+</div>
+</div>
+<p>You can also set your working directory manually</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="do">## change working directory</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">setwd</span>(<span class="st">"some/different/folder"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Or, in RStudio, you can click the Session dropdown menu at the top of the window, then “Set Working Directory”, then “Choose Directory.”</p>
+<p>If you use an R Project (<strong>highly recommended</strong>), you don’t have to worry as much about this. If you have a project open, the working directory will be automatically set to the folder that contains the .Rproj file that is created when you create a project. See <a href="rc_rstudio.html#sec-rprojects"><span>Section&nbsp;6.2</span></a> for more info!</p>
+<p>When you’re in an R Project, or have a csv you want in your working directory, you can read it into your environment like so:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="do">## read data</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>my_data <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"the name of your file in quotes"</span>, <span class="at">header =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>The read.csv function creates a data frame from the csv you specify, and then the &lt;- assigns it to “my_data.” The “header = TRUE” argument tells R to interpret the first line of the csv as the column names.</p>
+</section>
+<section id="tidyverse-function" class="level3" data-number="10.1.2">
+<h3 data-number="10.1.2" class="anchored" data-anchor-id="tidyverse-function"><span class="header-section-number">10.1.2</span> tidyverse Function</h3>
+<p>The readr package in the tidyverse family also has its own data reading functions.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="do">## load tidyverse</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="do">## read data (assumes header by default)</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>my_data <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"name of your data in quotes"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>These functions are pretty similar, with one exception: read.csv gives you a data frame, but read_csv gives you a “tibble.” What is a tibble? It’s another special type of list, much like a data frame, but with a few differences. IT was designed to work more consistently with tidyverse functions. One important difference between data frames and tibbles that when you subset an individual column with the brackets ([]), data frames will give you vectors, and tibble will give single column tibbles. This has caused me confusion when writing functions, but you may not run into it.</p>
+</section>
+<section id="from-the-web" class="level3" data-number="10.1.3">
+<h3 data-number="10.1.3" class="anchored" data-anchor-id="from-the-web"><span class="header-section-number">10.1.3</span> From The Web</h3>
+<p>You can also read files directly from the web. If you have your data in Google sheets, you can create a URL for R to import it directly. Simply go to the File menu, click “Share” and then “Publish to web”. In the box that pops up, you will need to select the file type as “.csv”, not web page. Then save the URL that it gives you!</p>
+<p>For demonstration, I’ve created a few data sheets that you too can import into R by copying the following code:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="do">## put the url of the data in quotes</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>fake_mammals <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"https://docs.google.com/spreadsheets/d/e/2PACX-1vQ9mfx88nM33PC6WpIh3nSxMvkM98nEszw5gpUq7KdqbiCskF8Pqvrl0W2EqNf9rD1JEepb-hSMIb_j/pub?output=csv"</span>, <span class="at">header =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>fake_insects <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"https://docs.google.com/spreadsheets/d/e/2PACX-1vT0snHMdsxzzzkxt_JVRFooJDB60lGSJQlrjUU29tGYOhIpqvx_pzja3Eqr9l5b4f76yMFvkiGzuK1Z/pub?output=csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>These two files will be used throughout the next chapters. The first is some made-up data of some mammal captures at 6 sites across forest and savanna habitats (with mass and parasite info), and the second is made up sweep-netting data from the same sites.</p>
+</section>
+<section id="other-file-types" class="level3" data-number="10.1.4">
+<h3 data-number="10.1.4" class="anchored" data-anchor-id="other-file-types"><span class="header-section-number">10.1.4</span> Other File Types</h3>
+<p>Under construction….</p>
+</section>
+</section>
+<section id="checking-data" class="level2" data-number="10.2">
+<h2 data-number="10.2" class="anchored" data-anchor-id="checking-data"><span class="header-section-number">10.2</span> Checking Data</h2>
+<p>Now that you have data, you will want to look at it!</p>
+<section id="the-whole-table" class="level3" data-number="10.2.1">
+<h3 data-number="10.2.1" class="anchored" data-anchor-id="the-whole-table"><span class="header-section-number">10.2.1</span> The Whole Table</h3>
+<p>You can look at a whole data frame by clicking on its name in the “Environment” pane in RStudio (upper right), or with the View() function:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">View</span>(fake_mammals)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>You can also just look at parts:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="do">## check top 6 rows</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(fake_mammals)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  site site_type            species mass_g tick_count helminth_mass_mg
+1    a    forest White-footed mouse     20          0              512
+2    a    forest White-footed mouse     24         10              365
+3    a    forest White-footed mouse     23          2                0
+4    a    forest White-footed mouse     19          0              608
+5    a    forest White-footed mouse     25         12              109
+6    a    forest         Deer mouse     22          3              456</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="do">## check bottom 6 rows</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="fu">tail</span>(fake_mammals)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>   site site_type            species mass_g tick_count helminth_mass_mg
+43    f   savanna White-footed mouse     21          0              408
+44    f   savanna White-footed mouse     25          1              197
+45    f   savanna White-footed mouse     24          0              152
+46    f   savanna         Deer mouse     20          0              508
+47    f   savanna         Deer mouse     22          2              496
+48    f   savanna        Meadow vole     23         NA               56</code></pre>
+</div>
+</div>
+<p>You can also take a look at the structure of the data with str(), which will tell you how many rows (observations) and how many columns (variables), as well as the type of each column.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="do">## check structure</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(fake_mammals)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>'data.frame':   48 obs. of  6 variables:
+ $ site            : chr  "a" "a" "a" "a" ...
+ $ site_type       : chr  "forest" "forest" "forest" "forest" ...
+ $ species         : chr  "White-footed mouse" "White-footed mouse" "White-footed mouse" "White-footed mouse" ...
+ $ mass_g          : int  20 24 23 19 25 22 22 21 23 20 ...
+ $ tick_count      : int  0 10 2 0 12 3 2 0 NA NA ...
+ $ helminth_mass_mg: int  512 365 0 608 109 456 521 432 20 129 ...</code></pre>
+</div>
+</div>
+</section>
+<section id="individual-columns" class="level3" data-number="10.2.2">
+<h3 data-number="10.2.2" class="anchored" data-anchor-id="individual-columns"><span class="header-section-number">10.2.2</span> Individual Columns</h3>
+<p>You can also take a look at individual columns with the $ operator, and get quick summaries with summary():</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="do">## summarize mammal masses</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(fake_mammals<span class="sc">$</span>mass_g)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+  17.00   20.75   23.00   22.60   25.00   28.00 </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="do">## summarize helminth masses</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(fake_mammals<span class="sc">$</span>helminth_mass_mg)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+    0.0   119.5   341.5   306.5   501.2   713.0 </code></pre>
+</div>
+</div>
+<p>Note that for the second summary (helminth mass), it tells you how many NA’s, or missing values, there are.</p>
+</section>
+<section id="sec-factors" class="level3" data-number="10.2.3">
+<h3 data-number="10.2.3" class="anchored" data-anchor-id="sec-factors"><span class="header-section-number">10.2.3</span> Factors: The Pseudo Data Type</h3>
+<p>Unless you specify, csv reading functions will assume the data type of each column in a data sheet (numeric, character, etc.). Any categorical variable will be considered a character type generally. But the way character types are stored in computer memory does not lend itself well to statistical analysis. To remedy this, R has a special data type called the factor for categorical data. A factor is made up of two parts - the levels, which are stored to the computer as integers, and the labels, which are character strings that we can read as the category names.</p>
+<p>In our mammal data, we probably want mammal species, site type, and site all to be factors. We can convert them with the as.factor function!</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="do">## convert species to factor</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>fake_mammals<span class="sc">$</span>species <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(fake_mammals<span class="sc">$</span>species)</span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a><span class="do">## convert site type to factor</span></span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>fake_mammals<span class="sc">$</span>site_type <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(fake_mammals<span class="sc">$</span>site_type)</span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a><span class="do">## convert site to a factor</span></span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a>fake_mammals<span class="sc">$</span>site <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(fake_mammals<span class="sc">$</span>site)</span>
+<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a><span class="do">## check it out!</span></span>
+<span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(fake_mammals<span class="sc">$</span>species)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>        Deer mouse        Meadow vole White-footed mouse 
+                15                  9                 24 </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="do">## also do for insects</span></span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>fake_insects<span class="sc">$</span>site <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(fake_insects<span class="sc">$</span>site)</span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>fake_insects<span class="sc">$</span>site_type <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(fake_insects<span class="sc">$</span>site_type)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>There are also similar functions for converting data types to numeric (as.numeric()) and character (as.character()).</p>
 
 
+</section>
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">

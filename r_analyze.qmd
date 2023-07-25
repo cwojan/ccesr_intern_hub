@@ -2,6 +2,42 @@
 title: "Analyzing Data"
 ---
 
+Now let's draw some conclusions about our data, and maybe answer questions!
+
+Setup:
+
+```{r}
+#| message: false
+
+## load tidyverse
+library(tidyverse)
+
+## read data
+fake_mammals <- read.csv("https://docs.google.com/spreadsheets/d/e/2PACX-1vQ9mfx88nM33PC6WpIh3nSxMvkM98nEszw5gpUq7KdqbiCskF8Pqvrl0W2EqNf9rD1JEepb-hSMIb_j/pub?output=csv", header = TRUE)
+
+fake_insects <- read.csv("https://docs.google.com/spreadsheets/d/e/2PACX-1vT0snHMdsxzzzkxt_JVRFooJDB60lGSJQlrjUU29tGYOhIpqvx_pzja3Eqr9l5b4f76yMFvkiGzuK1Z/pub?output=csv")
+
+## convert species to factor
+fake_mammals$species <- as.factor(fake_mammals$species)
+## convert site type to factor
+fake_mammals$site_type <- as.factor(fake_mammals$site_type)
+## convert site to a factor
+fake_mammals$site <- as.factor(fake_mammals$site)
+
+## also do for insects
+fake_insects$site <- as.factor(fake_insects$site)
+fake_insects$site_type <- as.factor(fake_insects$site_type)
+
+## lengthen the order count data
+long_insects <- pivot_longer(data = fake_insects, 
+                             cols = c(hymenoptera, lepidoptera, coleoptera, diptera, 
+                                      odonata, hemiptera, orthoptera, ephemeroptera, 
+                                      tricoptera, plecoptera),
+                             names_to = "order",
+                             values_to = "count"
+                             )
+```
+
 ## Making Comparisons
 
 ### t-tests

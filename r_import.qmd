@@ -2,18 +2,146 @@
 title: "Importing Data"
 ---
 
+The previous chapters focused on R's functionality, but you might not be feeling any closer to working with *your* data in R. We'll transition to that now! The first step is getting your data into your R environment, so that you can use it with R's functions.
+
 ## Reading Data
+
+Importing data into R is often referred to as reading data, as that is what the computer is doing, it's reading the contents of a file (usually a text file). Most ecologists and data scientists work with a text file called a Comma Separated Value file, or csv. This is a small file that's easy for computers to read where each column is separated by a column, and each row by a new line. You can save excel files as csv from the "Save As..." menu, and you can specify csv as the type when downloading a Google sheet.
 
 ### From Your Computer
 
+So when you have files you want to read locally on your computer, the first thing you need to think about is what's called the "working directory". The working directory is the folder on your computer where R will look for files when prompted, and also where it will save output.
+
+You can check your current working directory:
+
+```{r}
+## return current working directory
+getwd()
+```
+
+You can also set your working directory manually
+
+```{r}
+#| eval: false
+## change working directory
+setwd("some/different/folder")
+```
+
+Or, in RStudio, you can click the Session dropdown menu at the top of the window, then "Set Working Directory", then "Choose Directory."
+
+If you use an R Project (**highly recommended**), you don't have to worry as much about this. If you have a project open, the working directory will be automatically set to the folder that contains the .Rproj file that is created when you create a project. See @sec-rprojects for more info!
+
+When you're in an R Project, or have a csv you want in your working directory, you can read it into your environment like so:
+
+```{r}
+#| eval: false
+## read data
+my_data <- read.csv("the name of your file in quotes", header = TRUE)
+```
+
+The read.csv function creates a data frame from the csv you specify, and then the \<- assigns it to "my_data." The "header = TRUE" argument tells R to interpret the first line of the csv as the column names.
+
 ### tidyverse Function
+
+The readr package in the tidyverse family also has its own data reading functions.
+
+```{r}
+#| eval: false
+
+## load tidyverse
+library(tidyverse)
+
+## read data (assumes header by default)
+my_data <- read_csv("name of your data in quotes")
+```
+
+These functions are pretty similar, with one exception: read.csv gives you a data frame, but read_csv gives you a "tibble." What is a tibble? It's another special type of list, much like a data frame, but with a few differences. IT was designed to work more consistently with tidyverse functions. One important difference between data frames and tibbles that when you subset an individual column with the brackets (\[\]), data frames will give you vectors, and tibble will give single column tibbles. This has caused me confusion when writing functions, but you may not run into it.
 
 ### From The Web
 
+You can also read files directly from the web. If you have your data in Google sheets, you can create a URL for R to import it directly. Simply go to the File menu, click "Share" and then "Publish to web". In the box that pops up, you will need to select the file type as ".csv", not web page. Then save the URL that it gives you!
+
+For demonstration, I've created a few data sheets that you too can import into R by copying the following code:
+
+```{r}
+## put the url of the data in quotes
+fake_mammals <- read.csv("https://docs.google.com/spreadsheets/d/e/2PACX-1vQ9mfx88nM33PC6WpIh3nSxMvkM98nEszw5gpUq7KdqbiCskF8Pqvrl0W2EqNf9rD1JEepb-hSMIb_j/pub?output=csv", header = TRUE)
+
+fake_insects <- read.csv("https://docs.google.com/spreadsheets/d/e/2PACX-1vT0snHMdsxzzzkxt_JVRFooJDB60lGSJQlrjUU29tGYOhIpqvx_pzja3Eqr9l5b4f76yMFvkiGzuK1Z/pub?output=csv")
+```
+
+These two files will be used throughout the next chapters. The first is some made-up data of some mammal captures at 6 sites across forest and savanna habitats (with mass and parasite info), and the second is made up sweep-netting data from the same sites.
+
+### Other File Types
+
+Under construction....
+
 ## Checking Data
+
+Now that you have data, you will want to look at it!
 
 ### The Whole Table
 
+You can look at a whole data frame by clicking on its name in the "Environment" pane in RStudio (upper right), or with the View() function:
+
+```{r}
+#| eval: false
+View(fake_mammals)
+
+```
+
+You can also just look at parts:
+
+```{r}
+## check top 6 rows
+head(fake_mammals)
+
+## check bottom 6 rows
+tail(fake_mammals)
+```
+
+You can also take a look at the structure of the data with str(), which will tell you how many rows (observations) and how many columns (variables), as well as the type of each column.
+
+```{r}
+## check structure
+str(fake_mammals)
+```
+
 ### Individual Columns
 
-### Factors: The Pseudo Data Type
+You can also take a look at individual columns with the \$ operator, and get quick summaries with summary():
+
+```{r}
+## summarize mammal masses
+summary(fake_mammals$mass_g)
+
+## summarize helminth masses
+summary(fake_mammals$helminth_mass_mg)
+```
+
+Note that for the second summary (helminth mass), it tells you how many NA's, or missing values, there are.
+
+### Factors: The Pseudo Data Type {#sec-factors}
+
+Unless you specify, csv reading functions will assume the data type of each column in a data sheet (numeric, character, etc.). Any categorical variable will be considered a character type generally. But the way character types are stored in computer memory does not lend itself well to statistical analysis. To remedy this, R has a special data type called the factor for categorical data. A factor is made up of two parts - the levels, which are stored to the computer as integers, and the labels, which are character strings that we can read as the category names.
+
+In our mammal data, we probably want mammal species, site type, and site all to be factors. We can convert them with the as.factor function!
+
+```{r}
+## convert species to factor
+fake_mammals$species <- as.factor(fake_mammals$species)
+## convert site type to factor
+fake_mammals$site_type <- as.factor(fake_mammals$site_type)
+## convert site to a factor
+fake_mammals$site <- as.factor(fake_mammals$site)
+
+## check it out!
+summary(fake_mammals$species)
+
+## also do for insects
+fake_insects$site <- as.factor(fake_insects$site)
+fake_insects$site_type <- as.factor(fake_insects$site_type)
+
+```
+
+There are also similar functions for converting data types to numeric (as.numeric()) and character (as.character()).

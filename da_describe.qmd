@@ -90,3 +90,5 @@ Many of you are interested in describing the species composition of of community
 **Species Diversity** - this is an index that takes into account the richness as well as the relative abundances of each species. E.g. Shannon's Diversity Index, where higher numbers mean more species more evenly distributed.
 
 **Species Evenness** - this is an index that estimates specifically how evenly distributed species abundances are. E.g., Pielou's Evenness, which ranges from 0 to 1, with 1 meaning that each species has equal numbers.
+
+Note: these measures can apply to any taxonomic distinction, e.g., family richness, order diversity, etc.

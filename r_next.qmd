@@ -124,7 +124,7 @@ named_list
 named_list["first"]
 ```
 
-### Data Frames
+### Data Frames {#sec-sub_data}
 
 Subsetting data frames is a little easier to get a handle on, you just need to think in two dimensions. When using single brackets to subset data frames, you need to specify the index of the row and the column separately and in that order. You separate each index number by a comma inside the brackets. Check it out:
 

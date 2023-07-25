@@ -2,16 +2,153 @@
 title: "Summarizing Data"
 ---
 
+Now let's describe our data!
+
+Setup:
+
+```{r}
+#| message: false
+
+## load tidyverse
+library(tidyverse)
+
+## read data
+fake_mammals <- read.csv("https://docs.google.com/spreadsheets/d/e/2PACX-1vQ9mfx88nM33PC6WpIh3nSxMvkM98nEszw5gpUq7KdqbiCskF8Pqvrl0W2EqNf9rD1JEepb-hSMIb_j/pub?output=csv", header = TRUE)
+
+fake_insects <- read.csv("https://docs.google.com/spreadsheets/d/e/2PACX-1vT0snHMdsxzzzkxt_JVRFooJDB60lGSJQlrjUU29tGYOhIpqvx_pzja3Eqr9l5b4f76yMFvkiGzuK1Z/pub?output=csv")
+
+## convert species to factor
+fake_mammals$species <- as.factor(fake_mammals$species)
+## convert site type to factor
+fake_mammals$site_type <- as.factor(fake_mammals$site_type)
+## convert site to a factor
+fake_mammals$site <- as.factor(fake_mammals$site)
+
+## also do for insects
+fake_insects$site <- as.factor(fake_insects$site)
+fake_insects$site_type <- as.factor(fake_insects$site_type)
+
+## lengthen the order count data
+long_insects <- pivot_longer(data = fake_insects, 
+                             cols = c(hymenoptera, lepidoptera, coleoptera, diptera, 
+                                      odonata, hemiptera, orthoptera, ephemeroptera, 
+                                      tricoptera, plecoptera),
+                             names_to = "order",
+                             values_to = "count"
+                             )
+
+```
+
 ## Describing With Summaries
+
+You'll often want to give simple, illustrative information about the data you collected. The tidyverse is great for this!
 
 ### tidyverse
 
+The package dplyr in the tidyverse has two wonderful functions: group_by() and summarize(). You can also use the British spelling, "summarise()", but I use a z because *it's what the founders would have wanted*.
+
+Before we use these however, we need to introduce a very useful operator, the pipe: %\>%. This operator directs data into the first argument of a function, which allows you to chain functions together efficiently. Let's try an example with the filter and select subsetting functions (see @sec-sub_data):
+
+```{r}
+
+## grab only the forest sites from the insect data
+forest_sites <- fake_insects %>% ## take fake_insects and pipe it into filter...
+  filter(site_type == "forest") %>% ## filter only forest rows, pipe into select
+  select(site) ## select only the site column
+## the whole pipe chain is assigned to "forest_sites"
+
+forest_sites
+
+## this is the same as
+forest_rows <- filter(fake_insects, site_type == "forest")
+forest_sites <- select(forest_rows, site)
+```
+
+Now, let's try with group_by() and summarize()! Let's say you wanted the total number of insects caught at each site (be sure to have pivoted your insect data in the last chapter!):
+
+```{r}
+## summarize total insect catch
+insect_counts <- long_insects %>%
+  group_by(site) %>% ## group observations
+  summarize(total_insects = sum(count)) ## sum all insects
+
+insect_counts
+```
+
+As you can see, the summarize function works a bit like the mutate function: you
+
+Note that group_by doesn't visibly change your data, but it changes some attributes that the computer can see when it runs the summarize function. If you forgot which sites are in which type of habitat, you could also include that variable in the group_by arguments (since it doesn't subdivide the sites, it won't change the calculation).
+
+```{r}
+#| eval: false
+insect_counts <- long_insects %>%
+  group_by(site, site_type) %>%
+  summarize(total_insects = sum(count))
+```
+
+You can also calculate means and variances! You can use the mean, var, and sd functions. Let's try for each order across all sites:
+
+```{r}
+order_summary <- long_insects %>%
+  group_by(order) %>%
+  summarize(count_mean = mean(count), ## you can do multiple sumaries at once
+            count_var = var(count),
+            count_sd = sd(count))
+
+head(order_summary)
+```
+
+You could also do this separately by site type:
+
+```{r}
+orders_by_habitat <- long_insects %>%
+  group_by(site_type, order) %>%
+  summarize(count_mean = mean(count), ## you can do multiple sumaries at once
+            count_var = var(count),
+            count_sd = sd(count))
+
+head(orders_by_habitat)
+```
+
+Finally, you can save summarized output with write.csv() or write_csv():
+
+```{r}
+#| eval: false
+## save summary to your working/project directory
+## first argument is data, second argument is filename
+write.csv(orders_by_habitat, "summary of orders")
+```
+
 ### Base
+
+aggregate function (under construction...)
 
 ### Making Nice Tables
 
+the gt package is good for this (under construction....)
+
 ## Community Ecology
+
+Averages and variances are all well and good but what about ecological measures?
 
 ### Richness
 
+You may be interested in how many insect orders are represented in each site.
+
+Let's do it in a pipe chain!
+
+```{r}
+## order presence
+order_richness_site <- long_insects %>% 
+  mutate(presence = as.numeric(count > 0)) %>% ## create binary presence column
+  group_by(site, site_type) %>%
+  summarize(order_richness = sum(presence))
+
+order_richness_site
+```
+
+I caclulated the presence column by checking if each value is positive (\> 0), which returns a logical TRUE or FALSE, and then if you convert a logical variable to a numeric variable, TRUEs become 1s and FALSEs become 0s. Nifty!
+
 ### Diversity
+
+vegan package (under construction...)

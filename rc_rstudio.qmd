@@ -25,12 +25,12 @@ If you open up RStudio, you will see something like this:
 
 **4- Files and Plots**: Here is where any figures you draw will pop up (and you can save them from here as well). There is also a Files tab that allows you to navigate through your file directory (helpful with projects, described below). The Packages tab shows which packages you have installed and loaded (you can also click "Install" at top to easily install new ones!). Finally, the help tab is where you can search for the documentation on any R function.
 
-## R Projects
+## R Projects {#sec-rprojects}
 
 It is highly recommended to use R Projects when working with RStudio. Projects are essentially just subdirectories in your file folders, but they come with a special .Rproj file that RStudio can read and use. This helps you organize your work, and makes your code more easily portable.
 
-You can create a new projects from the File tab at upper left, or in the project dropdown menu at upper right.
+You can create a new projects from the File tab at upper left, or in the project dropdown menu at upper right. You can just create one in a new directory. Then you can select a name and where you want to save it.
 
 There are many different types of projects - this book/website is one!
 
-If you want to backup your work with version control or collaborate with others using git and GitHub, you will need to use projects. (Well, technically you don't need to, but you'd be doing many things manually)
+If you want to backup your work with version control or collaborate with others using git and GitHub, you will need to use projects. (Well, technically you don't need to, but you'd be doing many things manually).

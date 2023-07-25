@@ -2,21 +2,110 @@
 title: "Wrangling Data"
 ---
 
+Now that we have our data in, let's play with it!
+
+Setup:
+
+```{r}
+## read data
+fake_mammals <- read.csv("https://docs.google.com/spreadsheets/d/e/2PACX-1vQ9mfx88nM33PC6WpIh3nSxMvkM98nEszw5gpUq7KdqbiCskF8Pqvrl0W2EqNf9rD1JEepb-hSMIb_j/pub?output=csv", header = TRUE)
+
+fake_insects <- read.csv("https://docs.google.com/spreadsheets/d/e/2PACX-1vT0snHMdsxzzzkxt_JVRFooJDB60lGSJQlrjUU29tGYOhIpqvx_pzja3Eqr9l5b4f76yMFvkiGzuK1Z/pub?output=csv")
+
+## convert species to factor
+fake_mammals$species <- as.factor(fake_mammals$species)
+## convert site type to factor
+fake_mammals$site_type <- as.factor(fake_mammals$site_type)
+## convert site to a factor
+fake_mammals$site <- as.factor(fake_mammals$site)
+
+## also do for insects
+fake_insects$site <- as.factor(fake_insects$site)
+fake_insects$site_type <- as.factor(fake_insects$site_type)
+```
+
 ## Adding Columns
 
+One simple thing you may want to do is add columns to your data, which may be calculations from existing columns.
+
 ### Base
+
+In base R, we have already kinda done this. You can assign something to a new column with the \$ and \<- operators.
+
+For the insect data, let's say we wanted to calculate average temperature at a given site based on the recorded high (temp_hi) and low (temp_low):
+
+```{r}
+## calculate mean temp
+fake_insects$temp_mean <- (fake_insects$temp_hi + fake_insects$temp_lo)/2
+
+## check it out
+fake_insects$temp_mean
+```
 
 ### tidyverse
 
+In the tidyverse, adding new columns is done with the mutate function:
+
+```{r}
+## load tidyverse
+library(tidyverse)
+
+## mutate a new column
+fake_insects <- mutate(.data = fake_insects, ## specify data
+                       temp_mean_mutated = (temp_hi + temp_lo)/2) ## calculate new column
+
+## this column should be the same for all six rows (a TRUE should be returned for each)
+fake_insects$temp_mean == fake_insects$temp_mean_mutated
+```
+
+As you can see, using mutate mean you have to write the name of data frame fewer times.
+
 ## Pivoting / Reshaping
+
+You also may need to transform your data between the wide and long formats (recall the data management slides, which will be added to this book eventually). I find that the pivot functions from tidyr in the tidyverse are easier to use, so we will go over those. But by all means, if you prefer base, go for it! I'm just less familiar with using base R for this.
 
 ### Wide to Long
 
+The insect data is partly in wide format: we have a column for each order of insect, where the count is implicitly the values in the cells. IT will be easier to work with if we make one "count" column and one "order" column. We can do this with the pivot_longer function:
+
+```{r}
+## lengthen the order count data
+long_insects <- pivot_longer(data = fake_insects, 
+                             cols = c(hymenoptera, lepidoptera, coleoptera, diptera, 
+                                      odonata, hemiptera, orthoptera, ephemeroptera, 
+                                      tricoptera, plecoptera),
+                             names_to = "order",
+                             values_to = "count"
+                             )
+
+## check it out
+head(long_insects)
+```
+
+Now we have multiple rows for each site, one for each order! You may not believe me, but this will make things easier down the line.
+
+For reference, the cols argument specifies which columns you want to pivot. The names_to argument names the column that will contain the pivoted column names, and the values_to argument names the column that the cell values will be placed.
+
 ### Long to Wide
+
+You'll occasionally want to turn long to wide as well. pivot_wider works for this
+
+```{r}
+## widen our long data
+wide_insects <- pivot_wider(data = long_insects,
+                            names_from = "order",
+                            values_from = "count")
+```
+
+This is the inverse of what we just did - we made a column for each value in the column given to the names_from argument, the values of which are pulled from the column given to the values_from argument.
 
 ### Base
 
+You can pivot data in base R with reshape, but this section is under construction...
+
 ## String Manipulation
+
+Under construction....
 
 ### Base
 
