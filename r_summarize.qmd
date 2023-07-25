@@ -64,6 +64,8 @@ forest_rows <- filter(fake_insects, site_type == "forest")
 forest_sites <- select(forest_rows, site)
 ```
 
+Note: base R also has a pipe, \|\>. It's newer and mostly the same as %\>%, so I just haven't transitioned.
+
 Now, let's try with group_by() and summarize()! Let's say you wanted the total number of insects caught at each site (be sure to have pivoted your insect data in the last chapter!):
 
 ```{r}
@@ -152,3 +154,35 @@ I caclulated the presence column by checking if each value is positive (\> 0), w
 ### Diversity
 
 vegan package (under construction...)
+
+## Related Topic: Joining Data
+
+Sometimes with summaries, you will want to connect them to other pieces of data. Here we have some insect counts by site, and some mammal data by site. Let's connect them! We can use the "merge" function from base R or the "join" functions from the tidyverse.
+
+With merge:
+
+```{r}
+
+## grab only the site and total columns from insect_counts
+## this prevent doubling the site_type column
+merged_data <- merge(insect_counts[,c("site", "total_insects")], fake_mammals, by = "site")
+
+## look at the new column in your data
+str(merged_data)
+```
+
+With join:
+
+```{r}
+
+## there are different join functions for different contexts
+## left_join keeps every row from the first data frame and adds any matching rows from the
+## second. it works in most cases
+## inner_join and full_join can also be useful
+joined_data <- insect_counts %>%
+  select(total_insects, site) %>%
+  left_join(fake_mammals, by = "site")
+
+## look at it
+str(joined_data)
+```

@@ -40,16 +40,147 @@ long_insects <- pivot_longer(data = fake_insects,
 
 ## Making Comparisons
 
+First off, let's just do some simple comparisons.
+
 ### t-tests
+
+Let's say we want to compare two groups, like the number of insects caught in forests and savannas. We already created a summary of this in the last chapter:
+
+```{r}
+## sum insects by site
+insect_counts <- long_insects %>%
+  group_by(site, site_type) %>%
+  summarize(total_insects = sum(count))
+
+insect_counts
+```
+
+It seems that there may be a difference! So let's run a t-test to test for a difference in means between two groups (see @sec-ttest). Most stats functions in R can use the formula operator, \~. This allows us to connect our dependent variable (insect count in this case) as a function of our independent variable (site habitat type): total_insects \~ site_type.
+
+```{r}
+## run the t test
+habitat_comparison <- t.test(formula = insect_counts$total_insects ~ insect_counts$site_type)
+
+## check the output
+habitat_comparison
+```
+
+If we look at the ouput, it look like the forest mean was 102.333, and the savanna mean was 57.333, for a mean difference or effect size of 45. The p-value, or how strong the evidence for a relationship is, is 0.1116. This is higher than the traditional threshold for significance, likely because we have a very small sample size (6 total).
+
+Note: if you check the help for the t.test function (run ?t.test), you can find arguments for paired t-tests (paired) and unequal variances among groups (var.equal).
 
 ### ANOVA
 
+What if we have more than two categories, and we want to see if any two categories have different means? Let us return to the mammal data and compare the mass of helminths (parasitic worms) in different mammal species. We can run an analysis of variance (see @sec-anova).
+
+```{r}
+## run the anova
+helminth_comparison <- aov(fake_mammals$helminth_mass_mg ~ fake_mammals$species)
+
+## check the output (now with the summary function)
+summary(helminth_comparison)
+```
+
+Hey, that's a small p-value (0.00017)! That means we have strong evidence that there is at least one difference among the pairs of species, either between white-footed mice and deer mice, white-footed mice, and meadow voles, or deer mice and meadow voles. We can use a Tukey test to find out more:
+
+```{r}
+## run tukey on the anova output
+helminth_tukey <- TukeyHSD(helminth_comparison)
+
+## check it out
+helminth_tukey
+```
+
+At the bottom here we can see the pairwise comparisons. The two mouse species differ in helminth mass by \~111mg, but the difference is not significant. Meadow voles have a significantly different mean helminth mass from both mouse species. I guess the in the data I made up, voles have less helminth mass than mice.
+
 ## Assessing Relationships
+
+But what if you're not dealing with categorical comparisons? Then we can check for numerical associations.
 
 ### Correlation
 
+We can look for simple associations without cause and effect with correlations (see @sec-corr). Mice seem to have high helminth loads, so let's check for a correlation between their body mass and helminth mass:
+
+```{r}
+## create a subset of only mouse data
+## I use the %in% operator to specify that species should be found in a specified vector
+## AKA, it could be white-footed mouse OR deer mouse
+mouse_data <- filter(fake_mammals, species %in% c("White-footed mouse", "Deer mouse"))
+
+## run correlation with two variables (no formula here)
+cor.test(mouse_data$helminth_mass_mg, mouse_data$mass_g)
+```
+
+Here we get an effect size of -0.874 (correlation coefficient), and a p-value of 3.741e-13, which means 3.741 x 10^-13^, or \<\<\<0.001. This means there is a strong negative relationship observed between mouse mass and helminth mass, and we have very strong evidence for it.
+
 ### Linear Regression
+
+If we want to infer cause and effect we can use linear regression (see @sec-reg). Let's say we want to know if the number of insects at a site is predictive of mammal mass at a site. First let's join the two data frames like wed did in the last chapter:
+
+```{r}
+
+## join our data
+mammals_insects <- insect_counts %>%
+  select(total_insects, site) %>%
+  left_join(fake_mammals, by = "site")
+
+## regress mammal mass on total insects with lm function
+## this time I'm specifying the data frame with the data argument
+## then I don't have to write it twice
+mass_model <- lm(mass_g ~ total_insects, data = mammals_insects)
+
+## look at the ouput with summary again
+summary(mass_model)
+```
+
+If we look at the coefficient table, we can see that the total insect term has an estimate of 0.028, which is our effect size. For every added insect to a plot, the expected average mass of the mammal community goes up by 0.028g. Connected to that effect size is a p-value of 0.0219, which means we have strong evidence for the relationship.
 
 ### Binomial Regression
 
+If your response variable is binary (presence absence), you can use a binomial regression with the glm() function. Let's test if mammal mass effects the probability of having ticks attached (tick_count).
+
+```{r}
+
+## first make a presence absence variable for ticks
+fake_mammals$tick_presence <- as.numeric(fake_mammals$tick_count > 0)
+
+## now do the regression, with the binomial "family"
+tick_pres_model <- glm(tick_presence ~ mass_g, data = fake_mammals, family = "binomial")
+
+## check it
+summary(tick_pres_model)
+```
+
+If we look at this like we looked at the linear regression, the mass_g term has a very small p-value meaning strong evidence for a relationship. It also has an effect size of 0.9857, meaning that the chance of having a tick increases with body mass. However, the units are in log odds, which are hard to interpret. The reason for this is some stats theory that is beyond the scope of this book.
+
 ### Poisson / Negative Binomial Regression
+
+under construction....
+
+## Multivariate Analysis
+
+You can of course use multiple explanatory variables in your analyses. For example, when we regressed mammal mass on insect count, we ignored mammal species. We could include it like so:
+
+```{r}
+
+## multiple regression
+multi_mod <- lm(mass_g ~ total_insects + species, data = mammals_insects)
+
+summary(multi_mod)
+```
+
+Now we have multiple terms, and since species is categorical, the effect sizes and p-values are based on comparisons to a reference level (deer mouse in this case because it is first alphabetically).
+
+We can look at the overall significance of species by running an ANOVA with aov, and summarizing the ouptut:
+
+```{r}
+## we can use the model object in our aov function to save time, it will take the formula
+summary(aov(multi_mod))
+
+```
+
+Looks like there is not much evidence of an effect of species.
+
+You may be confused a bit by this code, but essentially t.tests, ANOVAs, and regressions are all "linear models", and we are specifying them and looking at them differently with different R functions. T learn more, I recommend taking stats classes!
+
+Finally, you may be wondering which variable to include in your analyses. Model selection is another thing you would learn in stats, but the tl;dr could be: What is your question? Use those variables.

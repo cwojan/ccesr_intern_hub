@@ -39,13 +39,13 @@ Data that break the first assumption are difficult to deal with outside of accou
 
 ### Categorical Predictor/s, Numeric Response
 
-#### Two Predictor Categories
+#### Two Predictor Categories {#sec-ttest}
 
 When you are comparing numeric values from two groups, you can use a **t-test** to compare their means. T-tests can be **paired** when each observation in one group is specifically linked to an observation in the other group (e.g., masses of sibling plants in separate treatments) which can be more powerful. When the variance of values in each group changes, you can do a **t-test with unequal variance**.
 
 The effect size here is the difference between means.
 
-#### More Than Two Predictor Categories
+#### More Than Two Predictor Categories {#sec-anova}
 
 If you have more than two groups/categories, you can use a **Analysis of Variance** or **ANOVA**. This will tell you if the means of each group are equivalent, or if there is at least one inequality. You can test for pairwise comparisons among the groups with **Tukey' test**. If you have multiple categorical predictors, you can do **two-way or three-way ANOVAs**. Tests with more than three categorical predictor variables are uncommon and harder to interpret.
 
@@ -59,13 +59,13 @@ When your predictor variable is ordinal, the quick and easy way to analyze it wo
 
 ### Numeric Predictor/s, Numeric Response
 
-#### Simple Association
+#### Simple Association {#sec-corr}
 
 When all you are interested in is whether two numeric variables are related to one another, not cause and effect, you can do a **correlation test**. **Pearson's correlation** is generally applicable for continuous data. **Spearman's correlation** is good for when you are dealing with data with non-normal distributions, like count data (it also works for ordinal data!).
 
 The effect size here will be a correlation coefficient ranging from -1 to 1, with -1 means an inverse relationship, 0 means no relationship, and 1 mean a direct positive relationship.
 
-**Cause and Effect**
+#### Cause and Effect {#sec-reg}
 
 When you are suppose a causal relationship between numeric variables, you can use a **linear regression**. This will use linear algebra or maximum likelihod estimation (don't worry about it) to find the best fit line that describes the relationship between two variables; where the sum of the squared distances from the observations to the line is minimized. You can also include multiple predictor variables to perform **multiple linear regression** AKA **multivariate linear regression**.
 
@@ -75,7 +75,7 @@ The effect sizes here are the parameter coefficients, i.e., how much does the re
 
 ### Numeric Predictor/s, Categorical Response
 
-#### Binary Response
+#### Binary Response {#sec-bin}
 
 When your categorical response is only two categories (e.g., presence or absence), you can use a **binomial regression** AKA **logistic regression**. This works similarly to linear regression, but the effect sizes are measured in log odds, which is difficult to interpret, but can be transformed to estimating how the probability of one category value over the other increases with a variable.
 
