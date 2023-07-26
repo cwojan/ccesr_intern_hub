@@ -1,0 +1,69 @@
+---
+title: "Appendix A: More R Resources"
+---
+
+Here is a collection of links to other useful resources for learning R!
+
+Ecology-themed tutorial:
+
+<https://datacarpentry.org/R-ecology-lesson/index.html>
+
+[Basic / Base R Materials]{.underline}
+
+Official R manuals:
+
+<https://cran.r-project.org/manuals.html>
+
+Cookbook for R (features lots of "recipes" for common tasks)
+
+<http://www.cookbook-r.com/>
+
+[Primers and Cheatsheets ("tidyverse"-based)]{.underline}
+
+RStudio primers
+
+<https://rstudio.cloud/learn/primers>
+
+Tidyverse cheatsheets
+
+<https://www.rstudio.com/resources/cheatsheets/>
+
+[Full Books and Courses]{.underline}
+
+Hadley Wickham's "R for Data Science"
+
+<https://r4ds.had.co.nz/index.html>
+
+Hadley Wickham's "Advanced R"
+
+<https://adv-r.hadley.nz/>
+
+Book for "ggplot2" package
+
+<https://ggplot2-book.org/>
+
+Jenny Bryan's STAT 545 course
+
+<http://stat545.com/>
+
+[Package Function Reference Sites]{.underline}
+
+ggplot2 (data visualization)
+
+<https://ggplot2.tidyverse.org/index.html>
+
+sf (spatial analysis)
+
+<https://r-spatial.github.io/sf/index.html>
+
+[Miscellaneous Resources]{.underline}
+
+On Style:
+
+<http://adv-r.had.co.nz/Style.html>
+
+On Reproducibility:
+
+<https://reproducible-analysis-workshop.readthedocs.io/en/latest/>
+
+<https://swcarpentry.github.io/r-novice-gapminder/>

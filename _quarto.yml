@@ -27,6 +27,9 @@ book:
         - r_summarize.qmd
         - r_analyze.qmd
         - r_visualize.qmd
+    - part: "Appendices"
+      chapters: 
+        - appendix_a.qmd
     - references.qmd
 
 comments:
