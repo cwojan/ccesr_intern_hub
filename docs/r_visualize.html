@@ -20,6 +20,40 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -256,7 +290,24 @@ ul.task-list li input[type="checkbox"] {
 <div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#general-notes-on-data-visualization" id="toc-general-notes-on-data-visualization" class="nav-link active" data-scroll-target="#general-notes-on-data-visualization"><span class="header-section-number">14.1</span> General Notes on Data Visualization</a></li>
+  <li><a href="#the-tidyverses-ggplot2" id="toc-the-tidyverses-ggplot2" class="nav-link" data-scroll-target="#the-tidyverses-ggplot2"><span class="header-section-number">14.2</span> The tidyverse’s ggplot2</a></li>
+  <li><a href="#figure-types" id="toc-figure-types" class="nav-link" data-scroll-target="#figure-types"><span class="header-section-number">14.3</span> Figure Types</a>
+  <ul class="collapse">
+  <li><a href="#one-variable-continuous" id="toc-one-variable-continuous" class="nav-link" data-scroll-target="#one-variable-continuous"><span class="header-section-number">14.3.1</span> One Variable: Continuous</a></li>
+  <li><a href="#one-variable-categorical" id="toc-one-variable-categorical" class="nav-link" data-scroll-target="#one-variable-categorical"><span class="header-section-number">14.3.2</span> One Variable: Categorical</a></li>
+  <li><a href="#two-variables-both-continuous" id="toc-two-variables-both-continuous" class="nav-link" data-scroll-target="#two-variables-both-continuous"><span class="header-section-number">14.3.3</span> Two Variables: Both Continuous</a></li>
+  <li><a href="#two-variables-one-continuous-one-categorical" id="toc-two-variables-one-continuous-one-categorical" class="nav-link" data-scroll-target="#two-variables-one-continuous-one-categorical"><span class="header-section-number">14.3.4</span> Two Variables: One Continuous, One Categorical</a></li>
+  <li><a href="#non-axis-variables" id="toc-non-axis-variables" class="nav-link" data-scroll-target="#non-axis-variables"><span class="header-section-number">14.3.5</span> Non-Axis Variables</a></li>
+  <li><a href="#colorblind-safe-colors" id="toc-colorblind-safe-colors" class="nav-link" data-scroll-target="#colorblind-safe-colors"><span class="header-section-number">14.3.6</span> Colorblind Safe Colors</a></li>
+  </ul></li>
+  <li><a href="#further-reading" id="toc-further-reading" class="nav-link" data-scroll-target="#further-reading"><span class="header-section-number">14.4</span> Further Reading</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -278,8 +329,273 @@ ul.task-list li input[type="checkbox"] {
 
 </header>
 
+<p>Now for what most consider the fun part, visualizing patterns in your data!</p>
+<p>Setup:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="do">## load tidyverse</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="do">## read data</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>fake_mammals <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"https://docs.google.com/spreadsheets/d/e/2PACX-1vQ9mfx88nM33PC6WpIh3nSxMvkM98nEszw5gpUq7KdqbiCskF8Pqvrl0W2EqNf9rD1JEepb-hSMIb_j/pub?output=csv"</span>, <span class="at">header =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>fake_insects <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"https://docs.google.com/spreadsheets/d/e/2PACX-1vT0snHMdsxzzzkxt_JVRFooJDB60lGSJQlrjUU29tGYOhIpqvx_pzja3Eqr9l5b4f76yMFvkiGzuK1Z/pub?output=csv"</span>)</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="do">## convert species to factor</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>fake_mammals<span class="sc">$</span>species <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(fake_mammals<span class="sc">$</span>species)</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="do">## convert site type to factor</span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>fake_mammals<span class="sc">$</span>site_type <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(fake_mammals<span class="sc">$</span>site_type)</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="do">## convert site to a factor</span></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>fake_mammals<span class="sc">$</span>site <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(fake_mammals<span class="sc">$</span>site)</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a><span class="do">## also do for insects</span></span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>fake_insects<span class="sc">$</span>site <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(fake_insects<span class="sc">$</span>site)</span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>fake_insects<span class="sc">$</span>site_type <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(fake_insects<span class="sc">$</span>site_type)</span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a><span class="do">## lengthen the order count data</span></span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>long_insects <span class="ot">&lt;-</span> <span class="fu">pivot_longer</span>(<span class="at">data =</span> fake_insects, </span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>                             <span class="at">cols =</span> <span class="fu">c</span>(hymenoptera, lepidoptera, coleoptera, diptera, </span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>                                      odonata, hemiptera, orthoptera, ephemeroptera, </span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>                                      tricoptera, plecoptera),</span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>                             <span class="at">names_to =</span> <span class="st">"order"</span>,</span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a>                             <span class="at">values_to =</span> <span class="st">"count"</span></span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a>                             )</span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a><span class="do">## sum insects by site</span></span>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a>insect_counts <span class="ot">&lt;-</span> long_insects <span class="sc">%&gt;%</span></span>
+<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(site, site_type) <span class="sc">%&gt;%</span></span>
+<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">total_insects =</span> <span class="fu">sum</span>(count))</span>
+<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a><span class="do">## join data</span></span>
+<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a>mammals_insects <span class="ot">&lt;-</span> insect_counts <span class="sc">%&gt;%</span></span>
+<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(total_insects, site) <span class="sc">%&gt;%</span></span>
+<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(fake_mammals, <span class="at">by =</span> <span class="st">"site"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<section id="general-notes-on-data-visualization" class="level2" data-number="14.1">
+<h2 data-number="14.1" class="anchored" data-anchor-id="general-notes-on-data-visualization"><span class="header-section-number">14.1</span> General Notes on Data Visualization</h2>
+<p>There are a few things to keep in mind in general when creating figures, even outside of R:</p>
+<p>Usually, <strong>figures should stand alone</strong>. This means that your figure can speak for itself, even without a caption. This means that axes and legends are clearly labelled, and trends are emphasized. It can also be helpful to annotate statistical output onto plots themselves.</p>
+<p>When you can, <strong>show your actual data</strong>, instead of summary stats. Generally, when it’s not too messy, seeing all the data points is more informative to the audience. For example, you could plot a comparison of means with a point for each mean, but you could show more if you plot every point behind those means.</p>
+<p>It is advisable to shoot for a <strong>low ink to info ratio</strong>. Basically, you want to make your figures as uncluttered as they can be with extra print. Gray backgrounds, irrelevant fill colors, etc. should be avoided.</p>
+<p>Finally, <strong>remember accessibility</strong>. Make color schemes appropriate for color-blindness, and make text large.</p>
+</section>
+<section id="the-tidyverses-ggplot2" class="level2" data-number="14.2">
+<h2 data-number="14.2" class="anchored" data-anchor-id="the-tidyverses-ggplot2"><span class="header-section-number">14.2</span> The tidyverse’s ggplot2</h2>
+<p>When it comes to visualizing things in R, there are many methods. You can use the base R functions for plotting (plot, hist, lines, etc.), but I’m not super adept with them. Instead I’ll be walking you through using ggplot2, a package in the tidyverse family that is incredibly popular for data visualization. There is a special syntax that may take some getting used to though.</p>
+<p>Essentially, you create a ggplot “object” (which is another special type of list with unique attributes), and then you pipe it through a series of ggplot functions to add components, themes, labels, etc. However, ggplot2 is older than the %&gt;% pipe we have used, so it uses an old and deprecated pipe operator: +. R automatically knows to interpret + differently with ggplot objects and functions.</p>
+<p>Here is an example of code creating a ggplot figure:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="do">## first create the ggplot object</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="do">## you need to specify your data in the data argument</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="do">## then there is a special set of arguments called aesthetic arguments</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="do">## (bound by the aes() sub-function)</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="do">## these specify what variables will inform aesthetics of your figure</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="do">## (e.g., axes, color, fills, sizes, etc.)</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> your_data, <span class="fu">aes</span>(<span class="at">x =</span> variable1, <span class="at">y =</span> variable2, <span class="at">color =</span> variable3)) <span class="sc">+</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="dv">2</span>) <span class="sc">+</span> <span class="do">## then you add geometry, this "geom" is for a scatterplot</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Variable 1"</span>) <span class="sc">+</span> <span class="do">## then you can add other things like labels</span></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">"red"</span>, <span class="st">"blue"</span>)) <span class="sc">+</span> <span class="do">## or specify scales</span></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.text =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">12</span>)) <span class="do">## finally you can modify parts of the theme, like fonts</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>It may seem complicated at first, but if you start small and work yourself up, you’ll be chaining together code to draw beautiful figures in no time!</p>
+</section>
+<section id="figure-types" class="level2" data-number="14.3">
+<h2 data-number="14.3" class="anchored" data-anchor-id="figure-types"><span class="header-section-number">14.3</span> Figure Types</h2>
+<p>Now we’ll go over how to make some common figure types, based on your analyses.</p>
+<section id="one-variable-continuous" class="level3" data-number="14.3.1">
+<h3 data-number="14.3.1" class="anchored" data-anchor-id="one-variable-continuous"><span class="header-section-number">14.3.1</span> One Variable: Continuous</h3>
+<p>If you want to show the distribution of a single variable, you could use a histogram or a density plot.</p>
+<p>For demonstration, let’s make a plots of white-footed mouse masses.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="do">## create a data frame of only white-footed mice</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>wf_mice <span class="ot">&lt;-</span> <span class="fu">filter</span>(fake_mammals, species <span class="sc">==</span> <span class="st">"White-footed mouse"</span>)</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="do">## make a ggplot, use wf_mice data, and specify mass as the x variable</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> wf_mice, <span class="fu">aes</span>(<span class="at">x =</span> mass_g)) <span class="sc">+</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>`stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</code></pre>
+</div>
+<div class="cell-output-display">
+<p><img src="r_visualize_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>There, a simple histogram. Now let’s play with how it looks:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="do">## make a ggplot, use wf_mice data, and specify mass as the x variable</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> wf_mice, <span class="fu">aes</span>(<span class="at">x =</span> mass_g)) <span class="sc">+</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  <span class="do">## give a wider binwidth to the histogram, and make it grey bars with black outlines</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">binwidth =</span> <span class="dv">1</span>, <span class="at">fill =</span> <span class="st">"grey"</span>, <span class="at">color =</span> <span class="st">"black"</span>) <span class="sc">+</span> </span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Mass (g)"</span>, <span class="at">y =</span> <span class="st">"Count"</span>) <span class="sc">+</span> <span class="do">## nicer labels</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="do">## my favorite simple theme</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="r_visualize_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>Cool! We could also look at this as a density plot! This will give more of a smooth line</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="do">## make a ggplot, use wf_mice data, and specify mass as the x variable</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> wf_mice, <span class="fu">aes</span>(<span class="at">x =</span> mass_g)) <span class="sc">+</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_density</span>() <span class="sc">+</span> <span class="do">## create density plot</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Mass (g)"</span>, <span class="at">y =</span> <span class="st">"Frequency"</span>) <span class="sc">+</span> <span class="do">## nicer labels</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="do">## my favorite simple theme</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="r_visualize_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</section>
+<section id="one-variable-categorical" class="level3" data-number="14.3.2">
+<h3 data-number="14.3.2" class="anchored" data-anchor-id="one-variable-categorical"><span class="header-section-number">14.3.2</span> One Variable: Categorical</h3>
+<p>If you want to show how many observations are in each category, you can use a bar plot.</p>
+<p>In this demo, let’s make a bar plot of how many of each mammal species were caught.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="do">## specify x as species</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> fake_mammals, <span class="fu">aes</span>(<span class="at">x =</span> species)) <span class="sc">+</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>() <span class="do">## make bar plot</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="r_visualize_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>The geom_bar function will count up all the observations of each species level to inform its bars. Thus, it is assuming you are giving it long data. Another closely related function is geom_col, which just makes a bar as tall as a number value in the data. For example, let’s make a bar plot of how many insect were caught at each site.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="do">## need to specify two variables this time, one for the category, one for the count value</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> insect_counts, <span class="fu">aes</span>(<span class="at">x =</span> site, <span class="at">y =</span> total_insects)) <span class="sc">+</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="r_visualize_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>As you can see, your data format will determine whether you should use geom_col or geom_bar. Note: bar plots are generally only best-suited for counts among categories, when you’re dealing with measured variables, there are better options below.</p>
+</section>
+<section id="two-variables-both-continuous" class="level3" data-number="14.3.3">
+<h3 data-number="14.3.3" class="anchored" data-anchor-id="two-variables-both-continuous"><span class="header-section-number">14.3.3</span> Two Variables: Both Continuous</h3>
+<p>If you are showing the relationship between two continuous variables, scatterplots with or without lines are usually the best way to go.</p>
+<p>Let’s try it out with the mammal data on body mass and helminth mass in mice:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="do">## filter for mouse data</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>mouse_data <span class="ot">&lt;-</span> <span class="fu">filter</span>(fake_mammals, species <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"White-footed mouse"</span>, <span class="st">"Deer mouse"</span>))</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="do">## create ggplot with your two continuous variables as x and y</span></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> mouse_data, <span class="fu">aes</span>(<span class="at">x =</span> mass_g, <span class="at">y =</span> helminth_mass_mg)) <span class="sc">+</span></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="do">## create scatterplot</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="r_visualize_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid" width="672"></p>
+</div>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="do">## with trendline</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> mouse_data, <span class="fu">aes</span>(<span class="at">x =</span> mass_g, <span class="at">y =</span> helminth_mass_mg)) <span class="sc">+</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span>  <span class="do">## create scatterplot</span></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>  <span class="do">## create a trendline; method = "lm" makes it a straight line, se specifys whether there are error regions shaded</span></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>, <span class="at">se =</span> <span class="cn">FALSE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>`geom_smooth()` using formula = 'y ~ x'</code></pre>
+</div>
+<div class="cell-output-display">
+<p><img src="r_visualize_files/figure-html/unnamed-chunk-8-2.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</section>
+<section id="two-variables-one-continuous-one-categorical" class="level3" data-number="14.3.4">
+<h3 data-number="14.3.4" class="anchored" data-anchor-id="two-variables-one-continuous-one-categorical"><span class="header-section-number">14.3.4</span> Two Variables: One Continuous, One Categorical</h3>
+<p>Believe it or not, when one of your variables is categorical, a scatterplot is still appropriate. Why not a bar plot? Because scatterplots show all of your data!</p>
+<p>Let’s demonstrate with the mammal data by comparing helminth mass among species.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="do">## create ggplot with your two variables as x and y</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> fake_mammals, <span class="fu">aes</span>(<span class="at">x =</span> species, <span class="at">y =</span> helminth_mass_mg)) <span class="sc">+</span></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_jitter</span>(<span class="at">width =</span> <span class="fl">0.1</span>, <span class="at">height =</span> <span class="dv">0</span>) <span class="do">## create points that are "jittered" a bit along the x axis</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="r_visualize_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>In this plot, we use geom_jitter to make the point spread a bit around each categorical X value so that you can see them better (but we specify height = 0 so as not to mess with the mass information). Instead of a mean helminth mass given by a bar plot, we can see the spread of each set of datapoints, including outliers or lack thereof. Still it’s often nice to add some structure to these plots, which can be geom_boxplot or geom_violin (among others). Here is an example:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="do">## create ggplot with your two variables as x and y</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> fake_mammals, <span class="fu">aes</span>(<span class="at">x =</span> species, <span class="at">y =</span> helminth_mass_mg)) <span class="sc">+</span></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_jitter</span>(<span class="at">width =</span> <span class="fl">0.1</span>, <span class="at">height =</span> <span class="dv">0</span>) <span class="sc">+</span> <span class="do">## create points that are "jittered" a bit along the x axis</span></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="at">alpha =</span> <span class="fl">0.2</span>) <span class="do">## create boxplot at 20% transparency with alpha</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="r_visualize_files/figure-html/unnamed-chunk-10-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>We could also make this plot even clearer by adding color:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="do">## create ggplot with your two variables as x and y</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> fake_mammals, <span class="fu">aes</span>(<span class="at">x =</span> species, <span class="at">y =</span> helminth_mass_mg)) <span class="sc">+</span></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_jitter</span>(<span class="fu">aes</span>(<span class="at">color =</span> species), <span class="at">width =</span> <span class="fl">0.1</span>, <span class="at">height =</span> <span class="dv">0</span>) <span class="sc">+</span> <span class="do">## you can put aes() inside geoms</span></span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="fu">aes</span>(<span class="at">fill =</span> species), <span class="at">alpha =</span> <span class="fl">0.2</span>) <span class="sc">+</span></span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Species"</span>, <span class="at">y =</span> <span class="st">"Helminth Mass (mg)"</span>) <span class="sc">+</span></span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"none"</span>) <span class="do">## legend is redundant here, so we can hide it</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="r_visualize_files/figure-html/unnamed-chunk-11-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</section>
+<section id="non-axis-variables" class="level3" data-number="14.3.5">
+<h3 data-number="14.3.5" class="anchored" data-anchor-id="non-axis-variables"><span class="header-section-number">14.3.5</span> Non-Axis Variables</h3>
+<p>You can also use other aesthetics to represent variables in your data. For example, you could use color to show the density plots of mammal masses among species. And you can modify the colors with scale functions:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="do">## make a ggplot, use wf_mice data, specify mass as the x variable and species as color</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> fake_mammals, <span class="fu">aes</span>(<span class="at">x =</span> mass_g, <span class="at">color =</span> species)) <span class="sc">+</span></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_density</span>() <span class="sc">+</span> <span class="do">## create density plot</span></span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">"red"</span>, <span class="st">"blue"</span>, <span class="st">"green"</span>)) <span class="sc">+</span> <span class="do">## set my own colors</span></span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Mass (g)"</span>, <span class="at">y =</span> <span class="st">"Frequency"</span>) <span class="sc">+</span> <span class="do">## nicer labels</span></span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="do">## my favorite simple theme</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="r_visualize_files/figure-html/unnamed-chunk-12-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>Similarly, you can add a third variable to a two variable figure. Take the helminth mass by mammal body mass figure from above:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> mouse_data, <span class="fu">aes</span>(<span class="at">x =</span> mass_g, <span class="at">y =</span> helminth_mass_mg, <span class="at">color =</span> species)) <span class="sc">+</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span>  <span class="do">## create scatterplot</span></span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>, <span class="at">se =</span> <span class="cn">FALSE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>`geom_smooth()` using formula = 'y ~ x'</code></pre>
+</div>
+<div class="cell-output-display">
+<p><img src="r_visualize_files/figure-html/unnamed-chunk-13-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>Color isn’t the only way to show variables outside of axes, you can also use point shape, size, linetype, etc. In addition, you can split data among plot panels or “facets”, with facet_wrap() or facet_grid().</p>
+<p>Let’s demonstrate with the long insect data, showing the insect communities for each site:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="do">## specify order as y variable to show labels better</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> long_insects, <span class="fu">aes</span>(<span class="at">y =</span> order, <span class="at">x =</span> count, <span class="at">fill =</span> site_type)) <span class="sc">+</span></span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>() <span class="sc">+</span></span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="fu">vars</span>(site), <span class="at">nrow =</span> <span class="dv">2</span>) <span class="sc">+</span> <span class="do">## specify site variable, two rows to separate habitats</span></span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="r_visualize_files/figure-html/unnamed-chunk-14-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</section>
+<section id="colorblind-safe-colors" class="level3" data-number="14.3.6">
+<h3 data-number="14.3.6" class="anchored" data-anchor-id="colorblind-safe-colors"><span class="header-section-number">14.3.6</span> Colorblind Safe Colors</h3>
+<p>ggplot2 has colorblind-safe color schemes available from the tidyverse-related package viridis.</p>
+<p>Fore example:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="do">## make a ggplot, use wf_mice data, specify mass as the x variable and species as color</span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> fake_mammals, <span class="fu">aes</span>(<span class="at">x =</span> mass_g, <span class="at">color =</span> species)) <span class="sc">+</span></span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_density</span>(<span class="at">linewidth =</span> <span class="dv">1</span>) <span class="sc">+</span> <span class="do">## create density plot, wider lines</span></span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_viridis_d</span>() <span class="sc">+</span> <span class="do">## set viridis discrete colors</span></span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Mass (g)"</span>, <span class="at">y =</span> <span class="st">"Frequency"</span>) <span class="sc">+</span> <span class="do">## nicer labels</span></span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="do">## my favorite simple theme</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="r_visualize_files/figure-html/unnamed-chunk-15-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>See the following link for more info:</p>
+<p><a href="https://cran.r-project.org/web/packages/viridis/vignettes/intro-to-viridis.html" class="uri">https://cran.r-project.org/web/packages/viridis/vignettes/intro-to-viridis.html</a></p>
+</section>
+</section>
+<section id="further-reading" class="level2" data-number="14.4">
+<h2 data-number="14.4" class="anchored" data-anchor-id="further-reading"><span class="header-section-number">14.4</span> Further Reading</h2>
+<p>We have only scratched the surface of what ggplot2 can do! We barely discussed how to edit theme elements, nor did we spend much time on customizing scales.</p>
+<p>ggplot2 has an excellent reference website which you can find here:</p>
+<p><a href="https://ggplot2.tidyverse.org/reference/index.html" class="uri">https://ggplot2.tidyverse.org/reference/index.html</a></p>
+<p>With it you can learn all the ins and outs!</p>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
