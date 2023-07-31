@@ -56,9 +56,9 @@ Usually, **figures should stand alone**. This means that your figure can speak f
 
 When you can, **show your actual data**, instead of summary stats. Generally, when it's not too messy, seeing all the data points is more informative to the audience. For example, you could plot a comparison of means with a point for each mean, but you could show more if you plot every point behind those means.
 
-It is advisable to shoot for a **low ink to info ratio**. Basically, you want to make your figures as uncluttered as they can be with extra print. Gray backgrounds, irrelevant fill colors, etc. should be avoided.
-
 Finally, **remember accessibility**. Make color schemes appropriate for color-blindness, and make text large.
+
+Note: for simpler code demonstration purposes, the figures that follow will not always necessarily meet these criteria.
 
 ## The tidyverse's ggplot2
 
@@ -112,7 +112,7 @@ There, a simple histogram. Now let's play with how it looks:
 ggplot(data = wf_mice, aes(x = mass_g)) +
   ## give a wider binwidth to the histogram, and make it grey bars with black outlines
   geom_histogram(binwidth = 1, fill = "grey", color = "black") + 
-  labs(x = "Mass (g)", y = "Count") + ## nicer labels
+  labs(x = "White-footed Mouse Mass (g)", y = "Count") + ## nicer labels
   theme_bw() ## my favorite simple theme
 ```
 
@@ -122,7 +122,7 @@ Cool! We could also look at this as a density plot! This will give more of a smo
 ## make a ggplot, use wf_mice data, and specify mass as the x variable
 ggplot(data = wf_mice, aes(x = mass_g)) +
   geom_density() + ## create density plot
-  labs(x = "Mass (g)", y = "Frequency") + ## nicer labels
+  labs(x = "White-footed Mouse Mass (g)", y = "Frequency") + ## nicer labels
   theme_bw() ## my favorite simple theme
 ```
 
@@ -211,7 +211,7 @@ You can also use other aesthetics to represent variables in your data. For examp
 ggplot(data = fake_mammals, aes(x = mass_g, color = species)) +
   geom_density() + ## create density plot
   scale_color_manual(values = c("red", "blue", "green")) + ## set my own colors
-  labs(x = "Mass (g)", y = "Frequency") + ## nicer labels
+  labs(x = "Mammal Mass (g)", y = "Frequency") + ## nicer labels
   theme_bw() ## my favorite simple theme
 ```
 
@@ -247,7 +247,7 @@ Fore example:
 ggplot(data = fake_mammals, aes(x = mass_g, color = species)) +
   geom_density(linewidth = 1) + ## create density plot, wider lines
   scale_color_viridis_d() + ## set viridis discrete colors
-  labs(x = "Mass (g)", y = "Frequency") + ## nicer labels
+  labs(x = "Mammal Mass (g)", y = "Frequency") + ## nicer labels
   theme_bw() ## my favorite simple theme
 ```
 
