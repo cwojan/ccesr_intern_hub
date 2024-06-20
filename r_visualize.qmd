@@ -240,7 +240,7 @@ ggplot(data = long_insects, aes(y = order, x = count, fill = site_type)) +
 
 ggplot2 has colorblind-safe color schemes available from the tidyverse-related package viridis.
 
-Fore example:
+For example:
 
 ```{r}
 ## make a ggplot, use wf_mice data, specify mass as the x variable and species as color

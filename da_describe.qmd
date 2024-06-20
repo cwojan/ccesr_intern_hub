@@ -15,9 +15,9 @@ You'll often want to describe the central tendency of your data - around where a
 
 **Median** - the value at which half of the observations are greater, and the other half are less
 
-**Mode** - the most commonly observe value
+**Mode** - the most commonly observed value
 
-Usually, the mean is a a perfectly adequate descriptor. You can use it on continuous numeric data, discrete numeric data (though the mean value will often be unrealistic), or even ordinal rankings.
+Usually, the mean is a perfectly adequate descriptor. You can use it on continuous numeric data, discrete numeric data (though the mean value will often be unrealistic), or even ordinal rankings.
 
 **When might you prefer to use the median over the mean?**
 

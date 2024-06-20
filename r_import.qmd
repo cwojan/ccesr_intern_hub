@@ -55,7 +55,7 @@ library(tidyverse)
 my_data <- read_csv("name of your data in quotes")
 ```
 
-These functions are pretty similar, with one exception: read.csv gives you a data frame, but read_csv gives you a "tibble." What is a tibble? It's another special type of list, much like a data frame, but with a few differences. IT was designed to work more consistently with tidyverse functions. One important difference between data frames and tibbles that when you subset an individual column with the brackets (\[\]), data frames will give you vectors, and tibble will give single column tibbles. This has caused me confusion when writing functions, but you may not run into it.
+These functions are pretty similar, with one exception: read.csv gives you a data frame, but read_csv gives you a "tibble." What is a tibble? It's another special type of list, much like a data frame, but with a few differences. It was designed to work more consistently with tidyverse functions. One important difference between data frames and tibbles that when you subset an individual column with the brackets (\[\]), data frames will give you vectors, and tibble will give single column tibbles. This has caused me confusion when writing functions, but you may not run into it.
 
 ### From The Web
 

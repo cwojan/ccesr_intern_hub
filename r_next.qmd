@@ -32,7 +32,7 @@ library(PACKAGE NAME)
 
 The code for loading packages should be saved in your r script, because it will need to be done every time you open R.
 
-There is a family of packages that is very popular called the "tidyverse." The aim of the tidyverse is to make data manipulation and visualization streamlined and efficient. Some people are very opinionated about whether you should use the tidyverse or base R, but in my opinion, it's mostly silliness. If you only want to dip into R and don't plan to use it much in the future, you may as well just pick up the specific functions you need to use and not worry about much else. If you'd like to continually use R for data analysis, but don't plan on getting deep into it, getting a handle on the tidyverse may be a good idea. If you want to really get into R, I would recommend learning how to do things in base R (as well as tidyverse functions).
+There is a family of packages that is very popular called the "tidyverse." The aim of the tidyverse is to make data manipulation and visualization streamlined and efficient. Some people are very opinionated about whether you should use the tidyverse or base R, but in my opinion, it's mostly personal preference. If you only want to dip into R and don't plan to use it much in the future, you may as well just pick up the specific functions you need to use and not worry about much else. If you'd like to continually use R for data analysis, but don't plan on getting deep into it, getting a handle on the tidyverse may be a good idea. If you want to really get into R, I would recommend learning how to do things in base R (as well as tidyverse functions).
 
 You can install the tidyverse suite with:
 
@@ -111,7 +111,7 @@ This distinction can be difficult to understand, but don't worry! It takes time.
 
 <https://adv-r.hadley.nz/subsetting.html#subset-single>
 
-You can think of a list as a train, every list element is a train car, and each has its own contents. Single brackets give you the train car/s, and double brackets gives you what's inside a single train car. And even a single train car is a train (or a list). Also note:
+You can think of a list as a train, every list element is a train car, and each has its own contents. Single brackets give you the train car/s, and double brackets gives you what's inside a single train car. And even a single train car can be another train (or a list). Also note:
 
 ```{r}
 

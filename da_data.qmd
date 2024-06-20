@@ -3,15 +3,15 @@ title: "Data Types"
 toc: true
 ---
 
-First, let's go over different types of data:
+As mentioned in the last section, we will now go over different types of data:
 
 ## Numeric Data
 
 Any data that can be described with numbers or have quantifiable relationships between values is numeric. But! There are multiple types of numeric data. The most important distinction is **discrete** vs **continuous**.
 
-**Discrete** numeric data is data where not every value is possible, but you can still quantify specific differences among the possible values - the major exmaple being integer values (1, 2, 3, the rest). Most programming languages will refer to this type as integer or int. Examples might include number of ants on a log.
+**Discrete** numeric data is data where not every value is possible, but you can still quantify specific differences among the possible values - the major example being integer values (1, 2, 3, the rest). Most programming languages will refer to this type as "integer" or "int". Examples might include number of ants on a log.
 
-**Continuous** numeric data is data where every valuable is possible! So this is basically all real numbers, including decimals (1.0, 1.1, etc.). Many programming languages will refer to this as simply numeric data, but lower level languages might use "float" or "double". Examples might include th biomass of ants on a log. Note: measures that consist of very large integer values are approximately continuous.
+**Continuous** numeric data is data where every value is possible! So this is basically all real numbers, including decimals (1.0, 1.1, etc.). Many programming languages will refer to this as simply numeric data, but lower level languages might use "float" or "double". Examples might include the biomass of ants on a log. Note: measures that consist of very large integer values (e.g., when you get up to 4 digits) are approximately continuous.
 
 Other things to consider with numeric data is whether the scale of measurement is bound by any values. For example, the number of or biomass of ants on a log cannot be less than zero. In addition, percentages and proportions are bound by 0 and 100 and 0 and 1 respectively. These limitations can lead to special considerations when performing inferential statistics.
 

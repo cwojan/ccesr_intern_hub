@@ -66,7 +66,7 @@ You also may need to transform your data between the wide and long formats (reca
 
 ### Wide to Long
 
-The insect data is partly in wide format: we have a column for each order of insect, where the count is implicitly the values in the cells. IT will be easier to work with if we make one "count" column and one "order" column. We can do this with the pivot_longer function:
+The insect data is partly in wide format: we have a column for each order of insect, where the count is implicitly the values in the cells. It will be easier to work with if we make one "count" column and one "order" column. We can do this with the pivot_longer function:
 
 ```{r}
 ## lengthen the order count data
@@ -84,7 +84,7 @@ head(long_insects)
 
 Now we have multiple rows for each site, one for each order! You may not believe me, but this will make things easier down the line.
 
-For reference, the cols argument specifies which columns you want to pivot. The names_to argument names the column that will contain the pivoted column names, and the values_to argument names the column that the cell values will be placed.
+For reference, the cols argument specifies which columns you want to pivot. The names_to argument names the column that will contain the pivoted column names, and the values_to argument names the column in which the cell values will be placed.
 
 ### Long to Wide
 
@@ -97,7 +97,7 @@ wide_insects <- pivot_wider(data = long_insects,
                             values_from = "count")
 ```
 
-This is the inverse of what we just did - we made a column for each value in the column given to the names_from argument, the values of which are pulled from the column given to the values_from argument.
+This is the inverse of what we just did - we made a column for each value in the "order" column given to the names_from argument, the values of which are pulled from the "count" column given to the values_from argument.
 
 ### Base
 

@@ -8,7 +8,7 @@ I'm sure those of you reading this come from a wide variety of backgrounds regar
 
 1.  Everyone makes mistakes.
 2.  Don't be afraid to ask questions!
-3.  Don't compare yourself to others, compare you today to you yesterday.
+3.  Don't compare yourself to others, compare the "you" of today to the "you" of yesterday.
 4.  Everyone is constantly learning new things, including those who seem like experts.
 
 That said, learning a programming language is a little like learning a human language, except there's a much smaller vocabulary and the grammar is *very* strict. And where human language has parts of speech like nouns and verbs, R has a certain syntax as well. Some of the main components of the R language are **operators**, **functions**, **arguments**, and **data**.
@@ -190,13 +190,13 @@ Variables have rules about how they can be named:
 
 ### Data Structures
 
-Data structures are collections of values with some sort of organization, and also saved in the environment. Plot twist: the variables above are a the simplest data structure, the **scalar**, which is just a single value.
+Data structures are collections of values with some sort of organization, and also saved in the environment. Plot twist: the variables above are the simplest data structure, the **scalar**, which is just a single value.
 
 The next data structure is the **vector**, which is a collection of values of the *same data type*. We can store them much like variables.
 
 ```{r}
 
-## we use another operator, :, to create a sequence of integers from 1 to 10
+## we use another operator, :, to create a sequence of integers from 1 to 5
 my_vector <- 1:5
 
 my_vector

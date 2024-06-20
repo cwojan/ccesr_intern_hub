@@ -64,9 +64,9 @@ forest_rows <- filter(fake_insects, site_type == "forest")
 forest_sites <- select(forest_rows, site)
 ```
 
-Note: base R also has a pipe, \|\>. It's newer and mostly the same as %\>%, so I just haven't transitioned.
+Note: base R also has a pipe operator, \|\>. It's newer and mostly the same as %\>%, so I just haven't transitioned.
 
-Now, let's try with group_by() and summarize()! Let's say you wanted the total number of insects caught at each site (be sure to have pivoted your insect data in the last chapter!):
+Now, let's try with group_by() and summarize()! Let's say you wanted the total number of insects caught at each site (be sure to have pivoted your insect data as described in the setup above!):
 
 ```{r}
 ## summarize total insect catch
@@ -77,7 +77,7 @@ insect_counts <- long_insects %>%
 insect_counts
 ```
 
-As you can see, the summarize function works a bit like the mutate function: you
+As you can see, the summarize function works a bit like the mutate function, in that you create a new column.
 
 Note that group_by doesn't visibly change your data, but it changes some attributes that the computer can see when it runs the summarize function. If you forgot which sites are in which type of habitat, you could also include that variable in the group_by arguments (since it doesn't subdivide the sites, it won't change the calculation).
 
@@ -149,7 +149,7 @@ order_richness_site <- long_insects %>%
 order_richness_site
 ```
 
-I caclulated the presence column by checking if each value is positive (\> 0), which returns a logical TRUE or FALSE, and then if you convert a logical variable to a numeric variable, TRUEs become 1s and FALSEs become 0s. Nifty!
+I calculated the presence column by checking if each value is positive (\> 0), which returns a logical TRUE or FALSE, and then if you convert a logical variable to a numeric variable, TRUEs become 1s and FALSEs become 0s. Nifty!
 
 ### Diversity
 

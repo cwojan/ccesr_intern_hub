@@ -19,7 +19,7 @@ If you open up RStudio, you will see something like this:
 
 **1- Script Editor**: Here is where you will write code! You can create an R script (a text document to save code in) with the file tab, and write what you need in the resulting script. It is **highly** recommended to use scripts, because then you can save your code for later, and troubleshoot errors easier. From this window, you can highlight code and run it with the "Run" button on top, or with Ctrl + Enter / Cmd +Enter.
 
-**2- R Console**: Here is where the action happens - code will run here, and text output, warnings and messages will be displayed. You can also type code into the console, but that is only recommended for installing packages, entering credentials, rendering documents, and things of that nature. Don't type your data processing or analysis code into the console, use a script instead! There's also a terminal tab if you ever need to perform shell commands.
+**2- R Console**: Here is where the action happens - code will run here, and text output, warnings and messages will be displayed. You can also type code into the console, but that is only recommended for installing packages, entering credentials, rendering documents, and things of that nature. Don't type your data processing or analysis code into the console, use a script instead! There's also a terminal tab if you ever need to perform shell commands (which is probably unlikely for your project this summer).
 
 **3- Environment and History**: Here you can find a list of the variables and data you have loaded into your "workspace" or "environment" in the Environment tab. These are objects you can do stuff with with code. You can also click the History tab to see the code you have run thus far.
 

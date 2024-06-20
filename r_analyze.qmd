@@ -81,7 +81,7 @@ helminth_comparison <- aov(fake_mammals$helminth_mass_mg ~ fake_mammals$species)
 summary(helminth_comparison)
 ```
 
-Hey, that's a small p-value (0.00017)! That means we have strong evidence that there is at least one difference among the pairs of species, either between white-footed mice and deer mice, white-footed mice, and meadow voles, or deer mice and meadow voles. We can use a Tukey test to find out more:
+Hey, that's a small p-value (0.00017)! That means we have strong evidence that there is at least one difference among the pairs of species, either between white-footed mice and deer mice, white-footed mice and meadow voles, or deer mice and meadow voles. We can use a Tukey's test to find out more:
 
 ```{r}
 ## run tukey on the anova output
@@ -91,7 +91,7 @@ helminth_tukey <- TukeyHSD(helminth_comparison)
 helminth_tukey
 ```
 
-At the bottom here we can see the pairwise comparisons. The two mouse species differ in helminth mass by \~111mg, but the difference is not significant. Meadow voles have a significantly different mean helminth mass from both mouse species. I guess the in the data I made up, voles have less helminth mass than mice.
+At the bottom here we can see the pairwise comparisons. The two mouse species differ in helminth mass by \~111mg, but the difference is not significant. Meadow voles have a significantly different mean helminth mass from both mouse species. So in the data I made up, voles have less helminth mass than mice.
 
 ## Assessing Relationships
 
@@ -151,7 +151,7 @@ tick_pres_model <- glm(tick_presence ~ mass_g, data = fake_mammals, family = "bi
 summary(tick_pres_model)
 ```
 
-If we look at this like we looked at the linear regression, the mass_g term has a very small p-value meaning strong evidence for a relationship. It also has an effect size of 0.9857, meaning that the chance of having a tick increases with body mass. However, the units are in log odds, which are hard to interpret. The reason for this is some stats theory that is beyond the scope of this book.
+If we look at this like we looked at the linear regression, the mass_g term has a very small p-value meaning strong evidence for a relationship. It also has an effect size of 0.9857, meaning that the chance of having a tick increases with body mass. However, the units are in log odds, which are hard to interpret. The reason for this is some stats theory that is beyond the scope of this book/site.
 
 ### Poisson / Negative Binomial Regression
 
@@ -171,7 +171,7 @@ summary(multi_mod)
 
 Now we have multiple terms, and since species is categorical, the effect sizes and p-values are based on comparisons to a reference level (deer mouse in this case because it is first alphabetically).
 
-We can look at the overall significance of species by running an ANOVA with aov, and summarizing the ouptut:
+We can look at the overall significance of species by running an ANOVA with aov, and summarizing the output:
 
 ```{r}
 ## we can use the model object in our aov function to save time, it will take the formula
@@ -181,6 +181,6 @@ summary(aov(multi_mod))
 
 Looks like there is not much evidence of an effect of species.
 
-You may be confused a bit by this code, but essentially t.tests, ANOVAs, and regressions are all "linear models", and we are specifying them and looking at them differently with different R functions. T learn more, I recommend taking stats classes!
+You may be confused a bit by this code, but essentially t.tests, ANOVAs, and regressions are all "linear models", and we are specifying them and looking at them differently with different R functions. To learn more, I recommend taking stats classes!
 
 Finally, you may be wondering which variable to include in your analyses. Model selection is another thing you would learn in stats, but the tl;dr could be: What is your question? Use those variables.
