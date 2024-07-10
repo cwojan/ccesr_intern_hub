@@ -1,0 +1,112 @@
+---
+title: "Recording Data"
+toc: true
+---
+
+First, let's go over how we can record "wild" data!
+
+## Data Formats
+
+One thing to think about when recording your data is the formatting. In data science, a commonly used dichotomy is between "wide" and "long" data formats. You are likely more used to wide data, but long data is often better for scientific computing and analysis. Here is a comparison:
+
+### Wide Data
+
+-   Easy for humans to read
+
+-   Features unique rows for an identifier, with columns describing attributes
+
+Example table of species abundance (attributes) at four research plots (identifiers):
+
+| Plot  | Species A | Species B |
+|-------|-----------|-----------|
+| North | 3         | 3         |
+| East  | 0         | 3         |
+| South | 1         | 0         |
+| West  | 2         | 0         |
+
+### Long Data
+
+-   Easy for computers to read
+
+-   Features multiple rows for each identifier value, one for each attribute
+
+Example table of the same data from above:
+
+| Plot  | Species | Count |
+|-------|---------|-------|
+| North | A       | 3     |
+| North | B       | 3     |
+| East  | A       | 0     |
+| East  | B       | 3     |
+| South | A       | 1     |
+| South | B       | 0     |
+| West  | A       | 2     |
+| West  | B       | 0     |
+
+As you can see, long data take more space, but it is easier to select and compare data in a computing environment when it is in this format. You will see this in action in the R programming section of this website!
+
+## Data Sheet Design
+
+Whether you design a data sheet using long or wide format, you will need to use some sort of computer application, either a spreadsheet program, word processor, or a combination of both. You are probably familiar with many of the options, but here are a few -
+
+Spreadsheet Applications:
+
+-   Microsoft Excel - Standalone program, often free with university accounts
+
+-   Google Sheets - web-based, free to use with Google account, can be integrated directly with R
+
+-   LibreOffice Calc - Standalone program, free and open-source alternative to Excel
+
+Word Processors:
+
+-   Microsoft Word - Standalone program, often free with university accounts
+
+-   Google Docs - web-based, free to use with Google account
+
+-   LibreOffice Writer - Standalone program, free and open-source alternative to Word
+
+Sometimes it can be finicky to design a data sheet directly in a word processor's table functionality. Instead, you can create the basics of your table in a spreadsheet application, and then copy and paste it into the word processor, and then fine-tune the table to your liking.
+
+When designing your sheet/s, wide data will often be more intuitive and easier for recording, but note that there may be more processing steps required when you get to the analysis stage (and if the data are complex, the data manipulation required can also be complicated). On the other hand, recording data in long format, while somewhat tedious, will be efficient for later processing and analysis steps.
+
+In general, wide format for recording data is effective for simple observations when you know exactly how much you are going to record (e.g., a suite of soil attributes for a set of plots). Long format can be effective when the observations you're recording are more complicated and/or you don't know how many observations you will be making in a given plot (e.g., recording each plant species with it's cover class, max height, and disease severity in a set of plots - you might not know how many species you will encounter in each plot!).
+
+**Universal Tip:** Always include a "Notes" column!
+
+## Data Sheet Medium
+
+When it comes to recording data in the field or in the lab, there are two main styles: using paper data sheets or using electronic spreadsheets/apps. Opinions vary among researchers.
+
+### Paper / Physical Media
+
+-   Traditional method for ecology research
+
+-   Results in having both a hard copy and electronic copy of the data
+
+    -   Backups can include photos/scans of the paper data sheets, as well as back-up electronic files
+
+-   Less risk of technical glitches
+
+-   Need to consider material; write-in-the-rain and pancil often necessary in field settings
+
+-   Needs a solid organization scheme to make sure paper sheets don't get lost or misplaced
+
+-   Requires data to be entered from paper to computer
+
+    -   But this does leave the chance for checking for entry errors between paper and computer
+
+### Electronic Media / App-based Recording
+
+-   Becoming more popular among large-scale projects (e.g., National Ecological Observatory Network)
+
+-   Some projects use propietary software for data recording, but you can use the Google Sheets app
+
+-   Data is usually only digital files, but can be printed out for hard copy back-ups
+
+-   Somewhat elevated risk for technical glitches / user error
+
+-   Can utilize immediate cloud backup
+
+-   Phone data entry can be particularly convenient for certain field methods
+
+-   Error checking is limited to looking for obvious field entry errors (e.g., impossible attribute values)

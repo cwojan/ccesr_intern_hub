@@ -7,6 +7,13 @@ book:
   author: "CCESR Fellows"
   chapters:
     - index.qmd
+    - part: "Data Management"
+      chapters: 
+        - dm_intro.qmd
+        - dm_record.qmd
+        - dm_organize.qmd
+        - dm_document.qmd
+        - dm_process.qmd
     - part: "Data Analysis"
       chapters: 
         - da_glance.qmd
