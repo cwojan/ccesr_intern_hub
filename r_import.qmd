@@ -57,7 +57,7 @@ my_data <- read_csv("name of your data in quotes")
 
 These functions are pretty similar, with one exception: read.csv gives you a data frame, but read_csv gives you a "tibble." What is a tibble? It's another special type of list, much like a data frame, but with a few differences. It was designed to work more consistently with tidyverse functions. One important difference between data frames and tibbles that when you subset an individual column with the brackets (\[\]), data frames will give you vectors, and tibble will give single column tibbles. This has caused me confusion when writing functions, but you may not run into it.
 
-### From The Web
+### From The Web {#sec-web_import}
 
 You can also read files directly from the web. If you have your data in Google sheets, you can create a URL for R to import it directly. Simply go to the File menu, click "Share" and then "Publish to web". In the box that pops up, you will need to select the file type as ".csv", not web page. Then save the URL that it gives you!
 

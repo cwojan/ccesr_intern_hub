@@ -244,17 +244,558 @@ This website / HTML book is intended to collect resources for Cedar
 Creek summer interns doing independent research projects, and present
 those resources in an easily accessible way.
 
-For now, the focus is primarily on data analysis and using the R
-programming language.
+For now, the focus is primarily on data management, analysis, and using
+the R programming language.
 
 Much of the content featured is adapted from the work of past CCESR
-Fellows, including Mariana Cardenas and Bea Baselga.
+Fellows, including Maggie Anderson, Mariana Cárdenas, and Bea Baselga
+Cervera.
 
 This site is structured in different parts, which can be read in any
 order you choose, depending on your needs / what you already know.
-Currently, the first part goes over data analysis in general, the second
-part describes R-related software and workflows, and the third part is
-intended to give a primer in R coding.
+Currently, the first part describes data management practices, the
+second part goes over data analysis in general, the third part describes
+R-related software and workflows, and the fourth part is intended to
+give a primer in R coding.
+
+\part{Data Management}
+
+\chapter{The Flow of Data}\label{the-flow-of-data}
+
+In any scientific research, data management is a highly important skill.
+As ecologists, we should strive to record, organize, document, and back
+up our data in such a way that it will be accessible and useful to both
+our future selves and other future researchers.
+
+In general, the ``flow of data'' follows the this general pattern:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  ``Wild'' Data - these are our observations, features of the
+  environment we wish to record as\ldots{}
+\item
+  Recorded Data - this is our first record of our observations, with
+  which we ideally will\ldots{}
+
+  \begin{enumerate}
+  \def\labelenumii{\arabic{enumii}.}
+  \tightlist
+  \item
+    Back Up - store copies in an alternative medium / location
+  \item
+    Error Check - look over the data for entry errors
+  \item
+    Other Processing - ensure proper filenames, data formats, etc.,
+    leading to\ldots{}
+  \end{enumerate}
+\item
+  Processed Data - this is the data that we can use to analyze and
+  answer scientific questions!
+\end{enumerate}
+
+The following chapters will go into detail about this flow, with tips
+and various things to consider.
+
+\chapter{Recording Data}\label{recording-data}
+
+First, let's go over how we can record ``wild'' data!
+
+\section{Data Formats}\label{data-formats}
+
+One thing to think about when recording your data is the formatting. In
+data science, a commonly used dichotomy is between ``wide'' and ``long''
+data formats. You are likely more used to wide data, but long data is
+often better for scientific computing and analysis. Here is a
+comparison:
+
+\textbf{Wide Data}
+
+\begin{itemize}
+\item
+  Easy for humans to read
+\item
+  Features unique rows for an identifier, with columns describing
+  attributes
+\end{itemize}
+
+Example table of species abundance (attributes) at four research plots
+(identifiers):
+
+\begin{longtable}[]{@{}lll@{}}
+\toprule\noalign{}
+Plot & Species A & Species B \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+North & 3 & 3 \\
+East & 0 & 3 \\
+South & 1 & 0 \\
+West & 2 & 0 \\
+\end{longtable}
+
+\textbf{Long Data}
+
+\begin{itemize}
+\item
+  Easy for computers to read
+\item
+  Features multiple rows for each identifier value, one for each
+  attribute
+\end{itemize}
+
+Example table of the same data from above:
+
+\begin{longtable}[]{@{}lll@{}}
+\toprule\noalign{}
+Plot & Species & Count \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+North & A & 3 \\
+North & B & 3 \\
+East & A & 0 \\
+East & B & 3 \\
+South & A & 1 \\
+South & B & 0 \\
+West & A & 2 \\
+West & B & 0 \\
+\end{longtable}
+
+As you can see, long data take more space, but it is easier to select
+and compare data in a computing environment when it is in this format.
+You will see this in action in the R programming section of this
+website!
+
+\section{Data Sheet Design}\label{data-sheet-design}
+
+Whether you design a data sheet using long or wide format, you will need
+to use some sort of computer application, either a spreadsheet program,
+word processor, or a combination of both. You are probably familiar with
+many of the options, but here are a few -
+
+\textbf{Spreadsheet Applications:}
+
+\begin{itemize}
+\item
+  Microsoft Excel - Standalone program, often free with university
+  accounts
+\item
+  Google Sheets - web-based, free to use with Google account, can be
+  integrated directly with R
+\item
+  LibreOffice Calc - Standalone program, free and open-source
+  alternative to Excel
+\end{itemize}
+
+\textbf{Word Processors:}
+
+\begin{itemize}
+\item
+  Microsoft Word - Standalone program, often free with university
+  accounts
+\item
+  Google Docs - web-based, free to use with Google account
+\item
+  LibreOffice Writer - Standalone program, free and open-source
+  alternative to Word
+\end{itemize}
+
+Sometimes it can be finicky to design a data sheet directly in a word
+processor's table functionality. Instead, you can create the basics of
+your table in a spreadsheet application, and then copy and paste it into
+the word processor, and then fine-tune the table to your liking.
+
+When designing your sheet/s, wide data will often be more intuitive and
+easier for recording, but note that there may be more processing steps
+required when you get to the analysis stage (and if the data are
+complex, the data manipulation required can also be complicated). On the
+other hand, recording data in long format, while somewhat tedious, will
+be efficient for later processing and analysis steps.
+
+In general, wide format for recording data is effective for simple
+observations when you know exactly how much you are going to record
+(e.g., a suite of soil attributes for a set of plots). Long format can
+be effective when the observations you're recording are more complicated
+and/or you don't know how many observations you will be making in a
+given plot (e.g., recording each plant species with it's cover class,
+max height, and disease severity in a set of plots - you might not know
+how many species you will encounter in each plot!).
+
+\textbf{Universal Tip:} Always include a ``Notes'' column!
+
+\section{Data Sheet Medium}\label{data-sheet-medium}
+
+When it comes to recording data in the field or in the lab, there are
+two main styles: using paper data sheets or using electronic
+spreadsheets/apps. Opinions vary among researchers.
+
+\textbf{Paper / Physical Media}
+
+\begin{itemize}
+\item
+  Traditional method for ecology research
+\item
+  Results in having both a hard copy and electronic copy of the data
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Backups can include photos/scans of the paper data sheets, as well
+    as back-up electronic files
+  \end{itemize}
+\item
+  Less risk of technical glitches
+\item
+  Need to consider material; write-in-the-rain and pancil often
+  necessary in field settings
+\item
+  Needs a solid organization scheme to make sure paper sheets don't get
+  lost or misplaced
+\item
+  Requires data to be entered from paper to computer
+
+  \begin{itemize}
+  \tightlist
+  \item
+    But this does leave the chance for checking for entry errors between
+    paper and computer
+  \end{itemize}
+\end{itemize}
+
+\textbf{Electronic Media / App-based Recording}
+
+\begin{itemize}
+\item
+  Becoming more popular among large-scale projects (e.g., National
+  Ecological Observatory Network)
+\item
+  Some projects use propietary software for data recording, but you can
+  use the Google Sheets app
+\item
+  Data is usually only digital files, but can be printed out for hard
+  copy back-ups
+\item
+  Somewhat elevated risk for technical glitches / user error
+\item
+  Can utilize immediate cloud backup
+\item
+  Phone data entry can be particularly convenient for certain field
+  methods
+\item
+  Error checking is limited to looking for obvious field entry errors
+  (e.g., impossible attribute values)
+\end{itemize}
+
+\chapter{File Organization}\label{file-organization}
+
+As our recorded data moves into electronic form, either directly from
+our field/lab observations or via data entry from paper data sheets, it
+is important to consider how we organize and name our electronic files.
+It may sound boring, but it is valuable to think about!
+
+\textbf{Universal Tip:} Be consistent!
+
+\section{Organize}\label{organize}
+
+When you are developing an organization scheme, there are many ways you
+can proceed. Here are a few:
+
+\textbf{File Organization Strategies}
+
+\begin{itemize}
+\item
+  By Stage - collection materials, raw data, processed data, shared
+  data, etc.
+\item
+  By Data Type - text, images, spreadsheets, etc.
+\item
+  By Research Activities - experiments, field observations, interviews,
+  etc.
+\end{itemize}
+
+The best way to organize your files will depend on the project and the
+researcher, but as long as it is consistent, it is effective.
+
+The strategies listed above generally work best as coarse-scale
+organization schemes, but one strategy could be used as a subfolder
+scheme within another strategy.
+
+Date and location generally work best as subfolder organization schemes
+within one of the above strategies. One exception to this might be when
+you are doing radically different things among years or locations.
+
+When you are downloading research related files, it is best to move them
+from the ``downloads'' folder as soon as possible, or better yet,
+download directly to the appropriate folder and subfolder. And avoiding
+downloading important files to the desktop is generally helpful.
+
+Finally, Do not use your folders as the sole description of your files,
+i.e., use descriptive file names! A file named ``plot3'' may make sense
+in your ``2023\_BioCON'' folder, but it will lose context when moved or
+shared. This brings us to our next section\ldots{}
+
+\section{Name}\label{name}
+
+Descriptive file names should be easily scannable and sortable.
+
+Key components of a descriptive file name often include:
+
+\begin{itemize}
+\item
+  Project name
+\item
+  Date (YYYYMMDD)
+\item
+  Type of data
+\item
+  Location/site
+\item
+  Researcher Info
+\item
+  Version
+\end{itemize}
+
+For sorting purposes, it is best to use numerical date format and
+leading zeroes. Numerical date format is YYYYMMDD, or 20240710 instead
+of something like 7-10-24. When sorted, everything will be in calendar
+order. Sorting other date formats can lead to files being out of order,
+like how 12 comes before 7 in an alphanumeric sort, so December could
+come before July in your files. Similarly, since 10, 11, 12, etc. come
+before 2 in an alphanumeric sort, it is good to use leading zeroes
+depending on the number of numeric IDs you have. For example if you have
+12 plots, use one leading zero for plots 1-9 to ensure proper file
+sorting (e.g., ``01'', ``02'', etc.).
+
+\textbf{Universal Tips:}
+
+\begin{itemize}
+\item
+  Don't use special characters (*@,.\^{}?\#!\textless\textgreater)
+
+  \begin{itemize}
+  \tightlist
+  \item
+    These are incompatible with many file systems
+  \end{itemize}
+\item
+  Be concise, AKA brief but efficiently informative
+\end{itemize}
+
+\chapter{Documentation and Storage}\label{documentation-and-storage}
+
+``Your primary collaborator is yourself 6 months from now \& your past
+self doesn't answer email!''\\
+\strut \\
+- Rachel Ainsworth
+
+Taking notes as you conduct research and backing things up are both
+generally good practice. Here are some things to think about regarding
+both:
+
+\section{Document}\label{document}
+
+\textbf{What} \textbf{to document:}
+
+\begin{itemize}
+\item
+  File-specific info or metadata
+
+  \begin{itemize}
+  \item
+    file naming patterns
+  \item
+    variable/attribute definitions
+  \end{itemize}
+\item
+  Technical steps
+
+  \begin{itemize}
+  \item
+    data collection
+  \item
+    processing (what did you include or exclude?)
+  \item
+    analysis steps
+  \end{itemize}
+\item
+  External data sources
+\item
+  Software used with version numbers
+\item
+  Meeting notes
+\item
+  Organization schemes
+\end{itemize}
+
+\textbf{Where to document:}
+
+\begin{itemize}
+\item
+  Lab Notebook
+
+  \begin{itemize}
+  \item
+    Can be physical or digital
+  \item
+    Many scientists use pen for this sort of thing
+  \end{itemize}
+\item
+  Field notebook
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Generally easier to be physical if taking notes in the field, can be
+    digital if taking notes at end of day
+  \end{itemize}
+\item
+  ReadMe file
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Good for computer work - data processing and analysis
+  \end{itemize}
+\end{itemize}
+
+\textbf{When to document:}
+
+\begin{itemize}
+\item
+  Set aside \textasciitilde15 minutes after your work session
+\item
+  Develop a regular routine during the research process
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Easier to do than remembering everything at the end
+  \end{itemize}
+\item
+  Can also note things opportunistically as you go
+
+  \begin{itemize}
+  \item
+    jot potentially relevant observations down in a notebook
+  \item
+    comment out code
+  \end{itemize}
+\end{itemize}
+
+\section{Store}\label{store}
+
+The methods of backing up your data may vary somewhat based on medium,
+but what remains important universally is to maintain multiple formats
+of backups, and it is helpful to have one backup in an alternative
+physical location.
+
+\textbf{Paper Data Sheets}
+
+\begin{itemize}
+\item
+  take a photo or scan each newly filled data sheet after each day of
+  data collection
+\item
+  Back up entered data files in cloud storage or some other location
+\end{itemize}
+
+\textbf{Electronic Data}
+
+\begin{itemize}
+\item
+  Download a dated copy of all electronically entered files after each
+  day of data collection
+
+  \begin{itemize}
+  \tightlist
+  \item
+    You can write an R script to do this for you with Google Sheets
+  \end{itemize}
+\end{itemize}
+
+You may also run into some issues when storing backups. You may run out
+of storage space, especially on personal cloud storage accounts.
+However, usually university or organization based accounts have large
+storage limits. In addition, physical data drives (either hard drives or
+solid-state drives) can fail, so it's good to have cloud-based storage
+and/or alternate physical drives (another computer or external drive) as
+fail-safes. Of course, cloud storage providers can change terms in the
+near future, so be prepared for adapting your plans.
+
+\chapter{Error Checking and Data
+Processing}\label{error-checking-and-data-processing}
+
+Finally, when you have your data recorded, organized, documented, and
+backed-up, there are a few things to think about before analysis:
+checking for errors and late-stage processing steps.
+
+\section{Error Checking}\label{error-checking}
+
+Your error checking method may vary depending on the medium on which
+your data were recorded, but a general note is that you can elect to
+error check everything, or a certain percentage of all the data when
+data are numerous. Different organizations will follow different
+practices. Oftentimes personal research projects are small scale enough
+that full error checking is feasible.
+
+\textbf{Paper Data}
+
+\begin{itemize}
+\item
+  Cross reference digitally entered data with paper sheet for errors in
+  entry
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Helpful to have two people
+  \end{itemize}
+\item
+  Note any corrections in a new column
+\item
+  Hard to check field recording errors, but make any corrections in a
+  different colored writing utensil for clarity
+\end{itemize}
+
+\textbf{Electronic Data}
+
+\begin{itemize}
+\item
+  Check version control (e.g., Google Drive files) for unusual edits,
+  and roll back where necessary
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Note when you rolled back a change in a new column
+  \end{itemize}
+\end{itemize}
+
+\section{Data Processing}\label{data-processing}
+
+When you are getting ready to analyze your data, the best file formats
+are text-based with some sort of delimiter between columns.
+
+The most popular of these file formats is the ``comma separated value''
+file, or .csv. It is small in size, as it is a simple text file where
+commas denote new columns and line breaks denote new rows. This is easy
+for a wide variety of computer programs to interpret, and will most
+likely continue to be efficient for the foreseeable future.
+
+Unlike Excel spreadsheets or Google Sheets, text based format do not
+support multiple sheets, cell/text colors, or special formatting. As
+such, do not rely on color or font for describing your electronic data.
+
+You can create .csv files form Excel using the ``Save as'' command and
+selecting the csv format, and you can download a Google Sheet as a csv
+as one of the options. You can also ``publish'' a Google sheet as a csv
+on the web to import directly into R, but that is a topic for later in
+this site (see \hyperref[sec-web_import]{15.1.3 Importing Data; From the
+Web})
 
 \part{Data Analysis}
 
@@ -372,26 +913,6 @@ overestimate the central tendency in some contexts.
 
 When data is roughly normally distributed, the mean and median are
 roughly the same:
-
-\begin{verbatim}
-Warning: package 'ggplot2' was built under R version 4.2.3
-\end{verbatim}
-
-\begin{verbatim}
-Warning: package 'tidyr' was built under R version 4.2.3
-\end{verbatim}
-
-\begin{verbatim}
-Warning: package 'readr' was built under R version 4.2.3
-\end{verbatim}
-
-\begin{verbatim}
-Warning: package 'dplyr' was built under R version 4.2.3
-\end{verbatim}
-
-\begin{verbatim}
-Warning: package 'stringr' was built under R version 4.2.3
-\end{verbatim}
 
 \includegraphics{da_describe_files/figure-pdf/unnamed-chunk-1-1.pdf}
 
@@ -1030,7 +1551,7 @@ are followed by parentheses ().
 \end{Shaded}
 
 \begin{verbatim}
-[1] "2024-06-20"
+[1] "2024-07-10"
 \end{verbatim}
 
 \begin{Shaded}
@@ -1041,7 +1562,7 @@ are followed by parentheses ().
 \end{Shaded}
 
 \begin{verbatim}
-[1] "2024-06-20 14:58:14 CDT"
+[1] "2024-07-10 15:59:20 CDT"
 \end{verbatim}
 
 No you may be thinking - ``this is pretty basic'' and ``what are the
@@ -1079,8 +1600,8 @@ to be, you use the = operator.
 \end{Shaded}
 
 \begin{verbatim}
- [1] 5.177864 3.719256 5.088225 5.785279 3.598926 5.542554 5.022858 5.877021
- [9] 5.085730 6.279435
+ [1] 4.047570 6.263448 5.675567 4.827226 6.402102 6.285290 4.095947 4.860002
+ [9] 4.737014 4.529490
 \end{verbatim}
 
 Operators are actually a special type of function that can be used with
@@ -1873,26 +2394,6 @@ columns by name. Let's look at some examples:
 \end{Shaded}
 
 \begin{verbatim}
-Warning: package 'ggplot2' was built under R version 4.2.3
-\end{verbatim}
-
-\begin{verbatim}
-Warning: package 'tidyr' was built under R version 4.2.3
-\end{verbatim}
-
-\begin{verbatim}
-Warning: package 'readr' was built under R version 4.2.3
-\end{verbatim}
-
-\begin{verbatim}
-Warning: package 'dplyr' was built under R version 4.2.3
-\end{verbatim}
-
-\begin{verbatim}
-Warning: package 'stringr' was built under R version 4.2.3
-\end{verbatim}
-
-\begin{verbatim}
 -- Attaching core tidyverse packages ------------------------ tidyverse 2.0.0 --
 v dplyr     1.1.4     v readr     2.1.5
 v forcats   1.0.0     v stringr   1.5.1
@@ -2105,7 +2606,7 @@ tibbles that when you subset an individual column with the brackets
 column tibbles. This has caused me confusion when writing functions, but
 you may not run into it.
 
-\subsection{From The Web}\label{from-the-web}
+\subsection{From The Web}\label{sec-web_import}
 
 You can also read files directly from the web. If you have your data in
 Google sheets, you can create a URL for R to import it directly. Simply
@@ -2346,44 +2847,7 @@ In the tidyverse, adding new columns is done with the mutate function:
 \begin{Highlighting}[]
 \DocumentationTok{\#\# load tidyverse}
 \FunctionTok{library}\NormalTok{(tidyverse)}
-\end{Highlighting}
-\end{Shaded}
 
-\begin{verbatim}
-Warning: package 'ggplot2' was built under R version 4.2.3
-\end{verbatim}
-
-\begin{verbatim}
-Warning: package 'tidyr' was built under R version 4.2.3
-\end{verbatim}
-
-\begin{verbatim}
-Warning: package 'readr' was built under R version 4.2.3
-\end{verbatim}
-
-\begin{verbatim}
-Warning: package 'dplyr' was built under R version 4.2.3
-\end{verbatim}
-
-\begin{verbatim}
-Warning: package 'stringr' was built under R version 4.2.3
-\end{verbatim}
-
-\begin{verbatim}
--- Attaching core tidyverse packages ------------------------ tidyverse 2.0.0 --
-v dplyr     1.1.4     v readr     2.1.5
-v forcats   1.0.0     v stringr   1.5.1
-v ggplot2   3.5.1     v tibble    3.2.1
-v lubridate 1.9.3     v tidyr     1.3.1
-v purrr     1.0.2     
--- Conflicts ------------------------------------------ tidyverse_conflicts() --
-x dplyr::filter() masks stats::filter()
-x dplyr::lag()    masks stats::lag()
-i Use the conflicted package (<http://conflicted.r-lib.org/>) to force all conflicts to become errors
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
 \DocumentationTok{\#\# mutate a new column}
 \NormalTok{fake\_insects }\OtherTok{\textless{}{-}} \FunctionTok{mutate}\NormalTok{(}\AttributeTok{.data =}\NormalTok{ fake\_insects, }\DocumentationTok{\#\# specify data}
                        \AttributeTok{temp\_mean\_mutated =}\NormalTok{ (temp\_hi }\SpecialCharTok{+}\NormalTok{ temp\_lo)}\SpecialCharTok{/}\DecValTok{2}\NormalTok{) }\DocumentationTok{\#\# calculate new column}
@@ -2494,31 +2958,7 @@ Setup:
 \begin{Highlighting}[]
 \DocumentationTok{\#\# load tidyverse}
 \FunctionTok{library}\NormalTok{(tidyverse)}
-\end{Highlighting}
-\end{Shaded}
 
-\begin{verbatim}
-Warning: package 'ggplot2' was built under R version 4.2.3
-\end{verbatim}
-
-\begin{verbatim}
-Warning: package 'tidyr' was built under R version 4.2.3
-\end{verbatim}
-
-\begin{verbatim}
-Warning: package 'readr' was built under R version 4.2.3
-\end{verbatim}
-
-\begin{verbatim}
-Warning: package 'dplyr' was built under R version 4.2.3
-\end{verbatim}
-
-\begin{verbatim}
-Warning: package 'stringr' was built under R version 4.2.3
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
 \DocumentationTok{\#\# read data}
 \NormalTok{fake\_mammals }\OtherTok{\textless{}{-}} \FunctionTok{read.csv}\NormalTok{(}\StringTok{"https://docs.google.com/spreadsheets/d/e/2PACX{-}1vQ9mfx88nM33PC6WpIh3nSxMvkM98nEszw5gpUq7KdqbiCskF8Pqvrl0W2EqNf9rD1JEepb{-}hSMIb\_j/pub?output=csv"}\NormalTok{, }\AttributeTok{header =} \ConstantTok{TRUE}\NormalTok{)}
 
@@ -2562,7 +3002,8 @@ Before we use these however, we need to introduce a very useful
 operator, the pipe: \%\textgreater\%. This operator directs data into
 the first argument of a function, which allows you to chain functions
 together efficiently. Let's try an example with the filter and select
-subsetting functions (see Section~\ref{sec-sub_data}):
+subsetting functions (see \hyperref[sec-sub_data]{14.2.3 Next Steps;
+Subsetting; Data Frames}):
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -2845,31 +3286,7 @@ Setup:
 \begin{Highlighting}[]
 \DocumentationTok{\#\# load tidyverse}
 \FunctionTok{library}\NormalTok{(tidyverse)}
-\end{Highlighting}
-\end{Shaded}
 
-\begin{verbatim}
-Warning: package 'ggplot2' was built under R version 4.2.3
-\end{verbatim}
-
-\begin{verbatim}
-Warning: package 'tidyr' was built under R version 4.2.3
-\end{verbatim}
-
-\begin{verbatim}
-Warning: package 'readr' was built under R version 4.2.3
-\end{verbatim}
-
-\begin{verbatim}
-Warning: package 'dplyr' was built under R version 4.2.3
-\end{verbatim}
-
-\begin{verbatim}
-Warning: package 'stringr' was built under R version 4.2.3
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
 \DocumentationTok{\#\# read data}
 \NormalTok{fake\_mammals }\OtherTok{\textless{}{-}} \FunctionTok{read.csv}\NormalTok{(}\StringTok{"https://docs.google.com/spreadsheets/d/e/2PACX{-}1vQ9mfx88nM33PC6WpIh3nSxMvkM98nEszw5gpUq7KdqbiCskF8Pqvrl0W2EqNf9rD1JEepb{-}hSMIb\_j/pub?output=csv"}\NormalTok{, }\AttributeTok{header =} \ConstantTok{TRUE}\NormalTok{)}
 
@@ -2942,11 +3359,11 @@ the last chapter:
 
 It seems that there may be a difference! So let's run a t-test to test
 for a difference in means between two groups (see
-Section~\ref{sec-ttest}). Most stats functions in R can use the formula
-operator, \textasciitilde. This allows us to connect our dependent
-variable (insect count in this case) as a function of our independent
-variable (site habitat type): total\_insects \textasciitilde{}
-site\_type.
+\hyperref[sec-ttest]{9.1.2.1 Two Predictor Categories}). Most stats
+functions in R can use the formula operator, \textasciitilde. This
+allows us to connect our dependent variable (insect count in this case)
+as a function of our independent variable (site habitat type):
+total\_insects \textasciitilde{} site\_type.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -2988,7 +3405,7 @@ What if we have more than two categories, and we want to see if any two
 categories have different means? Let us return to the mammal data and
 compare the mass of helminths (parasitic worms) in different mammal
 species. We can run an analysis of variance (see
-Section~\ref{sec-anova}).
+\hyperref[sec-anova]{9.1.2.2 More Than Two Predictor Categories}).
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -3051,9 +3468,9 @@ check for numerical associations.
 \subsection{Correlation}\label{correlation}
 
 We can look for simple associations without cause and effect with
-correlations (see Section~\ref{sec-corr}). Mice seem to have high
-helminth loads, so let's check for a correlation between their body mass
-and helminth mass:
+correlations (see \hyperref[sec-corr]{9.1.3.1 Simple Association}). Mice
+seem to have high helminth loads, so let's check for a correlation
+between their body mass and helminth mass:
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -3090,9 +3507,10 @@ very strong evidence for it.
 \subsection{Linear Regression}\label{linear-regression}
 
 If we want to infer cause and effect we can use linear regression (see
-Section~\ref{sec-reg}). Let's say we want to know if the number of
-insects at a site is predictive of mammal mass at a site. First let's
-join the two data frames like wed did in the last chapter:
+\hyperref[sec-reg]{9.1.3.2 Cause and Effect}). Let's say we want to know
+if the number of insects at a site is predictive of mammal mass at a
+site. First let's join the two data frames like wed did in the last
+chapter:
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -3161,10 +3579,6 @@ effects the probability of having ticks attached (tick\_count).
 
 Call:
 glm(formula = tick_presence ~ mass_g, family = "binomial", data = fake_mammals)
-
-Deviance Residuals: 
-    Min       1Q   Median       3Q      Max  
--1.7550  -0.4805   0.1027   0.4404   1.4731  
 
 Coefficients:
             Estimate Std. Error z value Pr(>|z|)    
@@ -3278,31 +3692,7 @@ Setup:
 \begin{Highlighting}[]
 \DocumentationTok{\#\# load tidyverse}
 \FunctionTok{library}\NormalTok{(tidyverse)}
-\end{Highlighting}
-\end{Shaded}
 
-\begin{verbatim}
-Warning: package 'ggplot2' was built under R version 4.2.3
-\end{verbatim}
-
-\begin{verbatim}
-Warning: package 'tidyr' was built under R version 4.2.3
-\end{verbatim}
-
-\begin{verbatim}
-Warning: package 'readr' was built under R version 4.2.3
-\end{verbatim}
-
-\begin{verbatim}
-Warning: package 'dplyr' was built under R version 4.2.3
-\end{verbatim}
-
-\begin{verbatim}
-Warning: package 'stringr' was built under R version 4.2.3
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
 \DocumentationTok{\#\# read data}
 \NormalTok{fake\_mammals }\OtherTok{\textless{}{-}} \FunctionTok{read.csv}\NormalTok{(}\StringTok{"https://docs.google.com/spreadsheets/d/e/2PACX{-}1vQ9mfx88nM33PC6WpIh3nSxMvkM98nEszw5gpUq7KdqbiCskF8Pqvrl0W2EqNf9rD1JEepb{-}hSMIb\_j/pub?output=csv"}\NormalTok{, }\AttributeTok{header =} \ConstantTok{TRUE}\NormalTok{)}
 

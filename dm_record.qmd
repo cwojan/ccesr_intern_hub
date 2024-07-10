@@ -9,7 +9,7 @@ First, let's go over how we can record "wild" data!
 
 One thing to think about when recording your data is the formatting. In data science, a commonly used dichotomy is between "wide" and "long" data formats. You are likely more used to wide data, but long data is often better for scientific computing and analysis. Here is a comparison:
 
-### Wide Data
+**Wide Data**
 
 -   Easy for humans to read
 
@@ -24,7 +24,7 @@ Example table of species abundance (attributes) at four research plots (identifi
 | South | 1         | 0         |
 | West  | 2         | 0         |
 
-### Long Data
+**Long Data**
 
 -   Easy for computers to read
 
@@ -49,7 +49,7 @@ As you can see, long data take more space, but it is easier to select and compar
 
 Whether you design a data sheet using long or wide format, you will need to use some sort of computer application, either a spreadsheet program, word processor, or a combination of both. You are probably familiar with many of the options, but here are a few -
 
-Spreadsheet Applications:
+**Spreadsheet Applications:**
 
 -   Microsoft Excel - Standalone program, often free with university accounts
 
@@ -57,7 +57,7 @@ Spreadsheet Applications:
 
 -   LibreOffice Calc - Standalone program, free and open-source alternative to Excel
 
-Word Processors:
+**Word Processors:**
 
 -   Microsoft Word - Standalone program, often free with university accounts
 
@@ -77,7 +77,7 @@ In general, wide format for recording data is effective for simple observations 
 
 When it comes to recording data in the field or in the lab, there are two main styles: using paper data sheets or using electronic spreadsheets/apps. Opinions vary among researchers.
 
-### Paper / Physical Media
+**Paper / Physical Media**
 
 -   Traditional method for ecology research
 
@@ -95,7 +95,7 @@ When it comes to recording data in the field or in the lab, there are two main s
 
     -   But this does leave the chance for checking for entry errors between paper and computer
 
-### Electronic Media / App-based Recording
+**Electronic Media / App-based Recording**
 
 -   Becoming more popular among large-scale projects (e.g., National Ecological Observatory Network)
 

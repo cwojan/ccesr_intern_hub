@@ -9,7 +9,9 @@ As our recorded data moves into electronic form, either directly from our field/
 
 ## Organize
 
-### File Organization Strategies
+When you are developing an organization scheme, there are many ways you can proceed. Here are a few:
+
+**File Organization Strategies**
 
 -   By Stage - collection materials, raw data, processed data, shared data, etc.
 
@@ -17,21 +19,21 @@ As our recorded data moves into electronic form, either directly from our field/
 
 -   By Research Activities - experiments, field observations, interviews, etc.
 
-### Organization Tips
+The best way to organize your files will depend on the project and the researcher, but as long as it is consistent, it is effective.
 
--   Move files from "downloads" folder as soon as you can
+The strategies listed above generally work best as coarse-scale organization schemes, but one strategy could be used as a subfolder scheme within another strategy.
 
--   Try not to save important files to your desktop
+Date and location generally work best as subfolder organization schemes within one of the above strategies. One exception to this might be when you are doing radically different things among years or locations.
 
--   Do not use your folders as the sole description of your files
+When you are downloading research related files, it is best to move them from the "downloads" folder as soon as possible, or better yet, download directly to the appropriate folder and subfolder. And avoiding downloading important files to the desktop is generally helpful.
 
-    -   i.e., use descriptive file names! A file named "plot3" may make sense in your "2023_BioCON" folder, but it will lose context when moved or shared.
+Finally, Do not use your folders as the sole description of your files, i.e., use descriptive file names! A file named "plot3" may make sense in your "2023_BioCON" folder, but it will lose context when moved or shared. This brings us to our next section...
 
 ## Name
 
 Descriptive file names should be easily scannable and sortable.
 
-Key components include:
+Key components of a descriptive file name often include:
 
 -   Project name
 
@@ -45,19 +47,7 @@ Key components include:
 
 -   Version
 
-For sorting purposes, it is best to...
-
--   Use numerical date format (YYYYMMDD)
-
-    -   e.g., 20240710, not 7-10-24
-
-    -   When sorted, everything will be in calendar order, as opposed to December coming before July (12 comes before 7 with an alphabetical sort).
-
--   Use leading zeroes
-
-    -   e.g., with more than 10 plots, but less than 100, use "01", "02", etc., not "1", "2"
-
-    -   When sorted, plots will be in numeric order, as opposed to plot 11 coming before plot 2 from an alphabetical sort.
+For sorting purposes, it is best to use numerical date format and leading zeroes. Numerical date format is YYYYMMDD, or 20240710 instead of something like 7-10-24. When sorted, everything will be in calendar order. Sorting other date formats can lead to files being out of order, like how 12 comes before 7 in an alphanumeric sort, so December could come before July in your files. Similarly, since 10, 11, 12, etc. come before 2 in an alphanumeric sort, it is good to use leading zeroes depending on the number of numeric IDs you have. For example if you have 12 plots, use one leading zero for plots 1-9 to ensure proper file sorting (e.g., "01", "02", etc.).
 
 **Universal Tips:**
 

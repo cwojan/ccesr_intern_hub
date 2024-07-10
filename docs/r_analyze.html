@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>CCESR Intern Hub - 13&nbsp; Analyzing Data</title>
+<title>CCESR Intern Hub - 18&nbsp; Analyzing Data</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -123,7 +123,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./r_basics.html">R Programming</a></li><li class="breadcrumb-item"><a href="./r_analyze.html"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Analyzing Data</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./r_basics.html">R Programming</a></li><li class="breadcrumb-item"><a href="./r_analyze.html"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Analyzing Data</span></a></li></ol></nav>
         <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
@@ -160,7 +160,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
- <span class="menu-text">Data Analysis</span></a>
+ <span class="menu-text">Data Management</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -168,26 +168,32 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./da_glance.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Data Analysis at a Glance</span></span></a>
+  <a href="./dm_intro.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">The Flow of Data</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./da_data.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Data Types</span></span></a>
+  <a href="./dm_record.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Recording Data</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./da_describe.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Descriptive Statistics</span></span></a>
+  <a href="./dm_organize.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">File Organization</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./da_infer.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Inferential Statistics</span></span></a>
+  <a href="./dm_document.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Documentation and Storage</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./dm_process.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Error Checking and Data Processing</span></span></a>
   </div>
 </li>
       </ul>
@@ -195,7 +201,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">
- <span class="menu-text">R on your Computer</span></a>
+ <span class="menu-text">Data Analysis</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -203,20 +209,26 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./rc_r.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">R Itself</span></span></a>
+  <a href="./da_glance.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Data Analysis at a Glance</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./rc_rstudio.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">R Studio</span></span></a>
+  <a href="./da_data.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Data Types</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./rc_git.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Optional: Git and Github</span></span></a>
+  <a href="./da_describe.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Descriptive Statistics</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./da_infer.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Inferential Statistics</span></span></a>
   </div>
 </li>
       </ul>
@@ -224,7 +236,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">
- <span class="menu-text">R Programming</span></a>
+ <span class="menu-text">R on your Computer</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -232,44 +244,20 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./r_basics.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">The Basics</span></span></a>
+  <a href="./rc_r.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">R Itself</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./r_next.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Next Steps</span></span></a>
+  <a href="./rc_rstudio.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">R Studio</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./r_import.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Importing Data</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./r_wrangle.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Wrangling Data</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./r_summarize.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Summarizing Data</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./r_analyze.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Analyzing Data</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./r_visualize.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Visualizing Data</span></span></a>
+  <a href="./rc_git.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Optional: Git and Github</span></span></a>
   </div>
 </li>
       </ul>
@@ -277,7 +265,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true">
- <span class="menu-text">Appendices</span></a>
+ <span class="menu-text">R Programming</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -285,8 +273,61 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="./r_basics.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">The Basics</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./r_next.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Next Steps</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./r_import.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Importing Data</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./r_wrangle.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Wrangling Data</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./r_summarize.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Summarizing Data</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./r_analyze.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Analyzing Data</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./r_visualize.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Visualizing Data</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="true">
+ <span class="menu-text">Appendices</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="./appendix_a.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Appendix A: More R Resources</span></span></a>
+ <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Appendix A: More R Resources</span></span></a>
   </div>
 </li>
       </ul>
@@ -307,28 +348,28 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#making-comparisons" id="toc-making-comparisons" class="nav-link active" data-scroll-target="#making-comparisons"><span class="header-section-number">13.1</span> Making Comparisons</a>
+  <li><a href="#making-comparisons" id="toc-making-comparisons" class="nav-link active" data-scroll-target="#making-comparisons"><span class="header-section-number">18.1</span> Making Comparisons</a>
   <ul class="collapse">
-  <li><a href="#t-tests" id="toc-t-tests" class="nav-link" data-scroll-target="#t-tests"><span class="header-section-number">13.1.1</span> t-tests</a></li>
-  <li><a href="#anova" id="toc-anova" class="nav-link" data-scroll-target="#anova"><span class="header-section-number">13.1.2</span> ANOVA</a></li>
+  <li><a href="#t-tests" id="toc-t-tests" class="nav-link" data-scroll-target="#t-tests"><span class="header-section-number">18.1.1</span> t-tests</a></li>
+  <li><a href="#anova" id="toc-anova" class="nav-link" data-scroll-target="#anova"><span class="header-section-number">18.1.2</span> ANOVA</a></li>
   </ul></li>
-  <li><a href="#assessing-relationships" id="toc-assessing-relationships" class="nav-link" data-scroll-target="#assessing-relationships"><span class="header-section-number">13.2</span> Assessing Relationships</a>
+  <li><a href="#assessing-relationships" id="toc-assessing-relationships" class="nav-link" data-scroll-target="#assessing-relationships"><span class="header-section-number">18.2</span> Assessing Relationships</a>
   <ul class="collapse">
-  <li><a href="#correlation" id="toc-correlation" class="nav-link" data-scroll-target="#correlation"><span class="header-section-number">13.2.1</span> Correlation</a></li>
-  <li><a href="#linear-regression" id="toc-linear-regression" class="nav-link" data-scroll-target="#linear-regression"><span class="header-section-number">13.2.2</span> Linear Regression</a></li>
-  <li><a href="#binomial-regression" id="toc-binomial-regression" class="nav-link" data-scroll-target="#binomial-regression"><span class="header-section-number">13.2.3</span> Binomial Regression</a></li>
-  <li><a href="#poisson-negative-binomial-regression" id="toc-poisson-negative-binomial-regression" class="nav-link" data-scroll-target="#poisson-negative-binomial-regression"><span class="header-section-number">13.2.4</span> Poisson / Negative Binomial Regression</a></li>
+  <li><a href="#correlation" id="toc-correlation" class="nav-link" data-scroll-target="#correlation"><span class="header-section-number">18.2.1</span> Correlation</a></li>
+  <li><a href="#linear-regression" id="toc-linear-regression" class="nav-link" data-scroll-target="#linear-regression"><span class="header-section-number">18.2.2</span> Linear Regression</a></li>
+  <li><a href="#binomial-regression" id="toc-binomial-regression" class="nav-link" data-scroll-target="#binomial-regression"><span class="header-section-number">18.2.3</span> Binomial Regression</a></li>
+  <li><a href="#poisson-negative-binomial-regression" id="toc-poisson-negative-binomial-regression" class="nav-link" data-scroll-target="#poisson-negative-binomial-regression"><span class="header-section-number">18.2.4</span> Poisson / Negative Binomial Regression</a></li>
   </ul></li>
-  <li><a href="#multivariate-analysis" id="toc-multivariate-analysis" class="nav-link" data-scroll-target="#multivariate-analysis"><span class="header-section-number">13.3</span> Multivariate Analysis</a></li>
+  <li><a href="#multivariate-analysis" id="toc-multivariate-analysis" class="nav-link" data-scroll-target="#multivariate-analysis"><span class="header-section-number">18.3</span> Multivariate Analysis</a></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./r_basics.html">R Programming</a></li><li class="breadcrumb-item"><a href="./r_analyze.html"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Analyzing Data</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./r_basics.html">R Programming</a></li><li class="breadcrumb-item"><a href="./r_analyze.html"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Analyzing Data</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Analyzing Data</span></h1>
+<h1 class="title"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Analyzing Data</span></h1>
 </div>
 
 
@@ -349,63 +390,49 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Setup:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="do">## load tidyverse</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: package 'ggplot2' was built under R version 4.2.3</code></pre>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="do">## read data</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>fake_mammals <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"https://docs.google.com/spreadsheets/d/e/2PACX-1vQ9mfx88nM33PC6WpIh3nSxMvkM98nEszw5gpUq7KdqbiCskF8Pqvrl0W2EqNf9rD1JEepb-hSMIb_j/pub?output=csv"</span>, <span class="at">header =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>fake_insects <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"https://docs.google.com/spreadsheets/d/e/2PACX-1vT0snHMdsxzzzkxt_JVRFooJDB60lGSJQlrjUU29tGYOhIpqvx_pzja3Eqr9l5b4f76yMFvkiGzuK1Z/pub?output=csv"</span>)</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="do">## convert species to factor</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>fake_mammals<span class="sc">$</span>species <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(fake_mammals<span class="sc">$</span>species)</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="do">## convert site type to factor</span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>fake_mammals<span class="sc">$</span>site_type <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(fake_mammals<span class="sc">$</span>site_type)</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="do">## convert site to a factor</span></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>fake_mammals<span class="sc">$</span>site <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(fake_mammals<span class="sc">$</span>site)</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a><span class="do">## also do for insects</span></span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>fake_insects<span class="sc">$</span>site <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(fake_insects<span class="sc">$</span>site)</span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>fake_insects<span class="sc">$</span>site_type <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(fake_insects<span class="sc">$</span>site_type)</span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a><span class="do">## lengthen the order count data</span></span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>long_insects <span class="ot">&lt;-</span> <span class="fu">pivot_longer</span>(<span class="at">data =</span> fake_insects, </span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>                             <span class="at">cols =</span> <span class="fu">c</span>(hymenoptera, lepidoptera, coleoptera, diptera, </span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>                                      odonata, hemiptera, orthoptera, ephemeroptera, </span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>                                      tricoptera, plecoptera),</span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>                             <span class="at">names_to =</span> <span class="st">"order"</span>,</span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a>                             <span class="at">values_to =</span> <span class="st">"count"</span></span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a>                             )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: package 'tidyr' was built under R version 4.2.3</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: package 'readr' was built under R version 4.2.3</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: package 'dplyr' was built under R version 4.2.3</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: package 'stringr' was built under R version 4.2.3</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="do">## read data</span></span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>fake_mammals <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"https://docs.google.com/spreadsheets/d/e/2PACX-1vQ9mfx88nM33PC6WpIh3nSxMvkM98nEszw5gpUq7KdqbiCskF8Pqvrl0W2EqNf9rD1JEepb-hSMIb_j/pub?output=csv"</span>, <span class="at">header =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>fake_insects <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"https://docs.google.com/spreadsheets/d/e/2PACX-1vT0snHMdsxzzzkxt_JVRFooJDB60lGSJQlrjUU29tGYOhIpqvx_pzja3Eqr9l5b4f76yMFvkiGzuK1Z/pub?output=csv"</span>)</span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a><span class="do">## convert species to factor</span></span>
-<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>fake_mammals<span class="sc">$</span>species <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(fake_mammals<span class="sc">$</span>species)</span>
-<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a><span class="do">## convert site type to factor</span></span>
-<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>fake_mammals<span class="sc">$</span>site_type <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(fake_mammals<span class="sc">$</span>site_type)</span>
-<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a><span class="do">## convert site to a factor</span></span>
-<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>fake_mammals<span class="sc">$</span>site <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(fake_mammals<span class="sc">$</span>site)</span>
-<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a><span class="do">## also do for insects</span></span>
-<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>fake_insects<span class="sc">$</span>site <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(fake_insects<span class="sc">$</span>site)</span>
-<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a>fake_insects<span class="sc">$</span>site_type <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(fake_insects<span class="sc">$</span>site_type)</span>
-<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a><span class="do">## lengthen the order count data</span></span>
-<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a>long_insects <span class="ot">&lt;-</span> <span class="fu">pivot_longer</span>(<span class="at">data =</span> fake_insects, </span>
-<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a>                             <span class="at">cols =</span> <span class="fu">c</span>(hymenoptera, lepidoptera, coleoptera, diptera, </span>
-<span id="cb7-20"><a href="#cb7-20" aria-hidden="true" tabindex="-1"></a>                                      odonata, hemiptera, orthoptera, ephemeroptera, </span>
-<span id="cb7-21"><a href="#cb7-21" aria-hidden="true" tabindex="-1"></a>                                      tricoptera, plecoptera),</span>
-<span id="cb7-22"><a href="#cb7-22" aria-hidden="true" tabindex="-1"></a>                             <span class="at">names_to =</span> <span class="st">"order"</span>,</span>
-<span id="cb7-23"><a href="#cb7-23" aria-hidden="true" tabindex="-1"></a>                             <span class="at">values_to =</span> <span class="st">"count"</span></span>
-<span id="cb7-24"><a href="#cb7-24" aria-hidden="true" tabindex="-1"></a>                             )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<section id="making-comparisons" class="level2" data-number="13.1">
-<h2 data-number="13.1" class="anchored" data-anchor-id="making-comparisons"><span class="header-section-number">13.1</span> Making Comparisons</h2>
+<section id="making-comparisons" class="level2" data-number="18.1">
+<h2 data-number="18.1" class="anchored" data-anchor-id="making-comparisons"><span class="header-section-number">18.1</span> Making Comparisons</h2>
 <p>First off, let’s just do some simple comparisons.</p>
-<section id="t-tests" class="level3" data-number="13.1.1">
-<h3 data-number="13.1.1" class="anchored" data-anchor-id="t-tests"><span class="header-section-number">13.1.1</span> t-tests</h3>
+<section id="t-tests" class="level3" data-number="18.1.1">
+<h3 data-number="18.1.1" class="anchored" data-anchor-id="t-tests"><span class="header-section-number">18.1.1</span> t-tests</h3>
 <p>Let’s say we want to compare two groups, like the number of insects caught in forests and savannas. We already created a summary of this in the last chapter:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="do">## sum insects by site</span></span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>insect_counts <span class="ot">&lt;-</span> long_insects <span class="sc">%&gt;%</span></span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(site, site_type) <span class="sc">%&gt;%</span></span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">total_insects =</span> <span class="fu">sum</span>(count))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="do">## sum insects by site</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>insect_counts <span class="ot">&lt;-</span> long_insects <span class="sc">%&gt;%</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(site, site_type) <span class="sc">%&gt;%</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">total_insects =</span> <span class="fu">sum</span>(count))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>`summarise()` has grouped output by 'site'. You can override using the
 `.groups` argument.</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>insect_counts</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>insect_counts</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 6 × 3
 # Groups:   site [6]
@@ -419,13 +446,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 6 f     savanna              51</code></pre>
 </div>
 </div>
-<p>It seems that there may be a difference! So let’s run a t-test to test for a difference in means between two groups (see <a href="#sec-ttest" class="quarto-xref"><span class="quarto-unresolved-ref">sec-ttest</span></a>). Most stats functions in R can use the formula operator, ~. This allows us to connect our dependent variable (insect count in this case) as a function of our independent variable (site habitat type): total_insects ~ site_type.</p>
+<p>It seems that there may be a difference! So let’s run a t-test to test for a difference in means between two groups (see <a href="./da_infer.html#sec-ttest">9.1.2.1 Two Predictor Categories</a>). Most stats functions in R can use the formula operator, ~. This allows us to connect our dependent variable (insect count in this case) as a function of our independent variable (site habitat type): total_insects ~ site_type.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="do">## run the t test</span></span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>habitat_comparison <span class="ot">&lt;-</span> <span class="fu">t.test</span>(<span class="at">formula =</span> insect_counts<span class="sc">$</span>total_insects <span class="sc">~</span> insect_counts<span class="sc">$</span>site_type)</span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a><span class="do">## check the output</span></span>
-<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>habitat_comparison</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="do">## run the t test</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>habitat_comparison <span class="ot">&lt;-</span> <span class="fu">t.test</span>(<span class="at">formula =</span> insect_counts<span class="sc">$</span>total_insects <span class="sc">~</span> insect_counts<span class="sc">$</span>site_type)</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="do">## check the output</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>habitat_comparison</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
     Welch Two Sample t-test
@@ -443,15 +470,15 @@ sample estimates:
 <p>If we look at the ouput, it look like the forest mean was 102.333, and the savanna mean was 57.333, for a mean difference or effect size of 45. The p-value, or how strong the evidence for a relationship is, is 0.1116. This is higher than the traditional threshold for significance, likely because we have a very small sample size (6 total).</p>
 <p>Note: if you check the help for the t.test function (run ?t.test), you can find arguments for paired t-tests (paired) and unequal variances among groups (var.equal).</p>
 </section>
-<section id="anova" class="level3" data-number="13.1.2">
-<h3 data-number="13.1.2" class="anchored" data-anchor-id="anova"><span class="header-section-number">13.1.2</span> ANOVA</h3>
-<p>What if we have more than two categories, and we want to see if any two categories have different means? Let us return to the mammal data and compare the mass of helminths (parasitic worms) in different mammal species. We can run an analysis of variance (see <a href="#sec-anova" class="quarto-xref"><span class="quarto-unresolved-ref">sec-anova</span></a>).</p>
+<section id="anova" class="level3" data-number="18.1.2">
+<h3 data-number="18.1.2" class="anchored" data-anchor-id="anova"><span class="header-section-number">18.1.2</span> ANOVA</h3>
+<p>What if we have more than two categories, and we want to see if any two categories have different means? Let us return to the mammal data and compare the mass of helminths (parasitic worms) in different mammal species. We can run an analysis of variance (see <a href="./da_infer.html#sec-anova">9.1.2.2 More Than Two Predictor Categories</a>).</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="do">## run the anova</span></span>
-<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>helminth_comparison <span class="ot">&lt;-</span> <span class="fu">aov</span>(fake_mammals<span class="sc">$</span>helminth_mass_mg <span class="sc">~</span> fake_mammals<span class="sc">$</span>species)</span>
-<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a><span class="do">## check the output (now with the summary function)</span></span>
-<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(helminth_comparison)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="do">## run the anova</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>helminth_comparison <span class="ot">&lt;-</span> <span class="fu">aov</span>(fake_mammals<span class="sc">$</span>helminth_mass_mg <span class="sc">~</span> fake_mammals<span class="sc">$</span>species)</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="do">## check the output (now with the summary function)</span></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(helminth_comparison)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>                     Df  Sum Sq Mean Sq F value  Pr(&gt;F)    
 fake_mammals$species  2  719721  359861   10.59 0.00017 ***
@@ -462,11 +489,11 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
 </div>
 <p>Hey, that’s a small p-value (0.00017)! That means we have strong evidence that there is at least one difference among the pairs of species, either between white-footed mice and deer mice, white-footed mice and meadow voles, or deer mice and meadow voles. We can use a Tukey’s test to find out more:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="do">## run tukey on the anova output</span></span>
-<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>helminth_tukey <span class="ot">&lt;-</span> <span class="fu">TukeyHSD</span>(helminth_comparison)</span>
-<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a><span class="do">## check it out</span></span>
-<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>helminth_tukey</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="do">## run tukey on the anova output</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>helminth_tukey <span class="ot">&lt;-</span> <span class="fu">TukeyHSD</span>(helminth_comparison)</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="do">## check it out</span></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>helminth_tukey</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>  Tukey multiple comparisons of means
     95% family-wise confidence level
@@ -483,20 +510,20 @@ White-footed mouse-Meadow vole  244.8889   70.26811  419.50966 0.0039996</code><
 <p>At the bottom here we can see the pairwise comparisons. The two mouse species differ in helminth mass by ~111mg, but the difference is not significant. Meadow voles have a significantly different mean helminth mass from both mouse species. So in the data I made up, voles have less helminth mass than mice.</p>
 </section>
 </section>
-<section id="assessing-relationships" class="level2" data-number="13.2">
-<h2 data-number="13.2" class="anchored" data-anchor-id="assessing-relationships"><span class="header-section-number">13.2</span> Assessing Relationships</h2>
+<section id="assessing-relationships" class="level2" data-number="18.2">
+<h2 data-number="18.2" class="anchored" data-anchor-id="assessing-relationships"><span class="header-section-number">18.2</span> Assessing Relationships</h2>
 <p>But what if you’re not dealing with categorical comparisons? Then we can check for numerical associations.</p>
-<section id="correlation" class="level3" data-number="13.2.1">
-<h3 data-number="13.2.1" class="anchored" data-anchor-id="correlation"><span class="header-section-number">13.2.1</span> Correlation</h3>
-<p>We can look for simple associations without cause and effect with correlations (see <a href="#sec-corr" class="quarto-xref"><span class="quarto-unresolved-ref">sec-corr</span></a>). Mice seem to have high helminth loads, so let’s check for a correlation between their body mass and helminth mass:</p>
+<section id="correlation" class="level3" data-number="18.2.1">
+<h3 data-number="18.2.1" class="anchored" data-anchor-id="correlation"><span class="header-section-number">18.2.1</span> Correlation</h3>
+<p>We can look for simple associations without cause and effect with correlations (see <a href="./da_infer.html#sec-corr">9.1.3.1 Simple Association</a>). Mice seem to have high helminth loads, so let’s check for a correlation between their body mass and helminth mass:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="do">## create a subset of only mouse data</span></span>
-<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="do">## I use the %in% operator to specify that species should be found in a specified vector</span></span>
-<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a><span class="do">## AKA, it could be white-footed mouse OR deer mouse</span></span>
-<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>mouse_data <span class="ot">&lt;-</span> <span class="fu">filter</span>(fake_mammals, species <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"White-footed mouse"</span>, <span class="st">"Deer mouse"</span>))</span>
-<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a><span class="do">## run correlation with two variables (no formula here)</span></span>
-<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a><span class="fu">cor.test</span>(mouse_data<span class="sc">$</span>helminth_mass_mg, mouse_data<span class="sc">$</span>mass_g)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="do">## create a subset of only mouse data</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="do">## I use the %in% operator to specify that species should be found in a specified vector</span></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="do">## AKA, it could be white-footed mouse OR deer mouse</span></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>mouse_data <span class="ot">&lt;-</span> <span class="fu">filter</span>(fake_mammals, species <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"White-footed mouse"</span>, <span class="st">"Deer mouse"</span>))</span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a><span class="do">## run correlation with two variables (no formula here)</span></span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a><span class="fu">cor.test</span>(mouse_data<span class="sc">$</span>helminth_mass_mg, mouse_data<span class="sc">$</span>mass_g)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
     Pearson's product-moment correlation
@@ -513,22 +540,22 @@ sample estimates:
 </div>
 <p>Here we get an effect size of -0.874 (correlation coefficient), and a p-value of 3.741e-13, which means 3.741 x 10<sup>-13</sup>, or &lt;&lt;&lt;0.001. This means there is a strong negative relationship observed between mouse mass and helminth mass, and we have very strong evidence for it.</p>
 </section>
-<section id="linear-regression" class="level3" data-number="13.2.2">
-<h3 data-number="13.2.2" class="anchored" data-anchor-id="linear-regression"><span class="header-section-number">13.2.2</span> Linear Regression</h3>
-<p>If we want to infer cause and effect we can use linear regression (see <a href="#sec-reg" class="quarto-xref"><span class="quarto-unresolved-ref">sec-reg</span></a>). Let’s say we want to know if the number of insects at a site is predictive of mammal mass at a site. First let’s join the two data frames like wed did in the last chapter:</p>
+<section id="linear-regression" class="level3" data-number="18.2.2">
+<h3 data-number="18.2.2" class="anchored" data-anchor-id="linear-regression"><span class="header-section-number">18.2.2</span> Linear Regression</h3>
+<p>If we want to infer cause and effect we can use linear regression (see <a href="./da_infer.html#sec-reg">9.1.3.2 Cause and Effect</a>). Let’s say we want to know if the number of insects at a site is predictive of mammal mass at a site. First let’s join the two data frames like wed did in the last chapter:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="do">## join our data</span></span>
-<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>mammals_insects <span class="ot">&lt;-</span> insect_counts <span class="sc">%&gt;%</span></span>
-<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(total_insects, site) <span class="sc">%&gt;%</span></span>
-<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(fake_mammals, <span class="at">by =</span> <span class="st">"site"</span>)</span>
-<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a><span class="do">## regress mammal mass on total insects with lm function</span></span>
-<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a><span class="do">## this time I'm specifying the data frame with the data argument</span></span>
-<span id="cb20-8"><a href="#cb20-8" aria-hidden="true" tabindex="-1"></a><span class="do">## then I don't have to write it twice</span></span>
-<span id="cb20-9"><a href="#cb20-9" aria-hidden="true" tabindex="-1"></a>mass_model <span class="ot">&lt;-</span> <span class="fu">lm</span>(mass_g <span class="sc">~</span> total_insects, <span class="at">data =</span> mammals_insects)</span>
-<span id="cb20-10"><a href="#cb20-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb20-11"><a href="#cb20-11" aria-hidden="true" tabindex="-1"></a><span class="do">## look at the ouput with summary again</span></span>
-<span id="cb20-12"><a href="#cb20-12" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(mass_model)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="do">## join our data</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>mammals_insects <span class="ot">&lt;-</span> insect_counts <span class="sc">%&gt;%</span></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(total_insects, site) <span class="sc">%&gt;%</span></span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(fake_mammals, <span class="at">by =</span> <span class="st">"site"</span>)</span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a><span class="do">## regress mammal mass on total insects with lm function</span></span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a><span class="do">## this time I'm specifying the data frame with the data argument</span></span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a><span class="do">## then I don't have to write it twice</span></span>
+<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a>mass_model <span class="ot">&lt;-</span> <span class="fu">lm</span>(mass_g <span class="sc">~</span> total_insects, <span class="at">data =</span> mammals_insects)</span>
+<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a><span class="do">## look at the ouput with summary again</span></span>
+<span id="cb14-12"><a href="#cb14-12" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(mass_model)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 Call:
@@ -552,26 +579,22 @@ F-statistic: 5.625 on 1 and 46 DF,  p-value: 0.02195</code></pre>
 </div>
 <p>If we look at the coefficient table, we can see that the total insect term has an estimate of 0.028, which is our effect size. For every added insect to a plot, the expected average mass of the mammal community goes up by 0.028g. Connected to that effect size is a p-value of 0.0219, which means we have strong evidence for the relationship.</p>
 </section>
-<section id="binomial-regression" class="level3" data-number="13.2.3">
-<h3 data-number="13.2.3" class="anchored" data-anchor-id="binomial-regression"><span class="header-section-number">13.2.3</span> Binomial Regression</h3>
+<section id="binomial-regression" class="level3" data-number="18.2.3">
+<h3 data-number="18.2.3" class="anchored" data-anchor-id="binomial-regression"><span class="header-section-number">18.2.3</span> Binomial Regression</h3>
 <p>If your response variable is binary (presence absence), you can use a binomial regression with the glm() function. Let’s test if mammal mass effects the probability of having ticks attached (tick_count).</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="do">## first make a presence absence variable for ticks</span></span>
-<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>fake_mammals<span class="sc">$</span>tick_presence <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(fake_mammals<span class="sc">$</span>tick_count <span class="sc">&gt;</span> <span class="dv">0</span>)</span>
-<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a><span class="do">## now do the regression, with the binomial "family"</span></span>
-<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a>tick_pres_model <span class="ot">&lt;-</span> <span class="fu">glm</span>(tick_presence <span class="sc">~</span> mass_g, <span class="at">data =</span> fake_mammals, <span class="at">family =</span> <span class="st">"binomial"</span>)</span>
-<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a><span class="do">## check it</span></span>
-<span id="cb22-8"><a href="#cb22-8" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(tick_pres_model)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="do">## first make a presence absence variable for ticks</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>fake_mammals<span class="sc">$</span>tick_presence <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(fake_mammals<span class="sc">$</span>tick_count <span class="sc">&gt;</span> <span class="dv">0</span>)</span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a><span class="do">## now do the regression, with the binomial "family"</span></span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>tick_pres_model <span class="ot">&lt;-</span> <span class="fu">glm</span>(tick_presence <span class="sc">~</span> mass_g, <span class="at">data =</span> fake_mammals, <span class="at">family =</span> <span class="st">"binomial"</span>)</span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a><span class="do">## check it</span></span>
+<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(tick_pres_model)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 Call:
 glm(formula = tick_presence ~ mass_g, family = "binomial", data = fake_mammals)
-
-Deviance Residuals: 
-    Min       1Q   Median       3Q      Max  
--1.7550  -0.4805   0.1027   0.4404   1.4731  
 
 Coefficients:
             Estimate Std. Error z value Pr(&gt;|z|)    
@@ -592,19 +615,19 @@ Number of Fisher Scoring iterations: 5</code></pre>
 </div>
 <p>If we look at this like we looked at the linear regression, the mass_g term has a very small p-value meaning strong evidence for a relationship. It also has an effect size of 0.9857, meaning that the chance of having a tick increases with body mass. However, the units are in log odds, which are hard to interpret. The reason for this is some stats theory that is beyond the scope of this book/site.</p>
 </section>
-<section id="poisson-negative-binomial-regression" class="level3" data-number="13.2.4">
-<h3 data-number="13.2.4" class="anchored" data-anchor-id="poisson-negative-binomial-regression"><span class="header-section-number">13.2.4</span> Poisson / Negative Binomial Regression</h3>
+<section id="poisson-negative-binomial-regression" class="level3" data-number="18.2.4">
+<h3 data-number="18.2.4" class="anchored" data-anchor-id="poisson-negative-binomial-regression"><span class="header-section-number">18.2.4</span> Poisson / Negative Binomial Regression</h3>
 <p>under construction….</p>
 </section>
 </section>
-<section id="multivariate-analysis" class="level2" data-number="13.3">
-<h2 data-number="13.3" class="anchored" data-anchor-id="multivariate-analysis"><span class="header-section-number">13.3</span> Multivariate Analysis</h2>
+<section id="multivariate-analysis" class="level2" data-number="18.3">
+<h2 data-number="18.3" class="anchored" data-anchor-id="multivariate-analysis"><span class="header-section-number">18.3</span> Multivariate Analysis</h2>
 <p>You can of course use multiple explanatory variables in your analyses. For example, when we regressed mammal mass on insect count, we ignored mammal species. We could include it like so:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="do">## multiple regression</span></span>
-<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>multi_mod <span class="ot">&lt;-</span> <span class="fu">lm</span>(mass_g <span class="sc">~</span> total_insects <span class="sc">+</span> species, <span class="at">data =</span> mammals_insects)</span>
-<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(multi_mod)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="do">## multiple regression</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>multi_mod <span class="ot">&lt;-</span> <span class="fu">lm</span>(mass_g <span class="sc">~</span> total_insects <span class="sc">+</span> species, <span class="at">data =</span> mammals_insects)</span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(multi_mod)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 Call:
@@ -631,8 +654,8 @@ F-statistic: 2.598 on 3 and 44 DF,  p-value: 0.06421</code></pre>
 <p>Now we have multiple terms, and since species is categorical, the effect sizes and p-values are based on comparisons to a reference level (deer mouse in this case because it is first alphabetically).</p>
 <p>We can look at the overall significance of species by running an ANOVA with aov, and summarizing the output:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="do">## we can use the model object in our aov function to save time, it will take the formula</span></span>
-<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(<span class="fu">aov</span>(multi_mod))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="do">## we can use the model object in our aov function to save time, it will take the formula</span></span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(<span class="fu">aov</span>(multi_mod))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>              Df Sum Sq Mean Sq F value Pr(&gt;F)  
 total_insects  1  36.55   36.55   5.643 0.0219 *
@@ -1206,12 +1229,12 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
       <a href="./r_summarize.html" class="pagination-link" aria-label="Summarizing Data">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Summarizing Data</span></span>
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Summarizing Data</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
       <a href="./r_visualize.html" class="pagination-link" aria-label="Visualizing Data">
-        <span class="nav-page-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Visualizing Data</span></span> <i class="bi bi-arrow-right-short"></i>
+        <span class="nav-page-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Visualizing Data</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

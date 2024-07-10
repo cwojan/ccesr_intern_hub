@@ -67,32 +67,18 @@ Taking notes as you conduct research and backing things up are both generally go
 
 ## Store
 
-**Backing up your data based on medium:**
+The methods of backing up your data may vary somewhat based on medium, but what remains important universally is to maintain multiple formats of backups, and it is helpful to have one backup in an alternative physical location.
 
-Paper Data Sheets
+**Paper Data Sheets**
 
 -   take a photo or scan each newly filled data sheet after each day of data collection
 
 -   Back up entered data files in cloud storage or some other location
 
-Electronic Data
+**Electronic Data**
 
 -   Download a dated copy of all electronically entered files after each day of data collection
 
     -   You can write an R script to do this for you with Google Sheets
 
-**Problems you may encounter:**
-
--   Running out of storage space
-
-    -   University accounts usually have plenty, personal not so much...
-
--   Hard drive failure
-
-    -   Cloud-based storage and alternative physical drives as failsafes
-
--   Cloud storage providers changing terms
-
-    -   Everything is a service subscription these days...
-
-**Universal Tip:** Use multiple back up formats and physical locations of those back ups.
+You may also run into some issues when storing backups. You may run out of storage space, especially on personal cloud storage accounts. However, usually university or organization based accounts have large storage limits. In addition, physical data drives (either hard drives or solid-state drives) can fail, so it's good to have cloud-based storage and/or alternate physical drives (another computer or external drive) as fail-safes. Of course, cloud storage providers can change terms in the near future, so be prepared for adapting your plans.

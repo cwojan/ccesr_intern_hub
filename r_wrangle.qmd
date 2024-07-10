@@ -47,6 +47,8 @@ fake_insects$temp_mean
 In the tidyverse, adding new columns is done with the mutate function:
 
 ```{r}
+#| warning: false
+
 ## load tidyverse
 library(tidyverse)
 

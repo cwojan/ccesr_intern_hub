@@ -8,6 +8,7 @@ Setup:
 
 ```{r}
 #| message: false
+#| warning: false
 
 ## load tidyverse
 library(tidyverse)
@@ -47,7 +48,7 @@ You'll often want to give simple, illustrative information about the data you co
 
 The package dplyr in the tidyverse has two wonderful functions: group_by() and summarize(). You can also use the British spelling, "summarise()", but I use a z because *it's what the founders would have wanted*.
 
-Before we use these however, we need to introduce a very useful operator, the pipe: %\>%. This operator directs data into the first argument of a function, which allows you to chain functions together efficiently. Let's try an example with the filter and select subsetting functions (see @sec-sub_data):
+Before we use these however, we need to introduce a very useful operator, the pipe: %\>%. This operator directs data into the first argument of a function, which allows you to chain functions together efficiently. Let's try an example with the filter and select subsetting functions (see [14.2.3 Next Steps; Subsetting; Data Frames](r_next.qmd#sec-sub_data)):
 
 ```{r}
 

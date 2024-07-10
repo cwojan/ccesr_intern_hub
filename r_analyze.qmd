@@ -8,6 +8,7 @@ Setup:
 
 ```{r}
 #| message: false
+#| warning: false
 
 ## load tidyverse
 library(tidyverse)
@@ -55,7 +56,7 @@ insect_counts <- long_insects %>%
 insect_counts
 ```
 
-It seems that there may be a difference! So let's run a t-test to test for a difference in means between two groups (see @sec-ttest). Most stats functions in R can use the formula operator, \~. This allows us to connect our dependent variable (insect count in this case) as a function of our independent variable (site habitat type): total_insects \~ site_type.
+It seems that there may be a difference! So let's run a t-test to test for a difference in means between two groups (see [9.1.2.1 Two Predictor Categories](da_infer.qmd#sec-ttest)). Most stats functions in R can use the formula operator, \~. This allows us to connect our dependent variable (insect count in this case) as a function of our independent variable (site habitat type): total_insects \~ site_type.
 
 ```{r}
 ## run the t test
@@ -71,7 +72,7 @@ Note: if you check the help for the t.test function (run ?t.test), you can find 
 
 ### ANOVA
 
-What if we have more than two categories, and we want to see if any two categories have different means? Let us return to the mammal data and compare the mass of helminths (parasitic worms) in different mammal species. We can run an analysis of variance (see @sec-anova).
+What if we have more than two categories, and we want to see if any two categories have different means? Let us return to the mammal data and compare the mass of helminths (parasitic worms) in different mammal species. We can run an analysis of variance (see [9.1.2.2 More Than Two Predictor Categories](da_infer.qmd#sec-anova)).
 
 ```{r}
 ## run the anova
@@ -99,7 +100,7 @@ But what if you're not dealing with categorical comparisons? Then we can check f
 
 ### Correlation
 
-We can look for simple associations without cause and effect with correlations (see @sec-corr). Mice seem to have high helminth loads, so let's check for a correlation between their body mass and helminth mass:
+We can look for simple associations without cause and effect with correlations (see [9.1.3.1 Simple Association](da_infer.qmd#sec-corr)). Mice seem to have high helminth loads, so let's check for a correlation between their body mass and helminth mass:
 
 ```{r}
 ## create a subset of only mouse data
@@ -115,7 +116,7 @@ Here we get an effect size of -0.874 (correlation coefficient), and a p-value of
 
 ### Linear Regression
 
-If we want to infer cause and effect we can use linear regression (see @sec-reg). Let's say we want to know if the number of insects at a site is predictive of mammal mass at a site. First let's join the two data frames like wed did in the last chapter:
+If we want to infer cause and effect we can use linear regression (see [9.1.3.2 Cause and Effect](da_infer.qmd#sec-reg)). Let's say we want to know if the number of insects at a site is predictive of mammal mass at a site. First let's join the two data frames like wed did in the last chapter:
 
 ```{r}
 
