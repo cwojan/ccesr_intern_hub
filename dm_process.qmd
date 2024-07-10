@@ -2,3 +2,35 @@
 title: "Error Checking and Data Processing"
 toc: true
 ---
+
+Finally, when you have your data recorded, organized, documented, and backed-up, there are a few things to think about before analysis: checking for errors and late-stage processing steps.
+
+## Error Checking
+
+Your error checking method may vary depending on the medium on which your data were recorded, but a general note is that you can elect to error check everything, or a certain percentage of all the data when data are numerous. Different organizations will follow different practices. Oftentimes personal research projects are small scale enough that full error checking is feasible.
+
+**Paper Data**
+
+-   Cross reference digitally entered data with paper sheet for errors in entry
+
+    -   Helpful to have two people
+
+-   Note any corrections in a new column
+
+-   Hard to check field recording errors, but make any corrections in a different colored writing utensil for clarity
+
+**Electronic Data**
+
+-   Check version control (e.g., Google Drive files) for unusual edits, and roll back where necessary
+
+    -   Note when you rolled back a change in a new column
+
+## Data Processing
+
+When you are getting ready to analyze your data, the best file formats are text-based with some sort of delimiter between columns.
+
+The most popular of these file formats is the "comma separated value" file, or .csv. It is small in size, as it is a simple text file where commas denote new columns and line breaks denote new rows. This is easy for a wide variety of computer programs to interpret, and will most likely continue to be efficient for the foreseeable future.
+
+Unlike Excel spreadsheets or Google Sheets, text based format do not support multiple sheets, cell/text colors, or special formatting. As such, do not rely on color or font for describing your electronic data.
+
+You can create .csv files form Excel using the "Save as" command and selecting the csv format, and you can download a Google Sheet as a csv as one of the options. You can also "publish" a Google sheet as a csv on the web to import directly into R, but that is a topic for later in this site.

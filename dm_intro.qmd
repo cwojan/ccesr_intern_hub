@@ -3,7 +3,7 @@ title: "The Flow of Data"
 toc: true
 ---
 
-In any scientific research, data management is a highly important skill. As ecologists, we should strive to record, organize, document, and back up our data in such a way that it will be accessible and useful to both our future selves and future researchers.
+In any scientific research, data management is a highly important skill. As ecologists, we should strive to record, organize, document, and back up our data in such a way that it will be accessible and useful to both our future selves and other future researchers.
 
 In general, the "flow of data" follows the this general pattern:
 
@@ -12,6 +12,6 @@ In general, the "flow of data" follows the this general pattern:
     1.  Back Up - store copies in an alternative medium / location
     2.  Error Check - look over the data for entry errors
     3.  Other Processing - ensure proper filenames, data formats, etc., leading to...
-3.  Processed Data - this is the data that we can use to anlyze and answer scientific questions!
+3.  Processed Data - this is the data that we can use to analyze and answer scientific questions!
 
 The following chapters will go into detail about this flow, with tips and various things to consider.

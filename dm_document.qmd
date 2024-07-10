@@ -2,3 +2,97 @@
 title: "Documentation and Storage"
 toc: true
 ---
+
+“Your primary collaborator is yourself 6 months from now & your past self doesn’t answer email!”\
+\
+- Rachel Ainsworth
+
+Taking notes as you conduct research and backing things up are both generally good practice. Here are some things to think about regarding both:
+
+## Document
+
+**What** **to document:**
+
+-   File-specific info or metadata
+
+    -   file naming patterns
+
+    -   variable/attribute definitions
+
+-   Technical steps
+
+    -   data collection
+
+    -   processing (what did you include or exclude?)
+
+    -   analysis steps
+
+-   External data sources
+
+-   Software used with version numbers
+
+-   Meeting notes
+
+-   Organization schemes
+
+**Where to document:**
+
+-   Lab Notebook
+
+    -   Can be physical or digital
+
+    -   Many scientists use pen for this sort of thing
+
+-   Field notebook
+
+    -   Generally easier to be physical if taking notes in the field, can be digital if taking notes at end of day
+
+-   ReadMe file
+
+    -   Good for computer work - data processing and analysis
+
+**When to document:**
+
+-   Set aside \~15 minutes after your work session
+
+-   Develop a regular routine during the research process
+
+    -   Easier to do than remembering everything at the end
+
+-   Can also note things opportunistically as you go
+
+    -   jot potentially relevant observations down in a notebook
+
+    -   comment out code
+
+## Store
+
+**Backing up your data based on medium:**
+
+Paper Data Sheets
+
+-   take a photo or scan each newly filled data sheet after each day of data collection
+
+-   Back up entered data files in cloud storage or some other location
+
+Electronic Data
+
+-   Download a dated copy of all electronically entered files after each day of data collection
+
+    -   You can write an R script to do this for you with Google Sheets
+
+**Problems you may encounter:**
+
+-   Running out of storage space
+
+    -   University accounts usually have plenty, personal not so much...
+
+-   Hard drive failure
+
+    -   Cloud-based storage and alternative physical drives as failsafes
+
+-   Cloud storage providers changing terms
+
+    -   Everything is a service subscription these days...
+
+**Universal Tip:** Use multiple back up formats and physical locations of those back ups.
