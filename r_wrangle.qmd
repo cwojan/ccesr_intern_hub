@@ -64,7 +64,7 @@ As you can see, using mutate mean you have to write the name of data frame fewer
 
 ## Pivoting / Reshaping
 
-You also may need to transform your data between the wide and long formats (recall the data management slides, which will be added to this book eventually). I find that the pivot functions from tidyr in the tidyverse are easier to use, so we will go over those. But by all means, if you prefer base, go for it! I'm just less familiar with using base R for this.
+You also may need to transform your data between the wide and long formats (see [2.1 Data Formats](dm_record.qmd#sec-formats)). I find that the pivot functions from tidyr in the tidyverse are easier to use, so we will go over those. But by all means, if you prefer base, go for it! I'm just less familiar with using base R for this.
 
 ### Wide to Long
 
@@ -101,14 +101,122 @@ wide_insects <- pivot_wider(data = long_insects,
 
 This is the inverse of what we just did - we made a column for each value in the "order" column given to the names_from argument, the values of which are pulled from the "count" column given to the values_from argument.
 
-### Base
+### Other Data Reformatting Functions
 
-You can pivot data in base R with reshape, but this section is under construction...
+There are other functions that can be used to reformat data between long and wide, but some are outdated. You may come across some of them in blogs of code examples.
+
+The base R function for transforming data between wide and long format is "reshape", from the "stats" package. It's just one function that can transform data in both directions. More info here:
+
+<https://www.rdocumentation.org/packages/stats/versions/3.6.2/topics/reshape>
+
+There are also previous versions of the "pivot" functions, such as
+
+-   "cast" and "melt", from the "reshape" package
+
+-   "dcast", "acast", and "melt", from the "reshape2" package
+
+-   "gather" and "spread", from older versions of the "tidyr" package
+
+All of the above still work, but have been superseded by the pivot functions.
+
+Personally, I prefer to use the pivot functions because they are named as exactly what they do and they work nicely with other tidyverse functions. The reshape function from base R works fine too, but may have some slight differences. I recommend avoiding using the older cast, melt, gather, or spread functions.
 
 ## String Manipulation
 
-Under construction....
+String manipulation may sound like playing cat's cradle or fingerstyle guitar, but in the context of R programming, it refers to working with text data. As you may recall, values with the character data type in R can also be called "strings". Essentially, strings ar strings of characters (alphanumeric, symbols, etc.).
 
-### Base
+In ecological and environmental data, we often encounter strings as names of sites or plots, as labels for categorical data (which we transform into factors), or as notes on observations.
 
-### tidyverse
+R has many functions for working with strings - combining them, splitting them, searching through them, transforming them, padding them with leading zeroes, etc. We will focus on a few simple ones that might be useful for typical ecological data workflows. Base R features several valuable functions that can do these tasks. In addition, the "stringr" package in the tidyverse features a suite of consistently formatted functions that do similar things (stringr is part of the core tidyverse, so is loaded with the "library(tidyverse)" command). If you are getting deep into pattern recognition, string transformation, etc., the stringr package is probably your best bet, but for the simple things we're about to go over, base and tidverse functions both work fine.
+
+Note: From a broad perspective, R is not the language of choice when it comes to text data, as it was designed primarily for statistics. In the realms of bioinformatics (genomes are really long strings!) and language processing (the written word is made of strings!), Python is often used. But for most ecological purposes, R does just fine.
+
+### Combining Strings {#sec-string_combine}
+
+Often times you may want to combine several columns of your data into an "ID" type variable to describe observations from a certain plot in a certain site on a particular date. The base R "paste" function and then less well-named "str_c" function from the stringr package can do this easily.
+
+```{r}
+## first let's make some fake data to work with
+## this will include sites , plots, and years of observation
+fake_observations <- data.frame(site = c(1, 1, 2, 2, 1, 1, 2, 2),
+                                plot = c("a", "b", "a", "b", 
+                                         "a", "b", "a", "b"),
+                                year = c(2023, 2023, 2023, 2023,
+                                         2024, 2024, 2024, 2024))
+
+## now let's add an ID column by combining these variables
+
+## first with paste
+## we specify we want each variable to be separated by an underscore
+## with the "sep" argument
+fake_observations$id <- paste(fake_observations$site,
+                              fake_observations$plot,
+                              fake_observations$year,
+                              sep = "_") 
+
+## now look at the result
+fake_observations$id
+
+## now let's try with str_c
+## this time we use a hyphen in the "sep" argument
+fake_observations <- mutate(fake_observations,
+                            id2 = str_c(site, plot, year, sep = "-"))
+
+## and we can look at this as well (using pull from tidyverse this time)
+pull(fake_observations, id2)
+```
+
+Note that for both functions we first present the variables we want to combine, and then specify how we want each to be separated in the resulting string. Also note that "site" and "year" are numeric data in the original data frame, but can be combined into strings all the same.
+
+The paste function and str_c function behave similarly in most simple cases, but have slightly different rules when it comes to dealing with missing values (NAs) and when input vectors have different lengths.
+
+### Converting String Case
+
+Sometimes when entering ecological data, character strings might end up with inconsistent capitalization. As a result, when converting a categorical variable into a factor, you can end up with multiple levels for the same category. For example, if you have four plots at a site- "north", "east", "south", and "west", and some entries of the "north" plot are written as "North", the resulting factor would have both a "north" level and a "North" level. Converting your strings all to one case can avoid this.
+
+You can convert to upper case with:
+
+-   "toupper", the base R function
+
+-   "str_to_upper", the stringr function
+
+And you can convert to lower case with:
+
+-   "tolower", the base R function
+
+-   "str_to_lower", the stringr function
+
+Here is an example:
+
+```{r}
+## create a vector of character strings to work with
+plots <- c("north", "North", "east", "east",
+           "South", "South", "West", "west")
+
+## convert to factor
+plot_factor <- as.factor(plots)
+
+## check out the factor
+summary(plot_factor)
+
+## oh no, there are six levels instead of four!
+
+## let's fix it with "tolower"
+plots_lower <- tolower(plots)
+
+## and factorize...
+lower_plot_factor <- as.factor(plots_lower)
+
+summary(lower_plot_factor)
+
+## much better!
+
+```
+
+For more information see the reference site for the stringr package:
+
+<https://stringr.tidyverse.org/>
+
+And this article comparing stringr and base R string functions:
+
+<https://stringr.tidyverse.org/articles/from-base.html#mutate-strings>

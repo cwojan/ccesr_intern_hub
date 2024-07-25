@@ -74,7 +74,21 @@ These two files will be used throughout the next chapters. The first is some mad
 
 ### Other File Types
 
-Under construction....
+Now there may be times when you want or need to import data that aren't .csv files. You may come across .tsv files, which are "tab-separated values" files. These are also in a text based format, but use tabs instead of commas to delimit columns. In Base R, the "read.delim" function will read .tsv files by default. The tidyverse readr package has "read_tsv" for this purpose. You can also use "read.delim" or readr's "read_delim" to read a text file with any sort of delimiter between columns, like dashes, underscores, dots, etc. The "read.delim" function can do this by setting the "sep" argument, and the "read_delim"function can do it by setting the "delim" argument.
+
+You may also want to import Microsoft Excel files (.xls or .xlsx). Base R doesn't have any functionality for this, but the tidyverse's readxl package does: the "read_excel" function. Do note however that you may need to specify the sheet you want! Also, the readxl package is not in the "core" tidyverse, so you will have to specifically load it in R.
+
+More info on the tidyverse's readr and readxl can be found here:
+
+<https://readr.tidyverse.org/>
+
+<https://readxl.tidyverse.org/>
+
+You can also import Google Sheets with the googlesheets4 package, but that is is a bit trickier given that you'll need to specify your Google credentials and work with Google Drive folder hierarchy and file IDs. The googlesheets4 package, as well as the related googledrive package, are both in the tidyverse family, but not in the "core", so need to be specifically loaded. More info here:
+
+<https://googlesheets4.tidyverse.org/>
+
+<https://googledrive.tidyverse.org/>
 
 ## Checking Data
 

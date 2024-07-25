@@ -42,6 +42,12 @@ You can install the tidyverse suite with:
 install.packages("tidyverse")
 ```
 
+More information on this suite of packages can be found here:
+
+<https://www.tidyverse.org/>
+
+Note that when you install the tidyverse, it instalss a large suite of packages, but when you load the tidyverse with the "library" function, it only loads a smaller subset of "core" packages by default. Thus, if you are looking to use a specific tidyverse package with a more niche purpose, you may need to load it separately with another call of the "library" function.
+
 ## Subsetting
 
 In the last section we introduced data structures. Now let's talk about what you can do with them.
@@ -126,6 +132,8 @@ named_list["first"]
 
 ### Data Frames {#sec-sub_data}
 
+#### Base
+
 Subsetting data frames is a little easier to get a handle on, you just need to think in two dimensions. When using single brackets to subset data frames, you need to specify the index of the row and the column separately and in that order. You separate each index number by a comma inside the brackets. Check it out:
 
 ```{r}
@@ -181,6 +189,8 @@ my_data[my_data$number < 3,]
 my_data[my_data$number < 3 & my_data$vowel == FALSE,]
 ```
 
+#### tidyverse
+
 Now the reason that we talked about packages in between data structures and subsetting is because the tidyverse (specifically, the dplyr package) has more functions for subsetting: filter and select. Filter works much like grabbing rows by value, and select works like grabbing columns by name. Let's look at some examples:
 
 ```{r}
@@ -204,7 +214,7 @@ select(.data = my_data, number)
 pull(.data = my_data, number)
 ```
 
-As you can see, filter, select and pull are versatile, consistent and powerful. However, they lack one key ability: assignment. You can use brackets and \$s to assign things:
+As you can see, filter, select and pull are versatile, consistent and powerful. However, they lack one key ability: assignment. You can use brackets and \$s to assign things (which are base R operators):
 
 ```{r}
 
@@ -216,7 +226,3 @@ my_data
 my_data$new_column <- c("some", "new", "data")
 my_data
 ```
-
-## Optional: Flow Control
-
-## Optional: Writing Functions

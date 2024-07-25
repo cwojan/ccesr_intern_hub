@@ -332,12 +332,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
       </ul>
   </li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./references.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">References</span></a>
-  </div>
-</li>
     </ul>
     </div>
 </nav>
@@ -355,8 +349,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#lists" id="toc-lists" class="nav-link" data-scroll-target="#lists"><span class="header-section-number">14.2.2</span> Lists</a></li>
   <li><a href="#sec-sub_data" id="toc-sec-sub_data" class="nav-link" data-scroll-target="#sec-sub_data"><span class="header-section-number">14.2.3</span> Data Frames</a></li>
   </ul></li>
-  <li><a href="#optional-flow-control" id="toc-optional-flow-control" class="nav-link" data-scroll-target="#optional-flow-control"><span class="header-section-number">14.3</span> Optional: Flow Control</a></li>
-  <li><a href="#optional-writing-functions" id="toc-optional-writing-functions" class="nav-link" data-scroll-target="#optional-writing-functions"><span class="header-section-number">14.4</span> Optional: Writing Functions</a></li>
   </ul>
 </nav>
     </div>
@@ -405,6 +397,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"tidyverse"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
+<p>More information on this suite of packages can be found here:</p>
+<p><a href="https://www.tidyverse.org/" class="uri">https://www.tidyverse.org/</a></p>
+<p>Note that when you install the tidyverse, it instalss a large suite of packages, but when you load the tidyverse with the “library” function, it only loads a smaller subset of “core” packages by default. Thus, if you are looking to use a specific tidyverse package with a more niche purpose, you may need to load it separately with another call of the “library” function.</p>
 </section>
 <section id="subsetting" class="level2" data-number="14.2">
 <h2 data-number="14.2" class="anchored" data-anchor-id="subsetting"><span class="header-section-number">14.2</span> Subsetting</h2>
@@ -532,6 +527,8 @@ $second
 </section>
 <section id="sec-sub_data" class="level3" data-number="14.2.3">
 <h3 data-number="14.2.3" class="anchored" data-anchor-id="sec-sub_data"><span class="header-section-number">14.2.3</span> Data Frames</h3>
+<section id="base" class="level4" data-number="14.2.3.1">
+<h4 data-number="14.2.3.1" class="anchored" data-anchor-id="base"><span class="header-section-number">14.2.3.1</span> Base</h4>
 <p>Subsetting data frames is a little easier to get a handle on, you just need to think in two dimensions. When using single brackets to subset data frames, you need to specify the index of the row and the column separately and in that order. You separate each index number by a comma inside the brackets. Check it out:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="do">## create data frame</span></span>
@@ -622,6 +619,9 @@ $second
 2      b      2 FALSE</code></pre>
 </div>
 </div>
+</section>
+<section id="tidyverse" class="level4" data-number="14.2.3.2">
+<h4 data-number="14.2.3.2" class="anchored" data-anchor-id="tidyverse"><span class="header-section-number">14.2.3.2</span> tidyverse</h4>
 <p>Now the reason that we talked about packages in between data structures and subsetting is because the tidyverse (specifically, the dplyr package) has more functions for subsetting: filter and select. Filter works much like grabbing rows by value, and select works like grabbing columns by name. Let’s look at some examples:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb64"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb64-1"><a href="#cb64-1" aria-hidden="true" tabindex="-1"></a><span class="do">## load the tidyverse</span></span>
@@ -675,7 +675,7 @@ $second
 <pre><code>[1] 1 2 3</code></pre>
 </div>
 </div>
-<p>As you can see, filter, select and pull are versatile, consistent and powerful. However, they lack one key ability: assignment. You can use brackets and $s to assign things:</p>
+<p>As you can see, filter, select and pull are versatile, consistent and powerful. However, they lack one key ability: assignment. You can use brackets and $s to assign things (which are base R operators):</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb76"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb76-1"><a href="#cb76-1" aria-hidden="true" tabindex="-1"></a><span class="do">## assign a new value to a data element (NA means missing value)</span></span>
 <span id="cb76-2"><a href="#cb76-2" aria-hidden="true" tabindex="-1"></a>my_data[<span class="dv">3</span>,<span class="dv">2</span>] <span class="ot">&lt;-</span> <span class="cn">NA</span></span>
@@ -696,15 +696,10 @@ $second
 3      c     NA FALSE       data</code></pre>
 </div>
 </div>
-</section>
-</section>
-<section id="optional-flow-control" class="level2" data-number="14.3">
-<h2 data-number="14.3" class="anchored" data-anchor-id="optional-flow-control"><span class="header-section-number">14.3</span> Optional: Flow Control</h2>
-</section>
-<section id="optional-writing-functions" class="level2" data-number="14.4">
-<h2 data-number="14.4" class="anchored" data-anchor-id="optional-writing-functions"><span class="header-section-number">14.4</span> Optional: Writing Functions</h2>
 
 
+</section>
+</section>
 </section>
 
 </main> <!-- /main -->

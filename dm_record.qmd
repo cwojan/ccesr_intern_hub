@@ -5,9 +5,22 @@ toc: true
 
 First, let's go over how we can record "wild" data!
 
-## Data Formats
+## Data Formats {#sec-formats}
 
-One thing to think about when recording your data is the formatting. In data science, a commonly used dichotomy is between "wide" and "long" data formats. You are likely more used to wide data, but long data is often better for scientific computing and analysis. Here is a comparison:
+One thing to think about when recording your data is the formatting. First, you generally want to have data arranged in a table such that there is one row at the top that acts as a "header", labeling each column. The rest of the rows should just be values of each of those columns. For example:
+
+| Variable 1 | Variable 2 | Variable 3 |
+|------------|------------|------------|
+| 1          | Blue       | 45.3       |
+| 2          | Blue       | 36.9       |
+| 3          | Red        | 39.1       |
+| 4          | Green      | 41.2       |
+
+Data that is formatted like this is easiest for scientific computing environments to interpret. Data like this can be saved as a simple text file, which allows for easier storage, accessibility, and future-proofing.
+
+Generally, you will want to avoid breaking the pattern of a simple table, like repeating header rows, using rows or columns for organization, or merging cells.
+
+In data science there is also a commonly used dichotomy is between "wide" and "long" data formats. You are likely more used to wide data, but long data can be more efficient for scientific computing and analysis. Here is a comparison:
 
 **Wide Data**
 

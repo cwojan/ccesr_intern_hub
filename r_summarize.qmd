@@ -42,7 +42,7 @@ long_insects <- pivot_longer(data = fake_insects,
 
 ## Describing With Summaries
 
-You'll often want to give simple, illustrative information about the data you collected. The tidyverse is great for this!
+You'll often want to give simple, illustrative information about the data you collected. The tidyverse is great for this! (base R has "aggregate", which also works, but we won't go into it here).
 
 ### tidyverse
 
@@ -113,22 +113,36 @@ orders_by_habitat <- long_insects %>%
 head(orders_by_habitat)
 ```
 
-Finally, you can save summarized output with write.csv() or write_csv():
+### Saving Summaries
+
+Finally, you can save summarized output with base R's write.csv() or write_csv() from the tidyverse:
 
 ```{r}
 #| eval: false
 ## save summary to your working/project directory
 ## first argument is data, second argument is filename
-write.csv(orders_by_habitat, "summary of orders")
+write.csv(orders_by_habitat, "order_summary")
 ```
 
-### Base
+When saving output, it can be often helpful to add a timestamp to the saved file name, so you can easily identify when you created it and sort among versions. This is another time when we can use the string combining functions we learned about earlier! (see [16.3.1 String Manipulation, Combining Strings](r_wrangle.qmd#sec-string_combine))
 
-aggregate function (under construction...)
+```{r}
+#| eval: false
+## first let's save a timestamp string with "Sys.time"
+## I like to format it with the "format" function 
+## this code results in "YYYYMMDD_HHMMSS" format
+## (don't worry about the specifics, but feel free to use this code)
+timestamp <- format(Sys.time(), format = "%Y%m%d_%H%M%S")
 
-### Making Nice Tables
+## then we can use it in our data writing step:
+write.csv(orders_by_habitat, paste("order_summary", timestamp, sep = "_"))
+```
 
-the gt package is good for this (under construction....)
+### Making Pretty Tables
+
+The "gt" package is good for this (quick tutorial under construction....)
+
+<https://gt.rstudio.com/>
 
 ## Community Ecology
 

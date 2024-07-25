@@ -37,12 +37,9 @@ book:
     - part: "Appendices"
       chapters: 
         - appendix_a.qmd
-    - references.qmd
 
 comments:
   hypothesis: true
-
-bibliography: references.bib
 
 format:
   html:

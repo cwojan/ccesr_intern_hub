@@ -139,7 +139,7 @@ In R, values can be numeric, character, or logical (among other, more specific t
 2
 2.5
 
-## character values are letters, words, phrases (often referred to as "strings)
+## character values are letters, words, phrases (often referred to as "strings")
 "a"
 "apple"
 "there is a worm in my apple"

@@ -256,6 +256,52 @@ See the following link for more info:
 
 <https://cran.r-project.org/web/packages/viridis/vignettes/intro-to-viridis.html>
 
+## Saving Figures
+
+Much like your data summaries, you likely will want to save them. You can save figures from the RStudio user interface, i.e., the "Export" button in the "Plots" pane. With the Export button, you can save as an image, and specify the dimensions. This will generally work fine for sharing figures via email or for slide presentations.
+
+However, you can also use the "ggsave" function for figures made with ggplot, which can be useful for creating higher quality images for poster printing. Here is an example:
+
+```{r}
+#| eval: false
+
+## first, you need to save your figure as an object in your R environment
+## let's do this with the last plot we made
+mammal_plot <- 
+  ggplot(data = fake_mammals, aes(x = mass_g, color = species)) +
+  geom_density(linewidth = 1) + ## create density plot, wider lines
+  scale_color_viridis_d() + ## set viridis discrete colors
+  labs(x = "Mammal Mass (g)", y = "Frequency") + ## nicer labels
+  theme_bw() ## my favorite simple theme
+
+## then you can save it to your project workspace!
+
+## first let's generate a timestamp like we did for summary data
+timestamp <- format(Sys.time(), format = "%Y%m%d_%H%M%S")
+
+## and now use ggsave
+## filename is the first argument, followed by the plot to save
+## here I manually type ".tiff" in my paste function 
+## to specify a high quality image filetype
+ggsave(paste("mammal_figure_", timestamp, ".tiff", sep = ""), 
+       plot = mammal_plot)
+```
+
+The ggsave function also features arguments to specify the dimensions of the image in inches, centimeters, pixels, etc. This allows you to make larger figures for posters (12x8 inches often works). However, larger images will often feature tiny text if you don't specify the axis labels to be larger fonts. You can specify text font size with the "theme" function when drawing a ggplot. For example:
+
+```{r}
+ggplot(data = fake_mammals, aes(x = mass_g, color = species)) +
+  geom_density(linewidth = 1) + ## create density plot, wider lines
+  scale_color_viridis_d() + ## set viridis discrete colors
+  labs(x = "Mammal Mass (g)", y = "Frequency") + ## nicer labels
+  theme_bw() + ## my favorite simple theme
+  theme(axis.title = element_text(size = 24)) ## enlarge axis titles
+```
+
+There are tons of theme elements that you can modify with the theme function, and you generally have to specify them with "element" wrappers, such as "element_text" above. Do note that if you use a built-in theme like "theme_bw" as I do above, you need to add the "theme" function *after* the built-in theme to customize further.
+
+At first it will take some trial and error to figure out the right combinations of font sizes in the ggplot theme and image sizes in ggsave, but eventually you will likely get a feel for it.
+
 ## Further Reading
 
 We have only scratched the surface of what ggplot2 can do! We barely discussed how to edit theme elements, nor did we spend much time on customizing scales.

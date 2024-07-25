@@ -332,12 +332,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
       </ul>
   </li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./references.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">References</span></a>
-  </div>
-</li>
     </ul>
     </div>
 </nav>
@@ -351,8 +345,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#describing-with-summaries" id="toc-describing-with-summaries" class="nav-link active" data-scroll-target="#describing-with-summaries"><span class="header-section-number">17.1</span> Describing With Summaries</a>
   <ul class="collapse">
   <li><a href="#tidyverse" id="toc-tidyverse" class="nav-link" data-scroll-target="#tidyverse"><span class="header-section-number">17.1.1</span> tidyverse</a></li>
-  <li><a href="#base" id="toc-base" class="nav-link" data-scroll-target="#base"><span class="header-section-number">17.1.2</span> Base</a></li>
-  <li><a href="#making-nice-tables" id="toc-making-nice-tables" class="nav-link" data-scroll-target="#making-nice-tables"><span class="header-section-number">17.1.3</span> Making Nice Tables</a></li>
+  <li><a href="#saving-summaries" id="toc-saving-summaries" class="nav-link" data-scroll-target="#saving-summaries"><span class="header-section-number">17.1.2</span> Saving Summaries</a></li>
+  <li><a href="#making-pretty-tables" id="toc-making-pretty-tables" class="nav-link" data-scroll-target="#making-pretty-tables"><span class="header-section-number">17.1.3</span> Making Pretty Tables</a></li>
   </ul></li>
   <li><a href="#community-ecology" id="toc-community-ecology" class="nav-link" data-scroll-target="#community-ecology"><span class="header-section-number">17.2</span> Community Ecology</a>
   <ul class="collapse">
@@ -418,7 +412,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <section id="describing-with-summaries" class="level2" data-number="17.1">
 <h2 data-number="17.1" class="anchored" data-anchor-id="describing-with-summaries"><span class="header-section-number">17.1</span> Describing With Summaries</h2>
-<p>You’ll often want to give simple, illustrative information about the data you collected. The tidyverse is great for this!</p>
+<p>You’ll often want to give simple, illustrative information about the data you collected. The tidyverse is great for this! (base R has “aggregate”, which also works, but we won’t go into it here).</p>
 <section id="tidyverse" class="level3" data-number="17.1.1">
 <h3 data-number="17.1.1" class="anchored" data-anchor-id="tidyverse"><span class="header-section-number">17.1.1</span> tidyverse</h3>
 <p>The package dplyr in the tidyverse has two wonderful functions: group_by() and summarize(). You can also use the British spelling, “summarise()”, but I use a z because <em>it’s what the founders would have wanted</em>.</p>
@@ -515,20 +509,31 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 6 forest    lepidoptera         4.33      2.33     1.53</code></pre>
 </div>
 </div>
-<p>Finally, you can save summarized output with write.csv() or write_csv():</p>
+</section>
+<section id="saving-summaries" class="level3" data-number="17.1.2">
+<h3 data-number="17.1.2" class="anchored" data-anchor-id="saving-summaries"><span class="header-section-number">17.1.2</span> Saving Summaries</h3>
+<p>Finally, you can save summarized output with base R’s write.csv() or write_csv() from the tidyverse:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="do">## save summary to your working/project directory</span></span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="do">## first argument is data, second argument is filename</span></span>
-<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="fu">write.csv</span>(orders_by_habitat, <span class="st">"summary of orders"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="fu">write.csv</span>(orders_by_habitat, <span class="st">"order_summary"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>When saving output, it can be often helpful to add a timestamp to the saved file name, so you can easily identify when you created it and sort among versions. This is another time when we can use the string combining functions we learned about earlier! (see <a href="./r_wrangle.html#sec-string_combine">16.3.1 String Manipulation, Combining Strings</a>)</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="do">## first let's save a timestamp string with "Sys.time"</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="do">## I like to format it with the "format" function </span></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="do">## this code results in "YYYYMMDD_HHMMSS" format</span></span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a><span class="do">## (don't worry about the specifics, but feel free to use this code)</span></span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>timestamp <span class="ot">&lt;-</span> <span class="fu">format</span>(<span class="fu">Sys.time</span>(), <span class="at">format =</span> <span class="st">"%Y%m%d_%H%M%S"</span>)</span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a><span class="do">## then we can use it in our data writing step:</span></span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a><span class="fu">write.csv</span>(orders_by_habitat, <span class="fu">paste</span>(<span class="st">"order_summary"</span>, timestamp, <span class="at">sep =</span> <span class="st">"_"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="base" class="level3" data-number="17.1.2">
-<h3 data-number="17.1.2" class="anchored" data-anchor-id="base"><span class="header-section-number">17.1.2</span> Base</h3>
-<p>aggregate function (under construction…)</p>
-</section>
-<section id="making-nice-tables" class="level3" data-number="17.1.3">
-<h3 data-number="17.1.3" class="anchored" data-anchor-id="making-nice-tables"><span class="header-section-number">17.1.3</span> Making Nice Tables</h3>
-<p>the gt package is good for this (under construction….)</p>
+<section id="making-pretty-tables" class="level3" data-number="17.1.3">
+<h3 data-number="17.1.3" class="anchored" data-anchor-id="making-pretty-tables"><span class="header-section-number">17.1.3</span> Making Pretty Tables</h3>
+<p>The “gt” package is good for this (quick tutorial under construction….)</p>
+<p><a href="https://gt.rstudio.com/" class="uri">https://gt.rstudio.com/</a></p>
 </section>
 </section>
 <section id="community-ecology" class="level2" data-number="17.2">
@@ -539,16 +544,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>You may be interested in how many insect orders are represented in each site.</p>
 <p>Let’s do it in a pipe chain!</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="do">## order presence</span></span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>order_richness_site <span class="ot">&lt;-</span> long_insects <span class="sc">%&gt;%</span> </span>
-<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">presence =</span> <span class="fu">as.numeric</span>(count <span class="sc">&gt;</span> <span class="dv">0</span>)) <span class="sc">%&gt;%</span> <span class="do">## create binary presence column</span></span>
-<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(site, site_type) <span class="sc">%&gt;%</span></span>
-<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">order_richness =</span> <span class="fu">sum</span>(presence))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="do">## order presence</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>order_richness_site <span class="ot">&lt;-</span> long_insects <span class="sc">%&gt;%</span> </span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">presence =</span> <span class="fu">as.numeric</span>(count <span class="sc">&gt;</span> <span class="dv">0</span>)) <span class="sc">%&gt;%</span> <span class="do">## create binary presence column</span></span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(site, site_type) <span class="sc">%&gt;%</span></span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">order_richness =</span> <span class="fu">sum</span>(presence))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>`summarise()` has grouped output by 'site'. You can override using the
 `.groups` argument.</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>order_richness_site</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>order_richness_site</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 6 × 3
 # Groups:   site [6]
@@ -574,12 +579,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Sometimes with summaries, you will want to connect them to other pieces of data. Here we have some insect counts by site, and some mammal data by site. Let’s connect them! We can use the “merge” function from base R or the “join” functions from the tidyverse.</p>
 <p>With merge:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="do">## grab only the site and total columns from insect_counts</span></span>
-<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="do">## this prevent doubling the site_type column</span></span>
-<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>merged_data <span class="ot">&lt;-</span> <span class="fu">merge</span>(insect_counts[,<span class="fu">c</span>(<span class="st">"site"</span>, <span class="st">"total_insects"</span>)], fake_mammals, <span class="at">by =</span> <span class="st">"site"</span>)</span>
-<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a><span class="do">## look at the new column in your data</span></span>
-<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(merged_data)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="do">## grab only the site and total columns from insect_counts</span></span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="do">## this prevent doubling the site_type column</span></span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>merged_data <span class="ot">&lt;-</span> <span class="fu">merge</span>(insect_counts[,<span class="fu">c</span>(<span class="st">"site"</span>, <span class="st">"total_insects"</span>)], fake_mammals, <span class="at">by =</span> <span class="st">"site"</span>)</span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a><span class="do">## look at the new column in your data</span></span>
+<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(merged_data)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>'data.frame':   48 obs. of  7 variables:
  $ site            : Factor w/ 6 levels "a","b","c","d",..: 1 1 1 1 1 1 1 1 1 1 ...
@@ -593,16 +598,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <p>With join:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="do">## there are different join functions for different contexts</span></span>
-<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="do">## left_join keeps every row from the first data frame and adds any matching rows from the</span></span>
-<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a><span class="do">## second. it works in most cases</span></span>
-<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a><span class="do">## inner_join and full_join can also be useful</span></span>
-<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>joined_data <span class="ot">&lt;-</span> insect_counts <span class="sc">%&gt;%</span></span>
-<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(total_insects, site) <span class="sc">%&gt;%</span></span>
-<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(fake_mammals, <span class="at">by =</span> <span class="st">"site"</span>)</span>
-<span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb21-9"><a href="#cb21-9" aria-hidden="true" tabindex="-1"></a><span class="do">## look at it</span></span>
-<span id="cb21-10"><a href="#cb21-10" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(joined_data)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="do">## there are different join functions for different contexts</span></span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a><span class="do">## left_join keeps every row from the first data frame and adds any matching rows from the</span></span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a><span class="do">## second. it works in most cases</span></span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a><span class="do">## inner_join and full_join can also be useful</span></span>
+<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a>joined_data <span class="ot">&lt;-</span> insect_counts <span class="sc">%&gt;%</span></span>
+<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(total_insects, site) <span class="sc">%&gt;%</span></span>
+<span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(fake_mammals, <span class="at">by =</span> <span class="st">"site"</span>)</span>
+<span id="cb22-8"><a href="#cb22-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-9"><a href="#cb22-9" aria-hidden="true" tabindex="-1"></a><span class="do">## look at it</span></span>
+<span id="cb22-10"><a href="#cb22-10" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(joined_data)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>tibble [48 × 7] (S3: tbl_df/tbl/data.frame)
  $ total_insects   : int [1:48] 84 84 84 84 84 84 84 84 84 84 ...

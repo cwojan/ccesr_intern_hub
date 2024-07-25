@@ -332,12 +332,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
       </ul>
   </li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./references.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">References</span></a>
-  </div>
-</li>
     </ul>
     </div>
 </nav>
@@ -407,7 +401,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">setwd</span>(<span class="st">"some/different/folder"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Or, in RStudio, you can click the Session dropdown menu at the top of the window, then “Set Working Directory”, then “Choose Directory.”</p>
-<p>If you use an R Project (<strong>highly recommended</strong>), you don’t have to worry as much about this. If you have a project open, the working directory will be automatically set to the folder that contains the .Rproj file that is created when you create a project. See <a href="#sec-rprojects" class="quarto-xref"><span class="quarto-unresolved-ref">sec-rprojects</span></a> for more info!</p>
+<p>If you use an R Project (<strong>highly recommended</strong>), you don’t have to worry as much about this. If you have a project open, the working directory will be automatically set to the folder that contains the .Rproj file that is created when you create a project. See <a href="rc_rstudio.html#sec-rprojects" class="quarto-xref"><span>Section 11.2</span></a> for more info!</p>
 <p>When you’re in an R Project, or have a csv you want in your working directory, you can read it into your environment like so:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="do">## read data</span></span>
@@ -441,7 +435,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="other-file-types" class="level3" data-number="15.1.4">
 <h3 data-number="15.1.4" class="anchored" data-anchor-id="other-file-types"><span class="header-section-number">15.1.4</span> Other File Types</h3>
-<p>Under construction….</p>
+<p>Now there may be times when you want or need to import data that aren’t .csv files. You may come across .tsv files, which are “tab-separated values” files. These are also in a text based format, but use tabs instead of commas to delimit columns. In Base R, the “read.delim” function will read .tsv files by default. The tidyverse readr package has “read_tsv” for this purpose. You can also use “read.delim” or readr’s “read_delim” to read a text file with any sort of delimiter between columns, like dashes, underscores, dots, etc. The “read.delim” function can do this by setting the “sep” argument, and the “read_delim”function can do it by setting the “delim” argument.</p>
+<p>You may also want to import Microsoft Excel files (.xls or .xlsx). Base R doesn’t have any functionality for this, but the tidyverse’s readxl package does: the “read_excel” function. Do note however that you may need to specify the sheet you want! Also, the readxl package is not in the “core” tidyverse, so you will have to specifically load it in R.</p>
+<p>More info on the tidyverse’s readr and readxl can be found here:</p>
+<p><a href="https://readr.tidyverse.org/" class="uri">https://readr.tidyverse.org/</a></p>
+<p><a href="https://readxl.tidyverse.org/" class="uri">https://readxl.tidyverse.org/</a></p>
+<p>You can also import Google Sheets with the googlesheets4 package, but that is is a bit trickier given that you’ll need to specify your Google credentials and work with Google Drive folder hierarchy and file IDs. The googlesheets4 package, as well as the related googledrive package, are both in the tidyverse family, but not in the “core”, so need to be specifically loaded. More info here:</p>
+<p><a href="https://googlesheets4.tidyverse.org/" class="uri">https://googlesheets4.tidyverse.org/</a></p>
+<p><a href="https://googledrive.tidyverse.org/" class="uri">https://googledrive.tidyverse.org/</a></p>
 </section>
 </section>
 <section id="checking-data" class="level2" data-number="15.2">

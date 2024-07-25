@@ -332,12 +332,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
       </ul>
   </li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./references.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">References</span></a>
-  </div>
-</li>
     </ul>
     </div>
 </nav>
@@ -359,7 +353,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#non-axis-variables" id="toc-non-axis-variables" class="nav-link" data-scroll-target="#non-axis-variables"><span class="header-section-number">19.3.5</span> Non-Axis Variables</a></li>
   <li><a href="#colorblind-safe-colors" id="toc-colorblind-safe-colors" class="nav-link" data-scroll-target="#colorblind-safe-colors"><span class="header-section-number">19.3.6</span> Colorblind Safe Colors</a></li>
   </ul></li>
-  <li><a href="#further-reading" id="toc-further-reading" class="nav-link" data-scroll-target="#further-reading"><span class="header-section-number">19.4</span> Further Reading</a></li>
+  <li><a href="#saving-figures" id="toc-saving-figures" class="nav-link" data-scroll-target="#saving-figures"><span class="header-section-number">19.4</span> Saving Figures</a></li>
+  <li><a href="#further-reading" id="toc-further-reading" class="nav-link" data-scroll-target="#further-reading"><span class="header-section-number">19.5</span> Further Reading</a></li>
   </ul>
 </nav>
     </div>
@@ -699,8 +694,53 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p><a href="https://cran.r-project.org/web/packages/viridis/vignettes/intro-to-viridis.html" class="uri">https://cran.r-project.org/web/packages/viridis/vignettes/intro-to-viridis.html</a></p>
 </section>
 </section>
-<section id="further-reading" class="level2" data-number="19.4">
-<h2 data-number="19.4" class="anchored" data-anchor-id="further-reading"><span class="header-section-number">19.4</span> Further Reading</h2>
+<section id="saving-figures" class="level2" data-number="19.4">
+<h2 data-number="19.4" class="anchored" data-anchor-id="saving-figures"><span class="header-section-number">19.4</span> Saving Figures</h2>
+<p>Much like your data summaries, you likely will want to save them. You can save figures from the RStudio user interface, i.e., the “Export” button in the “Plots” pane. With the Export button, you can save as an image, and specify the dimensions. This will generally work fine for sharing figures via email or for slide presentations.</p>
+<p>However, you can also use the “ggsave” function for figures made with ggplot, which can be useful for creating higher quality images for poster printing. Here is an example:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="do">## first, you need to save your figure as an object in your R environment</span></span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="do">## let's do this with the last plot we made</span></span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>mammal_plot <span class="ot">&lt;-</span> </span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="at">data =</span> fake_mammals, <span class="fu">aes</span>(<span class="at">x =</span> mass_g, <span class="at">color =</span> species)) <span class="sc">+</span></span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_density</span>(<span class="at">linewidth =</span> <span class="dv">1</span>) <span class="sc">+</span> <span class="do">## create density plot, wider lines</span></span>
+<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_viridis_d</span>() <span class="sc">+</span> <span class="do">## set viridis discrete colors</span></span>
+<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Mammal Mass (g)"</span>, <span class="at">y =</span> <span class="st">"Frequency"</span>) <span class="sc">+</span> <span class="do">## nicer labels</span></span>
+<span id="cb20-8"><a href="#cb20-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="do">## my favorite simple theme</span></span>
+<span id="cb20-9"><a href="#cb20-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-10"><a href="#cb20-10" aria-hidden="true" tabindex="-1"></a><span class="do">## then you can save it to your project workspace!</span></span>
+<span id="cb20-11"><a href="#cb20-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-12"><a href="#cb20-12" aria-hidden="true" tabindex="-1"></a><span class="do">## first let's generate a timestamp like we did for summary data</span></span>
+<span id="cb20-13"><a href="#cb20-13" aria-hidden="true" tabindex="-1"></a>timestamp <span class="ot">&lt;-</span> <span class="fu">format</span>(<span class="fu">Sys.time</span>(), <span class="at">format =</span> <span class="st">"%Y%m%d_%H%M%S"</span>)</span>
+<span id="cb20-14"><a href="#cb20-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-15"><a href="#cb20-15" aria-hidden="true" tabindex="-1"></a><span class="do">## and now use ggsave</span></span>
+<span id="cb20-16"><a href="#cb20-16" aria-hidden="true" tabindex="-1"></a><span class="do">## filename is the first argument, followed by the plot to save</span></span>
+<span id="cb20-17"><a href="#cb20-17" aria-hidden="true" tabindex="-1"></a><span class="do">## here I manually type ".tiff" in my paste function </span></span>
+<span id="cb20-18"><a href="#cb20-18" aria-hidden="true" tabindex="-1"></a><span class="do">## to specify a high quality image filetype</span></span>
+<span id="cb20-19"><a href="#cb20-19" aria-hidden="true" tabindex="-1"></a><span class="fu">ggsave</span>(<span class="fu">paste</span>(<span class="st">"mammal_figure_"</span>, timestamp, <span class="st">".tiff"</span>, <span class="at">sep =</span> <span class="st">""</span>), </span>
+<span id="cb20-20"><a href="#cb20-20" aria-hidden="true" tabindex="-1"></a>       <span class="at">plot =</span> mammal_plot)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>The ggsave function also features arguments to specify the dimensions of the image in inches, centimeters, pixels, etc. This allows you to make larger figures for posters (12x8 inches often works). However, larger images will often feature tiny text if you don’t specify the axis labels to be larger fonts. You can specify text font size with the “theme” function when drawing a ggplot. For example:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> fake_mammals, <span class="fu">aes</span>(<span class="at">x =</span> mass_g, <span class="at">color =</span> species)) <span class="sc">+</span></span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_density</span>(<span class="at">linewidth =</span> <span class="dv">1</span>) <span class="sc">+</span> <span class="do">## create density plot, wider lines</span></span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_viridis_d</span>() <span class="sc">+</span> <span class="do">## set viridis discrete colors</span></span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Mammal Mass (g)"</span>, <span class="at">y =</span> <span class="st">"Frequency"</span>) <span class="sc">+</span> <span class="do">## nicer labels</span></span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span> <span class="do">## my favorite simple theme</span></span>
+<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.title =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">24</span>)) <span class="do">## enlarge axis titles</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="r_visualize_files/figure-html/unnamed-chunk-17-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>There are tons of theme elements that you can modify with the theme function, and you generally have to specify them with “element” wrappers, such as “element_text” above. Do note that if you use a built-in theme like “theme_bw” as I do above, you need to add the “theme” function <em>after</em> the built-in theme to customize further.</p>
+<p>At first it will take some trial and error to figure out the right combinations of font sizes in the ggplot theme and image sizes in ggsave, but eventually you will likely get a feel for it.</p>
+</section>
+<section id="further-reading" class="level2" data-number="19.5">
+<h2 data-number="19.5" class="anchored" data-anchor-id="further-reading"><span class="header-section-number">19.5</span> Further Reading</h2>
 <p>We have only scratched the surface of what ggplot2 can do! We barely discussed how to edit theme elements, nor did we spend much time on customizing scales.</p>
 <p>ggplot2 has an excellent reference website which you can find here:</p>
 <p><a href="https://ggplot2.tidyverse.org/reference/index.html" class="uri">https://ggplot2.tidyverse.org/reference/index.html</a></p>

@@ -298,12 +298,6 @@ ul.task-list li input[type="checkbox"] {
 </li>
       </ul>
   </li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./references.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">References</span></a>
-  </div>
-</li>
     </ul>
     </div>
 </nav>
@@ -314,7 +308,7 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#data-formats" id="toc-data-formats" class="nav-link active" data-scroll-target="#data-formats"><span class="header-section-number">2.1</span> Data Formats</a></li>
+  <li><a href="#sec-formats" id="toc-sec-formats" class="nav-link active" data-scroll-target="#sec-formats"><span class="header-section-number">2.1</span> Data Formats</a></li>
   <li><a href="#data-sheet-design" id="toc-data-sheet-design" class="nav-link" data-scroll-target="#data-sheet-design"><span class="header-section-number">2.2</span> Data Sheet Design</a></li>
   <li><a href="#data-sheet-medium" id="toc-data-sheet-medium" class="nav-link" data-scroll-target="#data-sheet-medium"><span class="header-section-number">2.3</span> Data Sheet Medium</a></li>
   </ul>
@@ -343,9 +337,43 @@ ul.task-list li input[type="checkbox"] {
 
 
 <p>First, let’s go over how we can record “wild” data!</p>
-<section id="data-formats" class="level2" data-number="2.1">
-<h2 data-number="2.1" class="anchored" data-anchor-id="data-formats"><span class="header-section-number">2.1</span> Data Formats</h2>
-<p>One thing to think about when recording your data is the formatting. In data science, a commonly used dichotomy is between “wide” and “long” data formats. You are likely more used to wide data, but long data is often better for scientific computing and analysis. Here is a comparison:</p>
+<section id="sec-formats" class="level2" data-number="2.1">
+<h2 data-number="2.1" class="anchored" data-anchor-id="sec-formats"><span class="header-section-number">2.1</span> Data Formats</h2>
+<p>One thing to think about when recording your data is the formatting. First, you generally want to have data arranged in a table such that there is one row at the top that acts as a “header”, labeling each column. The rest of the rows should just be values of each of those columns. For example:</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Variable 1</th>
+<th>Variable 2</th>
+<th>Variable 3</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1</td>
+<td>Blue</td>
+<td>45.3</td>
+</tr>
+<tr class="even">
+<td>2</td>
+<td>Blue</td>
+<td>36.9</td>
+</tr>
+<tr class="odd">
+<td>3</td>
+<td>Red</td>
+<td>39.1</td>
+</tr>
+<tr class="even">
+<td>4</td>
+<td>Green</td>
+<td>41.2</td>
+</tr>
+</tbody>
+</table>
+<p>Data that is formatted like this is easiest for scientific computing environments to interpret. Data like this can be saved as a simple text file, which allows for easier storage, accessibility, and future-proofing.</p>
+<p>Generally, you will want to avoid breaking the pattern of a simple table, like repeating header rows, using rows or columns for organization, or merging cells.</p>
+<p>In data science there is also a commonly used dichotomy is between “wide” and “long” data formats. You are likely more used to wide data, but long data can be more efficient for scientific computing and analysis. Here is a comparison:</p>
 <p><strong>Wide Data</strong></p>
 <ul>
 <li><p>Easy for humans to read</p></li>
