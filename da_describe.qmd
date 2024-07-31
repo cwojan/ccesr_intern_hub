@@ -81,14 +81,42 @@ The differences are squared to get rid of negative differences, because other wi
 
 Another descriptor that may prove useful is the **dispersion**, or the variance divided by the mean. This provides an estimate of how skewed the data is - for example, the first plot above has very low dispersion, while the second plot has high dispersion.
 
-## Ecological Community Descriptors
+## Ecological Community Descriptors {#sec-community}
 
-Many of you are interested in describing the species composition of of community. Here's a few common descriptors:
+Many of you are interested in describing the species composition of of community. Here are a few common descriptors:
 
-**Species Richness** - this is just the number of different species present.
+**Species Richness** - this is just the number of different species present in a given area or sample. Simple comparison of species richness is only possible when the data are "equivalent", that is, your same sampling effort is the same for each replicate. If you are using quadrats to sample plant species, for example, you should use the same size, as a larger quadrat will generally contain more species.
 
-**Species Diversity** - this is an index that takes into account the richness as well as the relative abundances of each species. E.g. Shannon's Diversity Index, where higher numbers mean more species more evenly distributed.
+**Diversity indices** - If two sites have the same number of species they obviously have the same species richness but there can be large difference in the relative abundance of the species. Various diversity indices can takes into account the richness as well as the relative abundances of each species. The result of a diversity index is a value that increases not only as the number of species increases, but also as the relative abundance becomes more even. The two most commonly used indices are Simpson's and Shannon.
+
+-   **Simpson's Index** - uses the abundance of each species (*n*) in a sample to determine the proportion that each species contributes to the total. This index varies from 0 to 1, with the higher value indicating a more diverse sample. The formula for the 'classic' Simpson's diversity index (*n* = the abundance of an individual species/taxon; *N* = the total abundance):
+
+    $$
+    D = 1 - \sum{(\frac {n}{N})^2}
+    $$
+
+-   **Shannon Index** - uses the proportions of the various species but in a slightly different way - using a logarithm. The proportion of each species is not squared but multiplied by the log of the proportion. This index varies from 0 with no upper limit (although values are usually \<10). Higher values indicate higher diversity:
+
+    $$ H = - \sum{(\frac {n}{N})} Ln(\frac {n}{N}) $$
 
 **Species Evenness** - this is an index that estimates specifically how evenly distributed species abundances are. E.g., Pielou's Evenness, which ranges from 0 to 1, with 1 meaning that each species has equal numbers.
+
+**Diversity at different scales** - diversity is often explored at different spatial scales.
+
+-   *Alpha* diversity is the smallest scale or measurement unit, most likely from a single sample in a habitat.
+
+-   *Gamma* diversity is the largest scale of measurement, where you combine measurements of alpha diversity into one large sample over a large area (e.g. landscape or habitat).
+
+-   *Beta* diversity describes the change in diversity between smaller sampling units (at alpha level).
+
+**Similarity** **and dissimilarity** - compares samples and allows you to see which are most similar or dissimilar to one another. When looking at communities, analysis of similarity may be more useful in many cases than simply looking at diversity.
+
+-   **The Jaccard index** **of similarity** - often used when you only know the presence or absence of species in samples. The Jaccard index is calculated simply as the number of species that are shared by the two samples divided by the total number of species that occur in both samples combined. The higher the index the more similar the two samples (the index can have values between 0 and 1). In the formula *A* = number of species in first sample, *B* = number of species in second sample, and *J* = number of shared species:
+
+    $$ Jaccard = \frac {J}{A+B-J} $$
+
+-   **The Bray-Curtis dissimilarity index** - a more 'sensitive' measure of dissimilarity when abundance data is available. The index is always a number between 0 (two samples are identical) and 1 (two samples don't share any species), and can be calculated with the following formula:
+
+    $$ BC_{ij} = 1 - \frac {2C_{ij}}{S_i + S_j} $$
 
 Note: these measures can apply to any taxonomic distinction, e.g., family richness, order diversity, etc.

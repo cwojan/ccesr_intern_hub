@@ -116,7 +116,7 @@ Here we get an effect size of -0.874 (correlation coefficient), and a p-value of
 
 ### Linear Regression
 
-If we want to infer cause and effect we can use linear regression (see [9.1.3.2 Cause and Effect](da_infer.qmd#sec-reg)). Let's say we want to know if the number of insects at a site is predictive of mammal mass at a site. First let's join the two data frames like wed did in the last chapter:
+If we want to infer cause and effect we can use linear regression (see [9.1.3.2 Cause and Effect](da_infer.qmd#sec-reg)). Let's say we want to know if the number of insects at a site is predictive of mammal mass at a site. Mammal mass is a continuous numeric variable, so a basic linear regression should work. First let's join the two data frames like wed did in the last chapter:
 
 ```{r}
 
@@ -130,7 +130,7 @@ mammals_insects <- insect_counts %>%
 ## then I don't have to write it twice
 mass_model <- lm(mass_g ~ total_insects, data = mammals_insects)
 
-## look at the ouput with summary again
+## look at the output with summary again
 summary(mass_model)
 ```
 
@@ -138,7 +138,7 @@ If we look at the coefficient table, we can see that the total insect term has a
 
 ### Binomial Regression
 
-If your response variable is binary (presence absence), you can use a binomial regression with the glm() function. Let's test if mammal mass effects the probability of having ticks attached (tick_count).
+If your response variable is binary (e.g., presence/absence), you can use a binomial regression with the glm() function. Let's test if mammal mass effects the probability of having ticks attached (tick_count).
 
 ```{r}
 
@@ -156,7 +156,48 @@ If we look at this like we looked at the linear regression, the mass_g term has 
 
 ### Poisson / Negative Binomial Regression
 
-under construction....
+Sometimes your response variable will be neither continuous like mass, nor binary like presence/absence. Oftentimes in ecology you have counts: discrete, numeric data AKA integers. In this case, you can use the glm() function to conduct a Poisson regression, or the glm.nb() function (from the MASS package) to conduct a Negative Binomial Regression. Both regressions deal with count data, but the Poisson regression assumes the the mean count is equal to the variance of counts, while the negative binomial regression estimates another parameter to account for difference between the mean count and the variance of counts. Negative binomial regression is good for when the variance of counts is much higher than the mean count, which occurs when there are many small counts and only a few high counts.
+
+We can try these methods on our mammal tick data, testing if larger mammals have more ticks. First, let's try a Poisson regression:
+
+```{r}
+## we use the glm function, but with the "poisson" family
+tick_pois <- glm(tick_count ~ mass_g, data = fake_mammals, family = "poisson")
+
+## check output
+summary(tick_pois)
+
+```
+
+The coefficient table shows a positive estimate, 0.45938, for the effect size of mass on tick count. This means that for each one unit increase in mammal mass, the expected average tick count goes up by about half a tick. And the associated p-value is very low, suggesting very strong evidence for this relationship.
+
+However, tick counts on mammals happen to be a variable that often follows a negative binomial distribution (i.e., the variance exceeds the mean). We can see this:
+
+```{r}
+## check the mean tick count
+## setting na.rm to true ignores the missing tick_count values for the voles
+mean(fake_mammals$tick_count, na.rm = TRUE)
+
+## check the variance
+var(fake_mammals$tick_count, na.rm = TRUE)
+```
+
+As you can see the variance is \~17.9, while the mean is only \~2.97. Again, a Poisson regression would assume these to be equal, and in this case that assumption would appear to be unmet. There are statistical tests to assess whether the variance and mean are significantly different (see the "dispersiontest" function), but most of the time a researcher's background knowledge will guide the choice between Poisson and negative binomial regression. As alluded to above, there is actually a great number of research papers that show tick counts on hosts to be overdispersed (i.e. variance \>\> mean), so we have good reason to use a negative binomial regression instead based on the scientific literature. We can try it below:
+
+```{r}
+## now we are using the glm.nb function from the MASS package
+## (which comes with base R, but isn't loaded by default)
+tick_nb <- MASS::glm.nb(tick_count ~ mass_g, data = fake_mammals)
+
+## check output
+summary(tick_nb)
+```
+
+Here we see a qualitatively similar result - mammal mass has a significantly positive effect on tick count, as the p-value is very low, and the effect size estimate is \~0.607. The exact p-value and estimate are slightly different to the Poisson regression output, of course. We also get an estimate of something called "Theta" at 1.734, which is the parameter that describes the difference between the mean and variance of the response variable (tick count).
+
+Given that previous scientific research points towards a negative binomial regression being more appropriate in this case, our glm.nb results should be more sound.
+
+Note: in the R code above, we use the "MASS::" prefix before the glm.nb function. This is a way to use a function from a package without loading the entire package (the general form being "package::function()"). The MASS package features some functions with identical names to functions in the tidyverse (e.g., select), so we avoid confusing R by not loading MASS.
 
 ## Multivariate Analysis
 

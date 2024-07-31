@@ -340,7 +340,7 @@ window.Quarto = {
   <li><a href="#centrality" id="toc-centrality" class="nav-link active" data-scroll-target="#centrality"><span class="header-section-number">8.1</span> Centrality</a></li>
   <li><a href="#spread" id="toc-spread" class="nav-link" data-scroll-target="#spread"><span class="header-section-number">8.2</span> Spread</a></li>
   <li><a href="#other-descriptors" id="toc-other-descriptors" class="nav-link" data-scroll-target="#other-descriptors"><span class="header-section-number">8.3</span> Other Descriptors</a></li>
-  <li><a href="#ecological-community-descriptors" id="toc-ecological-community-descriptors" class="nav-link" data-scroll-target="#ecological-community-descriptors"><span class="header-section-number">8.4</span> Ecological Community Descriptors</a></li>
+  <li><a href="#sec-community" id="toc-sec-community" class="nav-link" data-scroll-target="#sec-community"><span class="header-section-number">8.4</span> Ecological Community Descriptors</a></li>
   </ul>
 </nav>
     </div>
@@ -412,12 +412,33 @@ Variance = \frac{\sum (Observation_i - Mean)^2}{Number of Observations}
 <h2 data-number="8.3" class="anchored" data-anchor-id="other-descriptors"><span class="header-section-number">8.3</span> Other Descriptors</h2>
 <p>Another descriptor that may prove useful is the <strong>dispersion</strong>, or the variance divided by the mean. This provides an estimate of how skewed the data is - for example, the first plot above has very low dispersion, while the second plot has high dispersion.</p>
 </section>
-<section id="ecological-community-descriptors" class="level2" data-number="8.4">
-<h2 data-number="8.4" class="anchored" data-anchor-id="ecological-community-descriptors"><span class="header-section-number">8.4</span> Ecological Community Descriptors</h2>
-<p>Many of you are interested in describing the species composition of of community. Here’s a few common descriptors:</p>
-<p><strong>Species Richness</strong> - this is just the number of different species present.</p>
-<p><strong>Species Diversity</strong> - this is an index that takes into account the richness as well as the relative abundances of each species. E.g. Shannon’s Diversity Index, where higher numbers mean more species more evenly distributed.</p>
+<section id="sec-community" class="level2" data-number="8.4">
+<h2 data-number="8.4" class="anchored" data-anchor-id="sec-community"><span class="header-section-number">8.4</span> Ecological Community Descriptors</h2>
+<p>Many of you are interested in describing the species composition of of community. Here are a few common descriptors:</p>
+<p><strong>Species Richness</strong> - this is just the number of different species present in a given area or sample. Simple comparison of species richness is only possible when the data are “equivalent”, that is, your same sampling effort is the same for each replicate. If you are using quadrats to sample plant species, for example, you should use the same size, as a larger quadrat will generally contain more species.</p>
+<p><strong>Diversity indices</strong> - If two sites have the same number of species they obviously have the same species richness but there can be large difference in the relative abundance of the species. Various diversity indices can takes into account the richness as well as the relative abundances of each species. The result of a diversity index is a value that increases not only as the number of species increases, but also as the relative abundance becomes more even. The two most commonly used indices are Simpson’s and Shannon.</p>
+<ul>
+<li><p><strong>Simpson’s Index</strong> - uses the abundance of each species (<em>n</em>) in a sample to determine the proportion that each species contributes to the total. This index varies from 0 to 1, with the higher value indicating a more diverse sample. The formula for the ‘classic’ Simpson’s diversity index (<em>n</em> = the abundance of an individual species/taxon; <em>N</em> = the total abundance):</p>
+<p><span class="math display">\[
+D = 1 - \sum{(\frac {n}{N})^2}
+\]</span></p></li>
+<li><p><strong>Shannon Index</strong> - uses the proportions of the various species but in a slightly different way - using a logarithm. The proportion of each species is not squared but multiplied by the log of the proportion. This index varies from 0 with no upper limit (although values are usually &lt;10). Higher values indicate higher diversity:</p>
+<p><span class="math display">\[ H = - \sum{(\frac {n}{N})} Ln(\frac {n}{N}) \]</span></p></li>
+</ul>
 <p><strong>Species Evenness</strong> - this is an index that estimates specifically how evenly distributed species abundances are. E.g., Pielou’s Evenness, which ranges from 0 to 1, with 1 meaning that each species has equal numbers.</p>
+<p><strong>Diversity at different scales</strong> - diversity is often explored at different spatial scales.</p>
+<ul>
+<li><p><em>Alpha</em> diversity is the smallest scale or measurement unit, most likely from a single sample in a habitat.</p></li>
+<li><p><em>Gamma</em> diversity is the largest scale of measurement, where you combine measurements of alpha diversity into one large sample over a large area (e.g.&nbsp;landscape or habitat).</p></li>
+<li><p><em>Beta</em> diversity describes the change in diversity between smaller sampling units (at alpha level).</p></li>
+</ul>
+<p><strong>Similarity</strong> <strong>and dissimilarity</strong> - compares samples and allows you to see which are most similar or dissimilar to one another. When looking at communities, analysis of similarity may be more useful in many cases than simply looking at diversity.</p>
+<ul>
+<li><p><strong>The Jaccard index</strong> <strong>of similarity</strong> - often used when you only know the presence or absence of species in samples. The Jaccard index is calculated simply as the number of species that are shared by the two samples divided by the total number of species that occur in both samples combined. The higher the index the more similar the two samples (the index can have values between 0 and 1). In the formula <em>A</em> = number of species in first sample, <em>B</em> = number of species in second sample, and <em>J</em> = number of shared species:</p>
+<p><span class="math display">\[ Jaccard = \frac {J}{A+B-J} \]</span></p></li>
+<li><p><strong>The Bray-Curtis dissimilarity index</strong> - a more ‘sensitive’ measure of dissimilarity when abundance data is available. The index is always a number between 0 (two samples are identical) and 1 (two samples don’t share any species), and can be calculated with the following formula:</p>
+<p><span class="math display">\[ BC_{ij} = 1 - \frac {2C_{ij}}{S_i + S_j} \]</span></p></li>
+</ul>
 <p>Note: these measures can apply to any taxonomic distinction, e.g., family richness, order diversity, etc.</p>
 
 

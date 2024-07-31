@@ -146,7 +146,7 @@ The "gt" package is good for this (quick tutorial under construction....)
 
 ## Community Ecology
 
-Averages and variances are all well and good but what about ecological measures? Let's try calculating the measures discussed in [8.4 Ecological Community Descriptors](da_describe.qmd#sec-community)!
+Averages and variances are all well and good but what about ecological measures?
 
 ### Richness
 
@@ -168,75 +168,7 @@ I calculated the presence column by checking if each value is positive (\> 0), w
 
 ### Diversity
 
-The *vegan* (short for *veg*etation *an*alysis) package contains many useful functions that are widely used in analysis of community data, including *diversity( )*, which will calculate Simpson's and Shannon's diversity indices.
-
-You need to get the *vegan* package installed to start with.
-
-```{r}
-## load vegan
-library(vegan)
-```
-
-Now let's calculate Simpson's diversity index with the insect community data:
-
-```{r}
-# select community ID and insect order (note: this can be any taxonomic distinction, e.g., species, class, functional group, etc.)
-insect_community <- fake_insects[, c(1,5:14)] %>%
-  column_to_rownames("site")  # use first column (sites) for row names
-
-str(insect_community) # a data frame with observations of 10 insect orders at 6 sites
-
-simpson <- diversity(insect_community, index = "simpson") # compute Simpson's 1-D Index of Diversity for each site. 
-simpson # closer to 1 = more diverse
-```
-
-The same *diversity( )* can be used to compute the Shannon Index (and many other diversity indices) by changing the 'index' argument:
-
-```{r}
-shannon <- diversity(insect_community) # note that Shannon is the default, therefore you don't have to specify which index to compute.
-shannon # Typically ranging from 1.5-3.4, higher = more diverse
-```
-
-Let's compare the two diversity indices:
-
-```{r}
-par(mfrow = c(1, 2)) # use par to generate panels with 1 row of 2 panels
-hist(simpson)
-hist(shannon)
-```
-
-The "hist()" function above provides a quick way to visualize the frequency of values for a given variable or index with histograms. We will learn more about data visualization a little later!
-
-### (Dis)similarity
-
-Dissimilarity analysis is a good way to explore variability in community composition between different sites. The *vegan* package also contains powerful functions for calculating (dis)similarity indices. For example, the *vegdist( )* function computes pairwise dissimilarity indices, which are used to quantify the compositional dissimilarity (distance) between two different sites. To use this function, your data is expected to be one where the rows are the sites/samples and the columns are the taxonomic groups (e.g. species, orders, functional groups).
-
-Let's calculate two most commonly used dissimilarity indices, Bray-Curtis and Jaccard indices, for the insect community data:
-
-```{r}
-## Bray-Curtis dissimilarity index
-bray <- vegdist(insect_community, method = "bray") # "bray" is the default
-bray # values are bounded between 0 and 1, where 0 = same composition, 1 = maximally dissimilar
-```
-
-```{r}
-## Jaccard dissimilarity index
-jaccard <- vegdist(insect_community, method = "jaccard") 
-jaccard
-```
-
-```{r}
-## Compare the two dissimilarity indices
-par(mfrow = c(1, 2))
-hist(bray, xlim = range(0.0,1.0))
-hist(jaccard, xlim = range(0.0,1.0))
-```
-
-### Potential Next Steps
-
-The next steps would be to do some sort of cluster analysis, such as principal components analysis (PCA) or non-metric multidimensional scaling (NMDS), to see where community associations exist. However, we are only sticking to the basics for now.
-
-Also, the 'BiodiversityR' package contains some useful routines and utilities for examination of community data.
+vegan package (under construction...)
 
 ## Related Topic: Joining Data
 

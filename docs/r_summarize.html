@@ -352,6 +352,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <ul class="collapse">
   <li><a href="#richness" id="toc-richness" class="nav-link" data-scroll-target="#richness"><span class="header-section-number">17.2.1</span> Richness</a></li>
   <li><a href="#diversity" id="toc-diversity" class="nav-link" data-scroll-target="#diversity"><span class="header-section-number">17.2.2</span> Diversity</a></li>
+  <li><a href="#dissimilarity" id="toc-dissimilarity" class="nav-link" data-scroll-target="#dissimilarity"><span class="header-section-number">17.2.3</span> (Dis)similarity</a></li>
+  <li><a href="#potential-next-steps" id="toc-potential-next-steps" class="nav-link" data-scroll-target="#potential-next-steps"><span class="header-section-number">17.2.4</span> Potential Next Steps</a></li>
   </ul></li>
   <li><a href="#related-topic-joining-data" id="toc-related-topic-joining-data" class="nav-link" data-scroll-target="#related-topic-joining-data"><span class="header-section-number">17.3</span> Related Topic: Joining Data</a></li>
   </ul>
@@ -538,7 +540,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="community-ecology" class="level2" data-number="17.2">
 <h2 data-number="17.2" class="anchored" data-anchor-id="community-ecology"><span class="header-section-number">17.2</span> Community Ecology</h2>
-<p>Averages and variances are all well and good but what about ecological measures?</p>
+<p>Averages and variances are all well and good but what about ecological measures? Let’s try calculating the measures discussed in <a href="./da_describe.html#sec-community">8.4 Ecological Community Descriptors</a>!</p>
 <section id="richness" class="level3" data-number="17.2.1">
 <h3 data-number="17.2.1" class="anchored" data-anchor-id="richness"><span class="header-section-number">17.2.1</span> Richness</h3>
 <p>You may be interested in how many insect orders are represented in each site.</p>
@@ -571,7 +573,120 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="diversity" class="level3" data-number="17.2.2">
 <h3 data-number="17.2.2" class="anchored" data-anchor-id="diversity"><span class="header-section-number">17.2.2</span> Diversity</h3>
-<p>vegan package (under construction…)</p>
+<p>The <em>vegan</em> (short for <em>veg</em>etation <em>an</em>alysis) package contains many useful functions that are widely used in analysis of community data, including <em>diversity( )</em>, which will calculate Simpson’s and Shannon’s diversity indices.</p>
+<p>You need to get the <em>vegan</em> package installed to start with.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="do">## load vegan</span></span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(vegan)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Loading required package: permute</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Loading required package: lattice</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>This is vegan 2.6-6.1</code></pre>
+</div>
+</div>
+<p>Now let’s calculate Simpson’s diversity index with the insect community data:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="co"># select community ID and insect order (note: this can be any taxonomic distinction, e.g., species, class, functional group, etc.)</span></span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>insect_community <span class="ot">&lt;-</span> fake_insects[, <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">5</span><span class="sc">:</span><span class="dv">14</span>)] <span class="sc">%&gt;%</span></span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">column_to_rownames</span>(<span class="st">"site"</span>)  <span class="co"># use first column (sites) for row names</span></span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(insect_community) <span class="co"># a data frame with observations of 10 insect orders at 6 sites</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>'data.frame':   6 obs. of  10 variables:
+ $ hymenoptera  : int  9 10 12 9 8 3
+ $ lepidoptera  : int  3 6 4 10 5 6
+ $ coleoptera   : int  16 22 24 12 15 6
+ $ diptera      : int  29 25 31 6 9 2
+ $ odonata      : int  4 6 3 2 4 7
+ $ hemiptera    : int  10 9 16 0 2 0
+ $ orthoptera   : int  12 9 13 21 18 27
+ $ ephemeroptera: int  0 0 32 0 0 0
+ $ tricoptera   : int  1 0 0 0 0 0
+ $ plecoptera   : int  0 0 1 0 0 0</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>simpson <span class="ot">&lt;-</span> <span class="fu">diversity</span>(insect_community, <span class="at">index =</span> <span class="st">"simpson"</span>) <span class="co"># compute Simpson's 1-D Index of Diversity for each site. </span></span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>simpson <span class="co"># closer to 1 = more diverse</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>        a         b         c         d         e         f 
+0.7947846 0.8093539 0.8293685 0.7761111 0.8013975 0.6682045 </code></pre>
+</div>
+</div>
+<p>The same <em>diversity( )</em> can be used to compute the Shannon Index (and many other diversity indices) by changing the ‘index’ argument:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>shannon <span class="ot">&lt;-</span> <span class="fu">diversity</span>(insect_community) <span class="co"># note that Shannon is the default, therefore you don't have to specify which index to compute.</span></span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>shannon <span class="co"># Typically ranging from 1.5-3.4, higher = more diverse</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>       a        b        c        d        e        f 
+1.770415 1.792899 1.897978 1.616152 1.749617 1.406488 </code></pre>
+</div>
+</div>
+<p>Let’s compare the two diversity indices:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>)) <span class="co"># use par to generate panels with 1 row of 2 panels</span></span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(simpson)</span>
+<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(shannon)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="r_summarize_files/figure-html/unnamed-chunk-13-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>The “hist()” function above provides a quick way to visualize the frequency of values for a given variable or index with histograms. We will learn more about data visualization a little later!</p>
+</section>
+<section id="dissimilarity" class="level3" data-number="17.2.3">
+<h3 data-number="17.2.3" class="anchored" data-anchor-id="dissimilarity"><span class="header-section-number">17.2.3</span> (Dis)similarity</h3>
+<p>Dissimilarity analysis is a good way to explore variability in community composition between different sites. The <em>vegan</em> package also contains powerful functions for calculating (dis)similarity indices. For example, the <em>vegdist( )</em> function computes pairwise dissimilarity indices, which are used to quantify the compositional dissimilarity (distance) between two different sites. To use this function, your data is expected to be one where the rows are the sites/samples and the columns are the taxonomic groups (e.g.&nbsp;species, orders, functional groups).</p>
+<p>Let’s calculate two most commonly used dissimilarity indices, Bray-Curtis and Jaccard indices, for the insect community data:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Bray-Curtis dissimilarity index</span></span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>bray <span class="ot">&lt;-</span> <span class="fu">vegdist</span>(insect_community, <span class="at">method =</span> <span class="st">"bray"</span>) <span class="co"># "bray" is the default</span></span>
+<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a>bray <span class="co"># values are bounded between 0 and 1, where 0 = same composition, 1 = maximally dissimilar</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>          a         b         c         d         e
+b 0.1228070                                        
+c 0.2545455 0.2645740                              
+d 0.3888889 0.4013605 0.5306122                    
+e 0.2689655 0.2972973 0.4517766 0.1570248          
+f 0.5555556 0.5362319 0.6684492 0.2792793 0.3214286</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Jaccard dissimilarity index</span></span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>jaccard <span class="ot">&lt;-</span> <span class="fu">vegdist</span>(insect_community, <span class="at">method =</span> <span class="st">"jaccard"</span>) </span>
+<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a>jaccard</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>          a         b         c         d         e
+b 0.2187500                                        
+c 0.4057971 0.4184397                              
+d 0.5600000 0.5728155 0.6933333                    
+e 0.4239130 0.4583333 0.6223776 0.2714286          
+f 0.7142857 0.6981132 0.8012821 0.4366197 0.4864865</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Compare the two dissimilarity indices</span></span>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>))</span>
+<span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(bray, <span class="at">xlim =</span> <span class="fu">range</span>(<span class="fl">0.0</span>,<span class="fl">1.0</span>))</span>
+<span id="cb35-4"><a href="#cb35-4" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(jaccard, <span class="at">xlim =</span> <span class="fu">range</span>(<span class="fl">0.0</span>,<span class="fl">1.0</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="r_summarize_files/figure-html/unnamed-chunk-16-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="potential-next-steps" class="level3" data-number="17.2.4">
+<h3 data-number="17.2.4" class="anchored" data-anchor-id="potential-next-steps"><span class="header-section-number">17.2.4</span> Potential Next Steps</h3>
+<p>The next steps would be to do some sort of cluster analysis, such as principal components analysis (PCA) or non-metric multidimensional scaling (NMDS), to see where community associations exist. However, we are only sticking to the basics for now.</p>
+<p>Also, the ‘BiodiversityR’ package contains some useful routines and utilities for examination of community data.</p>
 </section>
 </section>
 <section id="related-topic-joining-data" class="level2" data-number="17.3">
@@ -579,12 +694,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Sometimes with summaries, you will want to connect them to other pieces of data. Here we have some insect counts by site, and some mammal data by site. Let’s connect them! We can use the “merge” function from base R or the “join” functions from the tidyverse.</p>
 <p>With merge:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="do">## grab only the site and total columns from insect_counts</span></span>
-<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="do">## this prevent doubling the site_type column</span></span>
-<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>merged_data <span class="ot">&lt;-</span> <span class="fu">merge</span>(insect_counts[,<span class="fu">c</span>(<span class="st">"site"</span>, <span class="st">"total_insects"</span>)], fake_mammals, <span class="at">by =</span> <span class="st">"site"</span>)</span>
-<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a><span class="do">## look at the new column in your data</span></span>
-<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(merged_data)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="do">## grab only the site and total columns from insect_counts</span></span>
+<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a><span class="do">## this prevent doubling the site_type column</span></span>
+<span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a>merged_data <span class="ot">&lt;-</span> <span class="fu">merge</span>(insect_counts[,<span class="fu">c</span>(<span class="st">"site"</span>, <span class="st">"total_insects"</span>)], fake_mammals, <span class="at">by =</span> <span class="st">"site"</span>)</span>
+<span id="cb36-4"><a href="#cb36-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-5"><a href="#cb36-5" aria-hidden="true" tabindex="-1"></a><span class="do">## look at the new column in your data</span></span>
+<span id="cb36-6"><a href="#cb36-6" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(merged_data)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>'data.frame':   48 obs. of  7 variables:
  $ site            : Factor w/ 6 levels "a","b","c","d",..: 1 1 1 1 1 1 1 1 1 1 ...
@@ -598,16 +713,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <p>With join:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="do">## there are different join functions for different contexts</span></span>
-<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a><span class="do">## left_join keeps every row from the first data frame and adds any matching rows from the</span></span>
-<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a><span class="do">## second. it works in most cases</span></span>
-<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a><span class="do">## inner_join and full_join can also be useful</span></span>
-<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a>joined_data <span class="ot">&lt;-</span> insect_counts <span class="sc">%&gt;%</span></span>
-<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(total_insects, site) <span class="sc">%&gt;%</span></span>
-<span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(fake_mammals, <span class="at">by =</span> <span class="st">"site"</span>)</span>
-<span id="cb22-8"><a href="#cb22-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-9"><a href="#cb22-9" aria-hidden="true" tabindex="-1"></a><span class="do">## look at it</span></span>
-<span id="cb22-10"><a href="#cb22-10" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(joined_data)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="do">## there are different join functions for different contexts</span></span>
+<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a><span class="do">## left_join keeps every row from the first data frame and adds any matching rows from the</span></span>
+<span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a><span class="do">## second. it works in most cases</span></span>
+<span id="cb38-4"><a href="#cb38-4" aria-hidden="true" tabindex="-1"></a><span class="do">## inner_join and full_join can also be useful</span></span>
+<span id="cb38-5"><a href="#cb38-5" aria-hidden="true" tabindex="-1"></a>joined_data <span class="ot">&lt;-</span> insect_counts <span class="sc">%&gt;%</span></span>
+<span id="cb38-6"><a href="#cb38-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(total_insects, site) <span class="sc">%&gt;%</span></span>
+<span id="cb38-7"><a href="#cb38-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(fake_mammals, <span class="at">by =</span> <span class="st">"site"</span>)</span>
+<span id="cb38-8"><a href="#cb38-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-9"><a href="#cb38-9" aria-hidden="true" tabindex="-1"></a><span class="do">## look at it</span></span>
+<span id="cb38-10"><a href="#cb38-10" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(joined_data)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>tibble [48 × 7] (S3: tbl_df/tbl/data.frame)
  $ total_insects   : int [1:48] 84 84 84 84 84 84 84 84 84 84 ...

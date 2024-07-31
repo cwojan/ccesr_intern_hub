@@ -1,0 +1,94 @@
+---
+title: "Descriptive Statistics"
+toc: true
+execute: 
+  echo: false
+---
+
+Now, let's discuss how to describe your data:
+
+## Centrality
+
+You'll often want to describe the central tendency of your data - around where are the values centered?
+
+**Mean** - the average of the values, or the sum of all values divided by the number of observations
+
+**Median** - the value at which half of the observations are greater, and the other half are less
+
+**Mode** - the most commonly observed value
+
+Usually, the mean is a perfectly adequate descriptor. You can use it on continuous numeric data, discrete numeric data (though the mean value will often be unrealistic), or even ordinal rankings.
+
+**When might you prefer to use the median over the mean?**
+
+When the data is skewed such that there are many small values and a few big values, the mean might be inflated by those large values, and thus overestimate the central tendency in some contexts.
+
+When data is roughly normally distributed, the mean and median are roughly the same:
+
+```{r}
+#| message: false
+library(MASS)
+library(tidyverse)
+
+
+normdat <- tibble(x = rnorm(1000)) %>%
+  mutate(Mean = mean(x),
+         Median = median(x)) %>%
+  pivot_longer(cols = c(Mean, Median), names_to = "Summary") 
+
+negbindat <- tibble(x = rnegbin(1000, mu = 10, theta = 2)) %>%
+  mutate(Mean = mean(x),
+         Median = median(x)) %>%
+  pivot_longer(cols = c(Mean, Median), names_to = "Summary") 
+
+
+ggplot(normdat, aes(x = x)) +
+  geom_density() +
+  geom_vline(aes(xintercept = value, color = Summary)) +
+  labs(y = "Density of Observations", x = "Observation Value") +
+  theme_bw()
+
+```
+
+But when data are skewed, the median may be a better estimate of the central tendency:
+
+```{r}
+ggplot(negbindat, aes(x = x)) +
+  geom_density() +
+  geom_vline(aes(xintercept = value, color = Summary)) +
+  labs(y = "Density of Observations", x = "Observation Value") +
+  theme_bw()
+
+```
+
+## Spread
+
+You also might be interested in how varied your data is, how much it deviates from the central tendency. This can be done with the following:
+
+**Variance** - how variable is the data? Measured as the average squared difference between observations and the mean:
+
+$$
+Variance = \frac{\sum (Observation_i - Mean)^2}{Number of Observations}
+$$
+
+($\sum$ means "sum of")
+
+The differences are squared to get rid of negative differences, because other wise everything would cancel out and our variance would be zero!
+
+**Standard Deviation** - the square root of the variance. This is useful because it is in the same units as the original measurements!
+
+## Other Descriptors
+
+Another descriptor that may prove useful is the **dispersion**, or the variance divided by the mean. This provides an estimate of how skewed the data is - for example, the first plot above has very low dispersion, while the second plot has high dispersion.
+
+## Ecological Community Descriptors
+
+Many of you are interested in describing the species composition of of community. Here's a few common descriptors:
+
+**Species Richness** - this is just the number of different species present.
+
+**Species Diversity** - this is an index that takes into account the richness as well as the relative abundances of each species. E.g. Shannon's Diversity Index, where higher numbers mean more species more evenly distributed.
+
+**Species Evenness** - this is an index that estimates specifically how evenly distributed species abundances are. E.g., Pielou's Evenness, which ranges from 0 to 1, with 1 meaning that each species has equal numbers.
+
+Note: these measures can apply to any taxonomic distinction, e.g., family richness, order diversity, etc.
