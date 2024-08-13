@@ -2,7 +2,7 @@
 
 This website / HTML book is intended to collect resources for Cedar Creek summer interns doing independent research projects, and present those resources in an easily accessible way.
 
-For now, the focus is primarily on data management, analysis, and using the R programming language.
+For now, the focus is primarily on data management, analysis, and using the R programming language specifically to process and analyze data.
 
 Much of the content featured is adapted from the work of past CCESR Fellows, including Maggie Anderson, Mariana Cárdenas, and Bea Baselga Cervera. The primary author of the site is Chris Wojan, with Qianna Xu providing the sections on community ecology measures.
 

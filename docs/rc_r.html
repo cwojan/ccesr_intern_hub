@@ -310,7 +310,8 @@ ul.task-list li input[type="checkbox"] {
   <ul>
   <li><a href="#r-the-language" id="toc-r-the-language" class="nav-link active" data-scroll-target="#r-the-language"><span class="header-section-number">10.1</span> R, the Language</a></li>
   <li><a href="#r-the-software" id="toc-r-the-software" class="nav-link" data-scroll-target="#r-the-software"><span class="header-section-number">10.2</span> R, the Software</a></li>
-  <li><a href="#r-packages" id="toc-r-packages" class="nav-link" data-scroll-target="#r-packages"><span class="header-section-number">10.3</span> R Packages</a></li>
+  <li><a href="#why-r" id="toc-why-r" class="nav-link" data-scroll-target="#why-r"><span class="header-section-number">10.3</span> Why R?</a></li>
+  <li><a href="#r-packages" id="toc-r-packages" class="nav-link" data-scroll-target="#r-packages"><span class="header-section-number">10.4</span> R Packages</a></li>
   </ul>
 </nav>
     </div>
@@ -336,15 +337,15 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p>R is both a programming language and an application that you can install to your computer.</p>
+<p>You may or may not have heard of R, and if you have, you may be somewhat confused as to what exactly it is. Basically, R is both a programming language and an application that you can install to your computer. Understanding a bit about it is the first step to using it to analyze your data, so let’s break it down further:</p>
 <section id="r-the-language" class="level2" data-number="10.1">
 <h2 data-number="10.1" class="anchored" data-anchor-id="r-the-language"><span class="header-section-number">10.1</span> R, the Language</h2>
-<p>R is a programming language designed for statistical computing, and is often the language of choice for scientists. R is also used for data science in some business, tech, and health contexts (but many prefer Python in those areas).</p>
+<p>First, R is a programming language designed for statistical computing, and is often the language of choice for ecologists and some other natural scientists. R is also used for data science in some business, tech, and health contexts (but many prefer Python in those areas).</p>
 <p>As a programming language it is essentially an expandable collection of functions with syntax to perform tasks, and it could be written in any text editor. However, in order for your computer to interpret the language, it needs some software.</p>
 </section>
 <section id="r-the-software" class="level2" data-number="10.2">
 <h2 data-number="10.2" class="anchored" data-anchor-id="r-the-software"><span class="header-section-number">10.2</span> R, the Software</h2>
-<p>The R application allows you to run R code on your computer, and comes with a basic “console” window where code is run and output is printed, as well as a basic script editor where you can write code to run.</p>
+<p>The R application allows you to run R code on your computer by interpreting it and translating it to instructions that your computer can understand. It comes with a basic “console” window where code is run and output is printed, as well as a basic script editor where you can write code to run.</p>
 <p>You can download the application from here:</p>
 <p><a href="https://cran.r-project.org/" class="uri">https://cran.r-project.org/</a></p>
 <p>If you are asked to select a mirror, simply select the nearest one (I believe Iowa State should work).</p>
@@ -352,8 +353,16 @@ ul.task-list li input[type="checkbox"] {
 <p>If you have a Mac, you will want to select the .pkg file that matches your processor type: x-86 for Intel processors (mostly Macs pre-2020), arm64 for Macs with the M1 or M2 chip (most Macs post-2020).</p>
 <p>If you are using Linux, you know more than me.</p>
 </section>
-<section id="r-packages" class="level2" data-number="10.3">
-<h2 data-number="10.3" class="anchored" data-anchor-id="r-packages"><span class="header-section-number">10.3</span> R Packages</h2>
+<section id="why-r" class="level2" data-number="10.3">
+<h2 data-number="10.3" class="anchored" data-anchor-id="why-r"><span class="header-section-number">10.3</span> Why R?</h2>
+<p>You may be wondering why folks use R for data analysis, when more accessible programs like Excel, Minitab, etc. can also perform statistical analysis. There are three big reasons:</p>
+<p><strong>Reproducibility</strong> - Oftentimes when you use an application with point and click functionality to conduct data processing and analyses, you may end up doing a complex series of actions without recording exactly what you have done. With R, you create a script of code that is a series of instructions that can be easily replicated by you or anyone else in the future. Scientists care deeply about the results of studies being reproducible, and the analysis steps are a big part of that.</p>
+<p><strong>Shareability</strong> - As mentioned, with R you create a script of code, and these scripts are usually simple text files with small file size. As such, the code that ecologists write can be easily distributed for others to use or modify for their research. This is a great way for data analysts to collaborate in a shared language!</p>
+<p><strong>Specificity</strong> - Since R is used often by ecologists and other scientists, there are already many built-in functions that can be used for common or not-so-common ecology data methods. Many programs have built-in functions for classic statistical methods like means, standard deviations, and linear regression, but fewer may have those for things like calculating diversity indices or dealing with zero-inflated data (things ecologists do often). Many of these functions come in packages, which are described below.</p>
+<p>And why do we teach the basics of R in the Cedar Creek Summer Fellows program? Because it is likely valuable professional development for many interns. For many ecology / environmental science job positions that involve working with data, knowing how to write R code (or Python) is a great boon to one’s qualifications (and in many cases an application requirement). As such, if you are interested in pursuing a research career (academic or not), R is a good thing to be familiar with.</p>
+</section>
+<section id="r-packages" class="level2" data-number="10.4">
+<h2 data-number="10.4" class="anchored" data-anchor-id="r-packages"><span class="header-section-number">10.4</span> R Packages</h2>
 <p>As mentioned above, R is <em>expandable</em>. You can add more functionality to R by installing packages. Packages contain more options of code to use to process and analyze data, and also do many other things.</p>
 <p>Packages can be installed through writing R code, or by clicking some buttons in RStudio. Then they will live in a directory that was built when you installed R for auxiliary packages.</p>
 <p>We will discuss more about installing packages in the R coding section.</p>

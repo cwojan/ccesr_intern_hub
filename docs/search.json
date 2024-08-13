@@ -4,7 +4,7 @@
     "href": "index.html",
     "title": "CCESR Intern Hub",
     "section": "",
-    "text": "Welcome!\nThis website / HTML book is intended to collect resources for Cedar Creek summer interns doing independent research projects, and present those resources in an easily accessible way.\nFor now, the focus is primarily on data management, analysis, and using the R programming language.\nMuch of the content featured is adapted from the work of past CCESR Fellows, including Maggie Anderson, Mariana Cárdenas, and Bea Baselga Cervera. The primary author of the site is Chris Wojan, with Qianna Xu providing the sections on community ecology measures.\nThis site is structured in different parts, which can be read in any order you choose, depending on your needs / what you already know. Currently, the first part describes data management practices, the second part goes over data analysis in general, the third part describes R-related software and workflows, and the fourth part is intended to give a primer in R coding.",
+    "text": "Welcome!\nThis website / HTML book is intended to collect resources for Cedar Creek summer interns doing independent research projects, and present those resources in an easily accessible way.\nFor now, the focus is primarily on data management, analysis, and using the R programming language specifically to process and analyze data.\nMuch of the content featured is adapted from the work of past CCESR Fellows, including Maggie Anderson, Mariana Cárdenas, and Bea Baselga Cervera. The primary author of the site is Chris Wojan, with Qianna Xu providing the sections on community ecology measures.\nThis site is structured in different parts, which can be read in any order you choose, depending on your needs / what you already know. Currently, the first part describes data management practices, the second part goes over data analysis in general, the third part describes R-related software and workflows, and the fourth part is intended to give a primer in R coding.",
     "crumbs": [
       "Welcome!"
     ]
@@ -278,7 +278,7 @@
     "href": "rc_r.html",
     "title": "10  R Itself",
     "section": "",
-    "text": "10.1 R, the Language\nR is a programming language designed for statistical computing, and is often the language of choice for scientists. R is also used for data science in some business, tech, and health contexts (but many prefer Python in those areas).\nAs a programming language it is essentially an expandable collection of functions with syntax to perform tasks, and it could be written in any text editor. However, in order for your computer to interpret the language, it needs some software.",
+    "text": "10.1 R, the Language\nFirst, R is a programming language designed for statistical computing, and is often the language of choice for ecologists and some other natural scientists. R is also used for data science in some business, tech, and health contexts (but many prefer Python in those areas).\nAs a programming language it is essentially an expandable collection of functions with syntax to perform tasks, and it could be written in any text editor. However, in order for your computer to interpret the language, it needs some software.",
     "crumbs": [
       "R on your Computer",
       "<span class='chapter-number'>10</span>  <span class='chapter-title'>R Itself</span>"
@@ -289,7 +289,18 @@
     "href": "rc_r.html#r-the-software",
     "title": "10  R Itself",
     "section": "10.2 R, the Software",
-    "text": "10.2 R, the Software\nThe R application allows you to run R code on your computer, and comes with a basic “console” window where code is run and output is printed, as well as a basic script editor where you can write code to run.\nYou can download the application from here:\nhttps://cran.r-project.org/\nIf you are asked to select a mirror, simply select the nearest one (I believe Iowa State should work).\nIf you have a Windows machine, it should be fairly straightforward to simply download and install the “base” R from the link.\nIf you have a Mac, you will want to select the .pkg file that matches your processor type: x-86 for Intel processors (mostly Macs pre-2020), arm64 for Macs with the M1 or M2 chip (most Macs post-2020).\nIf you are using Linux, you know more than me.",
+    "text": "10.2 R, the Software\nThe R application allows you to run R code on your computer by interpreting it and translating it to instructions that your computer can understand. It comes with a basic “console” window where code is run and output is printed, as well as a basic script editor where you can write code to run.\nYou can download the application from here:\nhttps://cran.r-project.org/\nIf you are asked to select a mirror, simply select the nearest one (I believe Iowa State should work).\nIf you have a Windows machine, it should be fairly straightforward to simply download and install the “base” R from the link.\nIf you have a Mac, you will want to select the .pkg file that matches your processor type: x-86 for Intel processors (mostly Macs pre-2020), arm64 for Macs with the M1 or M2 chip (most Macs post-2020).\nIf you are using Linux, you know more than me.",
+    "crumbs": [
+      "R on your Computer",
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>R Itself</span>"
+    ]
+  },
+  {
+    "objectID": "rc_r.html#why-r",
+    "href": "rc_r.html#why-r",
+    "title": "10  R Itself",
+    "section": "10.3 Why R?",
+    "text": "10.3 Why R?\nYou may be wondering why folks use R for data analysis, when more accessible programs like Excel, Minitab, etc. can also perform statistical analysis. There are three big reasons:\nReproducibility - Oftentimes when you use an application with point and click functionality to conduct data processing and analyses, you may end up doing a complex series of actions without recording exactly what you have done. With R, you create a script of code that is a series of instructions that can be easily replicated by you or anyone else in the future. Scientists care deeply about the results of studies being reproducible, and the analysis steps are a big part of that.\nShareability - As mentioned, with R you create a script of code, and these scripts are usually simple text files with small file size. As such, the code that ecologists write can be easily distributed for others to use or modify for their research. This is a great way for data analysts to collaborate in a shared language!\nSpecificity - Since R is used often by ecologists and other scientists, there are already many built-in functions that can be used for common or not-so-common ecology data methods. Many programs have built-in functions for classic statistical methods like means, standard deviations, and linear regression, but fewer may have those for things like calculating diversity indices or dealing with zero-inflated data (things ecologists do often). Many of these functions come in packages, which are described below.\nAnd why do we teach the basics of R in the Cedar Creek Summer Fellows program? Because it is likely valuable professional development for many interns. For many ecology / environmental science job positions that involve working with data, knowing how to write R code (or Python) is a great boon to one’s qualifications (and in many cases an application requirement). As such, if you are interested in pursuing a research career (academic or not), R is a good thing to be familiar with.",
     "crumbs": [
       "R on your Computer",
       "<span class='chapter-number'>10</span>  <span class='chapter-title'>R Itself</span>"
@@ -299,8 +310,8 @@
     "objectID": "rc_r.html#r-packages",
     "href": "rc_r.html#r-packages",
     "title": "10  R Itself",
-    "section": "10.3 R Packages",
-    "text": "10.3 R Packages\nAs mentioned above, R is expandable. You can add more functionality to R by installing packages. Packages contain more options of code to use to process and analyze data, and also do many other things.\nPackages can be installed through writing R code, or by clicking some buttons in RStudio. Then they will live in a directory that was built when you installed R for auxiliary packages.\nWe will discuss more about installing packages in the R coding section.",
+    "section": "10.4 R Packages",
+    "text": "10.4 R Packages\nAs mentioned above, R is expandable. You can add more functionality to R by installing packages. Packages contain more options of code to use to process and analyze data, and also do many other things.\nPackages can be installed through writing R code, or by clicking some buttons in RStudio. Then they will live in a directory that was built when you installed R for auxiliary packages.\nWe will discuss more about installing packages in the R coding section.",
     "crumbs": [
       "R on your Computer",
       "<span class='chapter-number'>10</span>  <span class='chapter-title'>R Itself</span>"
@@ -377,7 +388,7 @@
     "href": "r_basics.html#functions",
     "title": "13  The Basics",
     "section": "13.3 Functions",
-    "text": "13.3 Functions\nFunctions are words (though not necessarily real words) or letters that instruct the computer to perform more complicated tasks. They generally are followed by parentheses ().\n\n## here's a function that returns the current date\nSys.Date()\n\n[1] \"2024-07-31\"\n\n## and here is a function that returns the date with the time\nSys.time()\n\n[1] \"2024-07-31 11:25:26 CDT\"\n\n\nNo you may be thinking - “this is pretty basic” and “what are the parentheses for?”, which brings use to arguments!",
+    "text": "13.3 Functions\nFunctions are words (though not necessarily real words) or letters that instruct the computer to perform more complicated tasks. They generally are followed by parentheses ().\n\n## here's a function that returns the current date\nSys.Date()\n\n[1] \"2024-08-13\"\n\n## and here is a function that returns the date with the time\nSys.time()\n\n[1] \"2024-08-13 15:55:57 CDT\"\n\n\nNo you may be thinking - “this is pretty basic” and “what are the parentheses for?”, which brings use to arguments!",
     "crumbs": [
       "R Programming",
       "<span class='chapter-number'>13</span>  <span class='chapter-title'>The Basics</span>"
@@ -388,7 +399,7 @@
     "href": "r_basics.html#arguments",
     "title": "13  The Basics",
     "section": "13.4 Arguments",
-    "text": "13.4 Arguments\nArguments are values or objects that go inside the parentheses of functions to specify what you want the function to do. This is what gives functions their power. Arguments are separated inside a function by commas.\n\n## the sum function can sum many numbers\nsum(1,2,3,4,5)\n\n[1] 15\n\n\nIn the function above, each number is acting as an argument. In this case, the arguments don’t have names. Oftentimes a function’s arguments will be explicitly named, and to specify what you want those arguments to be, you use the = operator.\n\n## this function pulls values randomly from a normal distribution specified in the arguments\n## n specifies how many numbers to return, and mean and sd specify shape of the distribution\nrnorm(n = 10, mean = 5, sd = 1)\n\n [1] 5.548925 5.866429 5.793232 6.054428 5.734021 4.296649 5.856264 4.551718\n [9] 4.844708 4.201850\n\n\nOperators are actually a special type of function that can be used with syntax that is more intuitive for them. You can also use them in the same way as most functions by surrounding them with back ticks, `.\n\n## here we use the + operator in a much more confusing context\n`+`(2, 2)\n\n[1] 4\n\n## it is equivalent to\n2 + 2\n\n[1] 4",
+    "text": "13.4 Arguments\nArguments are values or objects that go inside the parentheses of functions to specify what you want the function to do. This is what gives functions their power. Arguments are separated inside a function by commas.\n\n## the sum function can sum many numbers\nsum(1,2,3,4,5)\n\n[1] 15\n\n\nIn the function above, each number is acting as an argument. In this case, the arguments don’t have names. Oftentimes a function’s arguments will be explicitly named, and to specify what you want those arguments to be, you use the = operator.\n\n## this function pulls values randomly from a normal distribution specified in the arguments\n## n specifies how many numbers to return, and mean and sd specify shape of the distribution\nrnorm(n = 10, mean = 5, sd = 1)\n\n [1] 6.746599 6.991103 3.034127 5.619358 6.144725 4.079489 5.073563 3.778191\n [9] 5.073600 6.072395\n\n\nOperators are actually a special type of function that can be used with syntax that is more intuitive for them. You can also use them in the same way as most functions by surrounding them with back ticks, `.\n\n## here we use the + operator in a much more confusing context\n`+`(2, 2)\n\n[1] 4\n\n## it is equivalent to\n2 + 2\n\n[1] 4",
     "crumbs": [
       "R Programming",
       "<span class='chapter-number'>13</span>  <span class='chapter-title'>The Basics</span>"

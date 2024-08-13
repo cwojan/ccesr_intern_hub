@@ -3,17 +3,17 @@ title: "R Itself"
 toc: true
 ---
 
-R is both a programming language and an application that you can install to your computer.
+You may or may not have heard of R, and if you have, you may be somewhat confused as to what exactly it is. Basically, R is both a programming language and an application that you can install to your computer. Understanding a bit about it is the first step to using it to analyze your data, so let's break it down further:
 
 ## R, the Language
 
-R is a programming language designed for statistical computing, and is often the language of choice for scientists. R is also used for data science in some business, tech, and health contexts (but many prefer Python in those areas).
+First, R is a programming language designed for statistical computing, and is often the language of choice for ecologists and some other natural scientists. R is also used for data science in some business, tech, and health contexts (but many prefer Python in those areas).
 
 As a programming language it is essentially an expandable collection of functions with syntax to perform tasks, and it could be written in any text editor. However, in order for your computer to interpret the language, it needs some software.
 
 ## R, the Software
 
-The R application allows you to run R code on your computer, and comes with a basic "console" window where code is run and output is printed, as well as a basic script editor where you can write code to run.
+The R application allows you to run R code on your computer by interpreting it and translating it to instructions that your computer can understand. It comes with a basic "console" window where code is run and output is printed, as well as a basic script editor where you can write code to run.
 
 You can download the application from here:
 
@@ -26,6 +26,18 @@ If you have a Windows machine, it should be fairly straightforward to simply dow
 If you have a Mac, you will want to select the .pkg file that matches your processor type: x-86 for Intel processors (mostly Macs pre-2020), arm64 for Macs with the M1 or M2 chip (most Macs post-2020).
 
 If you are using Linux, you know more than me.
+
+## Why R?
+
+You may be wondering why folks use R for data analysis, when more accessible programs like Excel, Minitab, etc. can also perform statistical analysis. There are three big reasons:
+
+**Reproducibility** - Oftentimes when you use an application with point and click functionality to conduct data processing and analyses, you may end up doing a complex series of actions without recording exactly what you have done. With R, you create a script of code that is a series of instructions that can be easily replicated by you or anyone else in the future. Scientists care deeply about the results of studies being reproducible, and the analysis steps are a big part of that.
+
+**Shareability** - As mentioned, with R you create a script of code, and these scripts are usually simple text files with small file size. As such, the code that ecologists write can be easily distributed for others to use or modify for their research. This is a great way for data analysts to collaborate in a shared language!
+
+**Specificity** - Since R is used often by ecologists and other scientists, there are already many built-in functions that can be used for common or not-so-common ecology data methods. Many programs have built-in functions for classic statistical methods like means, standard deviations, and linear regression, but fewer may have those for things like calculating diversity indices or dealing with zero-inflated data (things ecologists do often). Many of these functions come in packages, which are described below.
+
+And why do we teach the basics of R in the Cedar Creek Summer Fellows program? Because it is likely valuable professional development for many interns. For many ecology / environmental science job positions that involve working with data, knowing how to write R code (or Python) is a great boon to one's qualifications (and in many cases an application requirement). As such, if you are interested in pursuing a research career (academic or not), R is a good thing to be familiar with.
 
 ## R Packages
 
